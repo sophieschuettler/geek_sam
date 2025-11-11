@@ -1,147 +1,779 @@
+// backend/index.js
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const sqlite3 = require("sqlite3").verbose();
 const path = require("path");
-const multer = require("multer");
 const fs = require("fs");
 
 const app = express();
 const PORT = 4000;
 
-// === Middleware ===
-app.use(cors());
+// --- CORS & Middleware ---
+const allowedOrigins = ["http://localhost:3000", "http://192.168.1.131:3000"];
+app.use(cors({ origin: allowedOrigins, credentials: true }));
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
-app.use("/api/overview", require("./routes/overview"));
 
+// --- DB Setup ---
+const dbDir = path.join(__dirname, "db");
+if (!fs.existsSync(dbDir)) fs.mkdirSync(dbDir, { recursive: true });
+const dbPath = path.join(dbDir, "contest.db");
+const db = new sqlite3.Database(dbPath);
 
-// === SQLite Setup ===
-const db = new sqlite3.Database("./db/contest.db");
+// --- Sessions ---
+const sessionFile = path.join(dbDir, "sessions.json");
+let sessions = {};
+if (fs.existsSync(sessionFile)) {
+  try {
+    sessions = JSON.parse(fs.readFileSync(sessionFile, "utf-8"));
+    console.log("🔄 Alte Sessions geladen:", Object.keys(sessions).length);
+  } catch (err) {
+    console.error("⚠️ Fehler beim Laden der Session-Datei:", err);
+  }
+}
+function saveSessions() {
+  fs.writeFileSync(sessionFile, JSON.stringify(sessions, null, 2));
+}
 
-// Teilnehmer-Tabelle
+// --- Tables ---
 db.serialize(() => {
-  db.run(`
-    CREATE TABLE IF NOT EXISTS participants (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      cosplayName TEXT,
-      character TEXT,
-      game TEXT,
-      characterImage TEXT,
-      cosplayImages TEXT,
-      wipImages TEXT
-    )
-  `);
+  db.run(`CREATE TABLE IF NOT EXISTS participants (
+    id INTEGER PRIMARY KEY,
+    cosplayName TEXT,
+    character TEXT,
+    game TEXT,
+    number INTEGER,
+    characterImage TEXT,
+    text TEXT,
+    cosplayImages TEXT,
+    wearingImages TEXT,
+    wipImages TEXT,
+    buildBook TEXT,
+    link TEXT
+  )`);
 
-  db.run(`
-    CREATE TABLE IF NOT EXISTS ratings (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      user TEXT,
-      participantId INTEGER,
-      criteria TEXT,
-      score INTEGER
-    )
-  `);
-});
+  db.run(`CREATE TABLE IF NOT EXISTS ratings (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT,
+    participantId INTEGER,
+    category TEXT,
+    criterion TEXT,
+    score INTEGER,
+    createdAt TEXT DEFAULT (datetime('now')),
+    FOREIGN KEY(participantId) REFERENCES participants(id)
+  )`);
 
-// === Multer Upload Setup ===
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    const dir = "uploads/";
-    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-    cb(null, dir);
-  },
-  filename: (req, file, cb) => {
-    const unique = Date.now() + "_" + file.originalname;
-    cb(null, unique);
-  },
-});
+  db.run(`CREATE TABLE IF NOT EXISTS nominations (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    participantId INTEGER,
+    user TEXT,
+    nominationType TEXT,
+    FOREIGN KEY (participantId) REFERENCES participants(id)
+  )`);
 
-const upload = multer({ storage });
-
-// === Teilnehmer API ===
-
-// GET all participants
-app.get("/api/participants", (req, res) => {
-  db.all("SELECT * FROM participants", [], (err, rows) => {
-    if (err) return res.status(500).send(err);
-    rows = rows.map((row) => ({
-      ...row,
-      cosplayImages: row.cosplayImages ? JSON.parse(row.cosplayImages) : [],
-      wipImages: row.wipImages ? JSON.parse(row.wipImages) : [],
-    }));
-    res.json(rows);
+  db.run(`ALTER TABLE nominations ADD COLUMN createdAt TEXT DEFAULT (datetime('now'))`, err => {
+    if (err) {
+      if (err.message.includes("duplicate column name")) {
+        console.log("Spalte createdAt in nominations existiert bereits ✅");
+      } else {
+        console.error("Fehler beim Hinzufügen der Spalte createdAt:", err);
+      }
+    } else {
+      console.log("Spalte createdAt in nominations hinzugefügt ✅");
+    }
   });
 });
 
-// POST new participant (nur für Admin im Frontend)
-app.post(
-  "/api/participants",
-  upload.fields([
-    { name: "characterImage", maxCount: 1 },
-    { name: "cosplayImages" },
-    { name: "wipImages" },
-  ]),
-  (req, res) => {
-    const { cosplayName, character, game } = req.body;
-    const characterImage = req.files["characterImage"]?.[0]?.filename || "";
-    const cosplayImages = (req.files["cosplayImages"] || []).map((f) => f.filename);
-    const wipImages = (req.files["wipImages"] || []).map((f) => f.filename);
 
-    db.run(
-      `INSERT INTO participants (cosplayName, character, game, characterImage, cosplayImages, wipImages) VALUES (?, ?, ?, ?, ?, ?)`,
-      [
-        cosplayName,
-        character,
-        game,
-        characterImage,
-        JSON.stringify(cosplayImages),
-        JSON.stringify(wipImages),
-      ],
-      function (err) {
-        if (err) return res.status(500).send(err);
-        res.status(201).json({ id: this.lastID });
-      }
+// --- Hardcoded Participants ---
+const hardcodedParticipants = [
+  {
+    id: 1,
+    cosplayName: "Brotokolie",
+    character: "Dante",
+    game: "Devil May Cry 5",
+    number: 1,
+    characterImage: JSON.stringify([`http://localhost:${PORT}/uploads/brotokolieRef.jpg` ]),
+    text: `Es war 2021 mein erstes Cosplay, welches ich über die Jahre verbessert habe. \n Den Mantel habe ich damals auf Etsy gekauft und dann weiter bearbeitet indem ich ihn so zugerichtet habe, als ob er schon Kampfspuren erlitten hat. Jegliche Rillen und das Ende vom Mantel habe ich eingefärbt, zerschnitten oder abgeschleift, so als wäre er durch den Dreck gezogen worden und in Kämpfen war. Das gleiche habe ich mit der Hose (auf die ich noch zusätzlich Knöpfe angebracht habe), den Handschuhen, dem Shirt und den Schuhen gemacht. Die 4 Gürtel die um seine Stiefel hängen habe ich gekürzt und die Schnallen golden gefärbt. \n Die Gürtelschnalle habe ich aus Knetmasse und Foam hergestellt. \n Den Totenschädel auf dem Rücken habe ich 3d gedruckt, silbern bemalt und aufgeklebt. \n Das Schwert 3D gedruckt und bemalt. Mittlerweile habe ich das nochmal überarbeitet und größer gemacht.`,
+    link: "Instagram.com/brotokolie",
+    wearingImages: JSON.stringify([
+      `http://localhost:${PORT}/uploads/brotokolieTryon1.jpg`,
+      `http://localhost:${PORT}/uploads/brotokolieTryon2.jpg`,
+    ]),
+    wipImages: JSON.stringify([
+      `http://localhost:${PORT}/uploads/Brotokolie_WIP1.jpeg`,
+      `http://localhost:${PORT}/uploads/Brotokolie_WIP2.jpeg`,
+      `http://localhost:${PORT}/uploads/Brotokolie_WIP3.jpeg`,
+      `http://localhost:${PORT}/uploads/Brotokolie_WIP4.jpg`,
+      `http://localhost:${PORT}/uploads/Brotokolie_WIP5.jpg`,
+      `http://localhost:${PORT}/uploads/Brotokolie_WIP6.jpg`,
+      `http://localhost:${PORT}/uploads/Brotokolie_WIP7.jpg`,
+      `http://localhost:${PORT}/uploads/Brotokolie_WIP8.jpg`,
+    ]),
+    cosplayImages: JSON.stringify([]),
+    buildBook: null,
+  },
+  {
+    id: 2,
+    cosplayName: "TunajCosplay",
+    character: "Zani",
+    game: "Wuthering Waves",
+    number: 2,
+     characterImage: JSON.stringify([ 
+      `http://localhost:${PORT}/uploads/TunajCosplay_Zani_Wuthering Waves_Ref1.jpg`,
+       `http://localhost:${PORT}/uploads/TunajCosplay_Zani_Wuthering Waves_Ref2.jpg`,
+    ]),
+    text: `Das Kostüm ist komplett selbst gemacht, auch die Schnittmuster habe ich selbst erstellt. Besonders stolz bin ich auf die Hose. Der Schnitt war etwas herausfordernd, z.B. mit den zwei Reißverschlüssen vorne. Aber ich mag die Hose und vor allem die Passform sehr. \n Ich habe neben Näharbeiten auch weitere Techniken verwendet: Foam Crafting, z.B. für die Taschenuhr und die Hörner; die Rüschen an Hose und Cape sind mit Farbverlauf eingefärbt und auf der Armbinde ist ein Symbol aus Bügelfolie (auch dieses Muster habe ich selbst erstellt und dann mit den Plotter ausgeschnitten).`,
+
+    link: "Instagram.com/tunajcosplay/",
+    wearingImages: JSON.stringify([
+      `http://localhost:${PORT}/uploads/TunajCosplay_Tryon1.jpg`,
+      `http://localhost:${PORT}/uploads/TunajCosplay_Tryon2.jpg`,
+      `http://localhost:${PORT}/uploads/TunajCosplay_Tryon3.jpg`,
+      `http://localhost:${PORT}/uploads/TunajCosplay_Tryon4.jpg`,
+    ]),
+    wipImages: JSON.stringify([]),
+    cosplayImages: JSON.stringify([]),
+    buildBook: `http://localhost:${PORT}/uploads/tunaj_buildbook.pdf`,
+  }, 
+  {
+    id: 3,
+    cosplayName: "Sheeshkia",
+    character: "Link",
+    game: "The Legend of Zelda Ocarina of Time ",
+    number: 3,
+    characterImage: JSON.stringify([
+      `http://localhost:${PORT}/uploads/Sheeshkia.jpg`,
+      `http://localhost:${PORT}/uploads/Sheeshkia2.jpg`,
+      `http://localhost:${PORT}/uploads/Sheeshkia3.jpg`,
+    ]),
+    text: `Der Ikonische Grüne Tunik + die Mütze, die Hose, der Schwerhaltergurt, der Gürtel sowie die Stumpen an den Armen und Beinen sind selbst gemacht. Details wie der Topf den man im Spiel kaputt machen kann und Rubine sind 3D Gedruckt, ein Plüschhuhn und Navi, welche Sounds spielen oder Leuchten kann sowie andere Items aus dem Spiel habe ich dabei `,
+    link: "Instagram.com/sheeshkie/",
+    wipImages: JSON.stringify([
+      `http://localhost:${PORT}/uploads/Sheeshkia_WIP1.jpg`,
+      `http://localhost:${PORT}/uploads/Sheeshkia_WIP2.jpg`,
+      `http://localhost:${PORT}/uploads/Sheeshkia_WIP3.jpg`,
+      `http://localhost:${PORT}/uploads/Sheeshkia_WIP4.jpg`,
+    ]),
+    wearingImages: JSON.stringify([
+      `http://localhost:${PORT}/uploads/Sheeshkia_Tryon1.jpg`,
+      `http://localhost:${PORT}/uploads/Sheeshkia_Tryon2.jpg`,
+    ]),
+    cosplayImages: JSON.stringify([]),
+    buildBook:null,
+  },
+   {
+    id: 4,
+    cosplayName: "KellyGreeny",
+    character: "Nick Valentine",
+    game: "Fallout 4",
+    number: 4,
+    characterImage: JSON.stringify([`http://localhost:${PORT}/uploads/KellyGreeny.jpg`]), 
+    
+    text: `Die mechanische Hand und das Make-Up, sowie die versteckten Holster sind meine Lieblingsteile neben dem ikonischen Mantel. Der Mantel besteht aus zwei Secondhand Mänteln, dich ich auseinandergenommen habe und auf den Charakter angepasst sowie gewettert und mit Zierstichen versehen habe. Das Hemd ist komplett selbstgemacht. Die Hose, Schue, Gürtel, Kravatte und Hut sind zum großen Teil Seconhand oder gekauft, aber auch angepasst und gewettert. Die beiden Revolver sowie das Holotape sind 3D gedruckt, zusammengebaut, bemalt und gewettert von mir. Die mechanische Hand ist komplett selbst entworfen und gebaut aus Foam, Worbla und Holz. Der Basis Handschuh ist mein bester Handschuh bis jetzt! Zudem bringe ich meine Lieblingsrequsite mit, wo ich sogar LEDs drin verbaut habe.`,
+    link: "Instagram.com/kellygreenycosplay",
+    wipImages: JSON.stringify([
+      `http://localhost:${PORT}/uploads/KellyGreeny_WIP1.jpg`,
+      `http://localhost:${PORT}/uploads/KellyGreeny_WIP2.jpg`,
+      `http://localhost:${PORT}/uploads/KellyGreeny_WIP3.jpg`,
+      `http://localhost:${PORT}/uploads/KellyGreeny_WIP4.jpg`,
+      `http://localhost:${PORT}/uploads/KellyGreeny_WIP5.jpg`,
+      `http://localhost:${PORT}/uploads/KellyGreeny_WIP6.jpg`,
+      `http://localhost:${PORT}/uploads/KellyGreeny_WIP7.jpg`,
+      `http://localhost:${PORT}/uploads/KellyGreeny_WIP8.jpg`,
+      `http://localhost:${PORT}/uploads/KellyGreeny_WIP9.jpg`,
+      `http://localhost:${PORT}/uploads/KellyGreeny_WIP10.jpg`,
+    ]),
+    wearingImages: JSON.stringify([
+       `http://localhost:${PORT}/uploads/KellyGreeny_Tryon1.jpg`,
+       `http://localhost:${PORT}/uploads/KellyGreeny_Tryon2.jpg`,
+       `http://localhost:${PORT}/uploads/KellyGreeny_Tryon3.jpg`,
+    ]),
+    cosplayImages: JSON.stringify([]),
+    buildBook: null ,
+  },{
+    id: 5,
+    cosplayName: "CosplayManie",
+    character: "Oathbreaker Knight / Eidbrecher Ritter",
+    game: "Baldurs Gate 3",
+    number: 5,
+    characterImage: JSON.stringify([
+      `http://localhost:${PORT}/uploads/CosplayManie.jpg`,
+      `http://localhost:${PORT}/uploads/CosplayManie2.jpeg`,
+      `http://localhost:${PORT}/uploads/CosplayManie3.jpeg`,
+      `http://localhost:${PORT}/uploads/CosplayManie4.jpeg`,
+      `http://localhost:${PORT}/uploads/CosplayManie5.jpeg`,
+    
+    ]),
+    text: `besonderst Stolz bin ich auf die ganzen detailreichen goldenen Schnörkeleien auf der Rüstung welche viel Zeit benötigt haben um sie so akkurat wie möglich zu bekommen. Ebenso die einzigartige Helmform war nicht ohne
+Alles ist selbstgemacht, außer die Hose und das Oberteil was ich unten drunter trage sowie die Stickerei im Rock`,
+    link: "Instagram.com/cosplaymanie",
+    wipImages: JSON.stringify([
+      `http://localhost:${PORT}/uploads/CosplayManie_WIP1.jpeg`,
+      `http://localhost:${PORT}/uploads/CosplayManie_WIP2.jpeg`,
+      `http://localhost:${PORT}/uploads/CosplayManie_WIP3.jpeg`,
+      `http://localhost:${PORT}/uploads/CosplayManie_WIP4.jpeg`,
+      `http://localhost:${PORT}/uploads/CosplayManie_WIP5.jpeg`,
+      `http://localhost:${PORT}/uploads/CosplayManie_WIP6.jpeg`,
+      `http://localhost:${PORT}/uploads/CosplayManie_WIP7.jpeg`,
+      `http://localhost:${PORT}/uploads/CosplayManie_WIP8.jpeg`,
+      `http://localhost:${PORT}/uploads/CosplayManie_WIP9.jpeg`,
+      `http://localhost:${PORT}/uploads/CosplayManie_WIP10.jpeg`,
+    ]),
+    wearingImages: JSON.stringify([
+       `http://localhost:${PORT}/uploads/CosplayManie_Tryon1.jpeg`,
+       `http://localhost:${PORT}/uploads/CosplayManie_Tryon2.jpeg`,
+       `http://localhost:${PORT}/uploads/CosplayManie_Tryon3.jpeg`,
+       `http://localhost:${PORT}/uploads/CosplayManie_Tryon4.jpeg`,
+       `http://localhost:${PORT}/uploads/CosplayManie_Tryon5.jpeg`,
+    ]),
+    cosplayImages: JSON.stringify([]),
+    buildBook: null ,
+  },{
+    id: 6,
+    cosplayName: "Matres7IX",
+    character: "Handsome Jack",
+    game: "Borderlands",
+    number: 6,
+    characterImage: JSON.stringify([
+      `http://localhost:${PORT}/uploads/Matres7IX_Ref.jpg`,    
+    ]),
+    text: `Ich bin glücklich mein lieblings Charakter selbst zu basteln. Ich habe meinem Perücke und Props selbst mit EVA foam gecraftet und die Kostüme habe ich selbst durch lackiert. Es ist immer großartig mit Handmade.`,
+    link: "Instagram.com/Matres7IX",
+    wipImages: JSON.stringify([
+      `http://localhost:${PORT}/uploads/Matres7IX_WIP.jpg`,
+      `http://localhost:${PORT}/uploads/Matres7IX_WIP1.jpg`,
+      `http://localhost:${PORT}/uploads/Matres7IX_WIP2.jpg`,
+      `http://localhost:${PORT}/uploads/Matres7IX_WIP3.jpg`,
+    ]),
+    wearingImages: JSON.stringify([
+    ]),
+    cosplayImages: JSON.stringify([]),
+    buildBook: null ,
+  },{
+    id: 7,
+    cosplayName: "elandacosplay",
+    character: "Ranni",
+    game: "Elden Ring",
+    number: 7,
+    characterImage: JSON.stringify([
+      `http://localhost:${PORT}/uploads/elandacosplay.webp`,
+      `http://localhost:${PORT}/uploads/elandacosplay1.webp`,
+      `http://localhost:${PORT}/uploads/elandacosplay2.webp`,
+      `http://localhost:${PORT}/uploads/elandacosplay3.webp`,
+  
+    ]),
+    text: `Es ist mein erstes komplett selbstgemachtes Cosplay! Das Nähen verlief besser als gedacht und ich hab das ganze in etwa 5 Monaten gemacht. 
+Da ich noch nicht lange selber nähe, hab ich die Schnittmuster bei Made by Tsuya bestellt. 
+Die Wig ist ebenfalls gekauft, aber sonst selber gestyled.
+
+Ich hab selber alle Stoffe dafür gekauft, die Schnittmuster gedruckt und zusammengeklebt und dann die Stoffe ausgeschnitten und zusammen genäht. 
+Das zweite Paar Arme ist 3d gedruckt, auch dafür wurde eine von Etsy erworbene STL Datei genutzt, die allerdings für kleine Puppen gemacht ist. Diese musste ich dann hoch skalieren damit sie auch an meine Körpergröße angepasst sind. Sie wurden mit künstlichen Nägeln und Garn dann an das Original angepasst.
+
+Die Arme werden dann an einem, aus Gurtband selbst genähten Harness befestigt und mit Angelschnur an meinen Armen.
+Für meine eigenen Arme nutze ich gekaufte Handschuhe im passenden Blau-Ton, die ich dann mit neuen Fingernägeln ausgestattet habe. Und zusätzliche Risse und andere Effekte mit Farbe darauf gemalt.
+
+Der Hut besteht aus EVA-Foam. Damit er in Form bleibt, ist eine Menge Draht darin verklebt.
+Für den LED - Effekt ist eine kleine LED Leiste zwischen den Schichten verbaut. Die Schneeflocken Muster auf der untersten Schicht sind mit einer Heißklebepistole alle per Hand darauf gemacht und später wurde Farbe darüber gemacht.
+Die obere Schicht von Hut ist mit Stoff überzogen.
+Die Krone hab ich selber aus Draht gebogen.`,
+    link: "Instagram.com/elandacosplay",
+    wipImages: JSON.stringify([
+      `http://localhost:${PORT}/uploads/elandacosplay_WIP1.jpg`,
+      `http://localhost:${PORT}/uploads/elandacosplay_WIP2.jpg`,
+      `http://localhost:${PORT}/uploads/elandacosplay_WIP3.jpg`,
+      `http://localhost:${PORT}/uploads/elandacosplay_WIP4.jpg`,
+      `http://localhost:${PORT}/uploads/elandacosplay_WIP5.jpg`,
+      `http://localhost:${PORT}/uploads/elandacosplay_WIP6.jpg`,
+      `http://localhost:${PORT}/uploads/elandacosplay_WIP7.jpg`,
+      `http://localhost:${PORT}/uploads/elandacosplay_WIP8.jpg`,
+      `http://localhost:${PORT}/uploads/elandacosplay_WIP9.jpg`,
+      `http://localhost:${PORT}/uploads/elandacosplay_WIP10.jpg`,
+      `http://localhost:${PORT}/uploads/elandacosplay_WIP11.jpg`,
+      `http://localhost:${PORT}/uploads/elandacosplay_WIP12.jpg`,
+      `http://localhost:${PORT}/uploads/elandacosplay_WIP13.jpg`,
+      `http://localhost:${PORT}/uploads/elandacosplay_WIP14.jpg`,
+      `http://localhost:${PORT}/uploads/elandacosplay_WIP15.jpg`,
+      `http://localhost:${PORT}/uploads/elandacosplay_WIP16.jpg`,
+      `http://localhost:${PORT}/uploads/elandacosplay_WIP17.jpg`,
+      `http://localhost:${PORT}/uploads/elandacosplay_WIP18.jpg`,
+   
+    ]),
+    wearingImages: JSON.stringify([
+       `http://localhost:${PORT}/uploads/elandacosplay_Tryon.jpg`,
+       `http://localhost:${PORT}/uploads/elandacosplay_Tryon1.jpg`,
+       `http://localhost:${PORT}/uploads/elandacosplay_Tryon2.jpg`,
+       `http://localhost:${PORT}/uploads/elandacosplay_Tryon3.jpg`,
+    ]),
+    cosplayImages: JSON.stringify([]),
+    buildBook: null ,
+  },{
+    id: 8,
+    cosplayName: "Vampirfranzi",
+    character: "Xal´atath",
+    game: "World of Warcraft",
+    number: 8,
+    characterImage: JSON.stringify([
+      `http://localhost:${PORT}/uploads/Vampirfranzi1.jpg`,
+      `http://localhost:${PORT}/uploads/Vampirfranzi2.jpg`,
+      `http://localhost:${PORT}/uploads/Vampirfranzi3.jpg`,
+      `http://localhost:${PORT}/uploads/Vampirfranzi4.jpg`,
+   
+  
+    ]),
+    text: `Das Cosplay ist zu fast allen Teilen selbst gemacht, nur Basics wie Perücke oder Strumpfhosen wurden gekauft, jedoch selbst weiter verarbeitet bzw gestyled. Alle Schnittmuster sind selbst angefertigt, egal ob für Schneiderarbeiten oder Foamarbeiten. Ich habe zudem viele verschiedene Techniken genutzt, zum Beispiel 3D Modellierung, 3D Druck, Foamarbeit, Schneiderarbiet und Elektronik. Der Galaxystoff für den Umhang habe ich händisch in Procreate gezeichnet und drucken lassen, zudem ist der Umhang mit LEDs bestückt, um die Galaxy zum Leben zu erwecken. Die zwei Porps, die Xal´atath hat, das Dunkle Herz und ihre Klinge sind 3D gedruckt und selbst modelliert. Die Klinge hat zudem noch einige Foamschichten bekommen. In beiden Props befinden sich LEDs, die wie der Umhang von einem Arduino gesteuert werden. Ein Details, das ich besonders gerne mag, sind die handgeknüpften Augenbrauen, die ich mit den abgeschnittenen Perückenhaaren und einem Stück Perückennetz, das ich von einer Lacefront abgeschnitten habe, gemacht habe. 
+Außerdem habe ich für meine Performance einen kleinen Magic Trick eingebaut. Das Dunkle Herz schwebt häufig in Xal´ataths Hand, deshalb habe ich einen befreundeten Magier gefragt, und wir haben es mit einem ganz einfachen und alten Trick genutzt, um das auf der Bühne möglich zu machen. `,
+    link: "Instagram.com/franziska_adam",
+    wipImages: JSON.stringify([
+         
+    ]),
+    wearingImages: JSON.stringify([
+       `http://localhost:${PORT}/uploads/Vampirfranzi_Tryon1.jpg`,
+       `http://localhost:${PORT}/uploads/Vampirfranzi_Tryon2.jpg`,
+       `http://localhost:${PORT}/uploads/Vampirfranzi_Tryon3.jpg`,
+       `http://localhost:${PORT}/uploads/Vampirfranzi_Tryon4.jpg`,
+
+    ]),
+    cosplayImages: JSON.stringify([]),
+    buildBook: `http://localhost:${PORT}/uploads/VampirFranzi_BuildBook.pdf`,
+  },{
+    id: 9,
+    cosplayName: "Cosplay by Mira",
+    character: "Kiriko (Antifragile Skin)",
+    game: "Overwatch2",
+    number: 9,
+    characterImage: JSON.stringify([
+      `http://localhost:${PORT}/uploads/CosplayByMira1.png`,
+      `http://localhost:${PORT}/uploads/CosplayByMira2.jpg`,
+      `http://localhost:${PORT}/uploads/CosplayByMira3.jpg`,
+      `http://localhost:${PORT}/uploads/CosplayByMira4.jpg`,
+    ]),
+    text: `Ich habe die Perücke aus zwei Perücken zusammengenäht,zusätzliche Haarsträhnen per Hand eingenäht und die Perücke gestyled. 
+Die Jeansjacke ist komplett selbst genäht. Ich habe erst ein eigenes Schnittmuster erstellt, basierend auf einer Jeansjacke die ich habe und Ingame Bildern von Kiriko ihrer Jacke. 
+Genauso habe ich detailgetreu Ziernähte per Hand angenäht.
+Die Jacke habe ich dann noch im Verlauf gebleached und das Holographische Design hinten mit Bügelfolie per Hand ausgeschnitten und aufgebügelt.
+Für ihr Oberteil habe ich ein gekauftes Shirt abgeändert sodass es bauchfrei ist und anschließend auch die Holographische Bügelfolie aufgebügelt und anschließend um die ganzen Buchstaben mit der Nähmaschine einen sehr engen Zickzack Stich gemacht, sodass es einen ähnlichen Look wie beim original hat.
+Für ihren BH, bei dem man die Träger und auch am Bauch die überkreuzten Bänder sieht, habe ich einen Trägerlosen Bh gekauft, diesen dann noch abgeändert sodass er schmäler wird und anschließend die Träger sowie auch die Bänder am Bauch aus schwarzen stretch Leder genäht und gekaufte Bügel und Haken an diese genäht. 
+Für die Kniestrümpfe habe ich passende in der Farbe gekauft und dann noch an eine Hautfarbene Strumpfhose angenäht sodass die Kniestrümpfe nicht runter rutschen können.
+So ziemlich alle Accessoires habe ich auch selbst gemacht. Wie zb den Fuchs Anhänger, bei dem habe ich Fleece stoff eingefärbt und per Hand zusammen genäht.
+Für den "Pachimari"- Pin an der Jacke habe ich ihn erst digital illustriert und anschließend online einen herzförmigen Pin mit dem Design gestaltet sodass es ähnlich wie im Spiel aussieht.
+Ihren Oberarmreif habe ich auch mit dem selben Jeansstoff wie die Jacke genäht.
+Ihre Handschuhe habe ich aus Imitat Leder genäht und dann noch die Details außen mit foam gefertigt. 
+Die Armreife von ihr habe ich selbst 3d designed und dann gedruckt und abgeschliffen. Ich habe sie sogar so designed dass sie auch leuchten.
+Dafür habe ich kleine Led leuchtkugeln und darüber eingefärbten lichtdurchlässigen Foam verwendet.
+Für ihre Schuhe habe ich fertige Schuhe geupgraded indem ich Lederbänder genäht und angenäht habe. Dabei habe ich versucht so gut es geht an dem original Design der Schuhe zu bleiben.
+Anschließend habe ich alles mit Lederfarbe angemalt sodass sie ungefähr die Farbe wie im Spiel haben.
+Die Schnallen bei den Schuhen oben habe ich gekauft und die "Verzierungen" unten an den Schuhen habe ich aus Foam und stretch Leder gemacht.
+Für ihre Ofuda Blätter habe ich sie digital erst gezeichnet mit Vorlagen vom Spiel, dann ausgedruckt und mit Holographischer Folie beklebt.
+Worauf ich auch besonders stolz bin sind ihre Ohrringe und ihre Halskette, die habe ich komplett selbst handgefertigt aus 925 Sterlingsilber, da ich Goldschmiedin bin und das nutzen wollte.  `,
+    link: "Instagram.com/cosplay_by_mira",
+    wipImages: JSON.stringify([
+      `http://localhost:${PORT}/uploads/CosplayByMira_WIP1.jpg`,
+      `http://localhost:${PORT}/uploads/CosplayByMira_WIP2.jpg`,
+      `http://localhost:${PORT}/uploads/CosplayByMira_WIP3.jpg`,
+      `http://localhost:${PORT}/uploads/CosplayByMira_WIP4.jpg`,
+      `http://localhost:${PORT}/uploads/CosplayByMira_WIP5.jpg`,
+      `http://localhost:${PORT}/uploads/CosplayByMira_WIP6.jpg`,
+       
+    ]),
+    wearingImages: JSON.stringify([
+       `http://localhost:${PORT}/uploads/CosplayByMira_Tryon1.png`,
+       `http://localhost:${PORT}/uploads/CosplayByMira_Tryon2.png`,
+       `http://localhost:${PORT}/uploads/CosplayByMira_Tryon3.png`,
+       `http://localhost:${PORT}/uploads/CosplayByMira_Tryon4.png`,
+       `http://localhost:${PORT}/uploads/CosplayByMira_Tryon5.png`,
+
+    ]),
+    cosplayImages: JSON.stringify([]),
+    buildBook: null ,
+  },{
+    id: 10,
+    cosplayName: "Genji Nihon",
+    character: "Cassidy (ehem. McCree)",
+    game: "Overwatch",
+    number: 10,
+    characterImage: JSON.stringify([
+      `http://localhost:${PORT}/uploads/Genji.Nihon1.jpg`,
+      `http://localhost:${PORT}/uploads/Genji.Nihon2.jpg`,
+    ]),
+    text: `Cassidy ist mein zweites Projekt, nach Genji. In ihm spiegelt sich inzwischen mein Fortschritt in den diversen Crafting-Skills wieder, seit ich vor knapp 5 Jahren angefangen habe, Cosplays zu bauen. Angefangen mit dem Entwurf der Pattern, filigranerer und sauberer Bau mit Foam, Shading und Weathering beim Lackieren, Stoffe und nähen (lange Zeit mein Endgegner!), Wig und Bart-Tuning und zuletzt auch der Einbau von LED.
+Nach mehreren Verbesserungen hat Cassidy vor kurzem einen "D-Check" erhalten. Also, komplette Neulackierung, Einbau besserer LED, Detailarbeiten an der Rüstung. In ihm stecken jetzt so ziemlich alle Skills drin, die ich in den letzten Jahren aufgebaut habe.`,
+    link: "Instagram.com/genji.nihon",
+    wipImages: JSON.stringify([
+      `http://localhost:${PORT}/uploads/Genji.Nihon_WIP1.JPEG`,
+      `http://localhost:${PORT}/uploads/Genji.Nihon_WIP2.JPEG`,
+      `http://localhost:${PORT}/uploads/Genji.Nihon_WIP3.JPEG`,
+      `http://localhost:${PORT}/uploads/Genji.Nihon_WIP4.JPEG`,
+      `http://localhost:${PORT}/uploads/Genji.Nihon_WIP5.JPEG`,
+      `http://localhost:${PORT}/uploads/Genji.Nihon_WIP6.JPEG`,
+      `http://localhost:${PORT}/uploads/Genji.Nihon_WIP7.JPEG`,
+    ]),
+    wearingImages: JSON.stringify([
+       `http://localhost:${PORT}/uploads/Genji.Nihon_Tryon1.jpg`,
+       `http://localhost:${PORT}/uploads/Genji.Nihon_Tryon2.jpg`,
+       `http://localhost:${PORT}/uploads/Genji.Nihon_Tryon3.jpg`,
+       `http://localhost:${PORT}/uploads/Genji.Nihon_Tryon4.jpg`,
+
+    ]),
+    cosplayImages: JSON.stringify([]),
+    buildBook: null ,
+  },{
+    id: 11,
+    cosplayName: "World's Trouble",
+    character: "Gambit",
+    game: "Marvel Rivals",
+    number: 11,
+    characterImage: JSON.stringify([
+      `http://localhost:${PORT}/uploads/WorldsTrouble1.jpg`,
+      `http://localhost:${PORT}/uploads/WorldsTrouble2.jpg`,
+    ]),
+    text: `I really liked the fact that the foam crafting process got me to ups and downs and gave me a lesson, a really nasty, but good one, that the finish look its all in the details, which sometimes i have to remind myself that i have to pay more attension on, same goes for the leather work and also... the wigs styling is not as easy as it seems at the beginning.`,
+    link: "Instagram.com/beleaualumii",
+    wipImages: JSON.stringify([
+      `http://localhost:${PORT}/uploads/WorldsTrouble_WIP1.jpg`,
+      `http://localhost:${PORT}/uploads/WorldsTrouble_WIP2.jpg`,
+      `http://localhost:${PORT}/uploads/WorldsTrouble_WIP3.jpg`,
+      `http://localhost:${PORT}/uploads/WorldsTrouble_WIP4.jpg`,
+      `http://localhost:${PORT}/uploads/WorldsTrouble_WIP5.jpg`,
+      `http://localhost:${PORT}/uploads/WorldsTrouble_WIP6.jpg`,
+      `http://localhost:${PORT}/uploads/WorldsTrouble_WIP7.jpg`,
+      `http://localhost:${PORT}/uploads/WorldsTrouble_WIP8.jpg`,
+      `http://localhost:${PORT}/uploads/WorldsTrouble_WIP9.jpg`,
+      `http://localhost:${PORT}/uploads/WorldsTrouble_WIP10.jpg`,
+  
+    ]),
+    wearingImages: JSON.stringify([
+       `http://localhost:${PORT}/uploads/WorldsTrouble_Tryon1.jpg`,
+       `http://localhost:${PORT}/uploads/WorldsTrouble_Tryon2.jpg`,
+       `http://localhost:${PORT}/uploads/WorldsTrouble_Tryon3.jpg`,
+       `http://localhost:${PORT}/uploads/WorldsTrouble_Tryon4.jpg`,
+       `http://localhost:${PORT}/uploads/WorldsTrouble_Tryon5.jpg`,
+  
+
+    ]),
+    cosplayImages: JSON.stringify([]),
+    buildBook: null ,
+  },
+  ...Array.from({ length: 6 }).map((_, i) => ({
+    id: i + 6,
+    cosplayName: `Teilnehmer ${i + 6}`,
+    number: i + 6,
+    characterImage: JSON.stringify([
+      `http://localhost:${PORT}/uploads/crispy_ref.jpg`,    
+    ]),
+    text: `Beschreibung zu Teilnehmer ${i + 6}`,
+    cosplayImages: JSON.stringify([]),
+    wearingImages: JSON.stringify([]),
+    wipImages: JSON.stringify([]),
+    buildBook: null,
+  })),
+];
+
+db.serialize(() => {
+  const insert = db.prepare(
+    `INSERT OR IGNORE INTO participants
+    (id, cosplayName, number, characterImage, text, cosplayImages, wearingImages, wipImages, buildBook, link)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+  );
+  hardcodedParticipants.forEach((p) => {
+    insert.run(
+      p.id, p.cosplayName, p.number, p.characterImage, p.text,
+      p.cosplayImages, p.wearingImages, p.wipImages, p.buildBook, p.link
     );
-  }
-);
+  });
+  insert.finalize(() => console.log("✅ Hardcoded participants ensured in DB."));
+});
 
-// === Bewertung API ===
+// --- Auth ---
+const users = [
+  { username: "Nana", password: "pw123", role: "jury" },
+  { username: "Caro", password: "pw123", role: "jury" },
+  { username: "Crispy", password: "pw123", role: "jury" },
+  { username: "admin", password: "admin", role: "admin" },
+];
 
-// POST Bewertung abgeben
-app.post("/rate", (req, res) => {
-  const { user, participantId, ratings } = req.body;
+// --- Login ---
+app.post("/api/login", (req, res) => {
+  const { username, password } = req.body;
+  const found = users.find(u => u.username === username && u.password === password);
+  if (!found) return res.status(401).json({ error: "Ungültige Anmeldedaten" });
+
+  const token = Math.random().toString(36).substring(2, 12);
+  sessions[token] = { username: found.username, role: found.role };
+  saveSessions();
+  res.json({ token, username: found.username, role: found.role });
+});
+app.post("/api/logout", (req, res) => {
+  const auth = req.headers.authorization;
+  if (!auth) return res.status(400).json({ error: "Kein Token übermittelt" });
+  const token = auth.split(" ")[1];
+  delete sessions[token];
+  saveSessions();
+  res.json({ message: "Erfolgreich ausgeloggt ✅" });
+});
+
+
+// --- Auth Middleware ---
+function authMiddleware(req, res, next) {
+  const auth = req.headers.authorization;
+  if (!auth) return res.status(401).json({ error: "Nicht eingeloggt" });
+  const token = auth.split(" ")[1];
+  const user = sessions[token];
+  if (!user) return res.status(401).json({ error: "Ungültiger Token" });
+  req.user = user;
+  next();
+}
+
+// --- Participants ---
+app.get("/api/participants", (req, res) => {
+  db.all("SELECT * FROM participants ORDER BY number ASC", [], (err, rows) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json(rows.map(r => ({
+      ...r,
+      characterImages: JSON.parse(r.characterImage || "[]"),
+      cosplayImages: JSON.parse(r.cosplayImages || "[]"),
+      wearingImages: JSON.parse(r.wearingImages || "[]"),
+      wipImages: JSON.parse(r.wipImages || "[]")
+    })));
+  });
+});
+
+// --- Rate ---
+// --- Rate (überschreibend: Ratings + Nominierungen) ---
+// --- Rate Endpoint sauber umbauen ---
+// --- Rate Endpoint ---
+app.post("/api/rate", authMiddleware, (req, res) => {
+  const { username } = req.user;
+  const { participantId, ratings, nominations } = req.body;
+
+  if (!participantId || !ratings)
+    return res.status(400).json({ error: "participantId und ratings erforderlich" });
 
   db.serialize(() => {
-    // Vorherige Bewertungen dieses Users & Teilnehmers löschen
-    db.run("DELETE FROM ratings WHERE user = ? AND participantId = ?", [user, participantId], (err) => {
-      if (err) return res.status(500).send(err);
+    // 1️⃣ Ratings vorbereiten
+    const ratingInsert = db.prepare(`
+      INSERT INTO ratings (username, participantId, category, criterion, score, createdAt) 
+      VALUES (?, ?, ?, ?, ?, datetime('now'))
+    `);
 
-      const stmt = db.prepare("INSERT INTO ratings (user, participantId, criteria, score) VALUES (?, ?, ?, ?)");
-
-      for (const [criteria, score] of Object.entries(ratings)) {
-        stmt.run(user, participantId, criteria, score);
+    const ratingTasks = [];
+    for (const [category, crits] of Object.entries(ratings)) {
+      for (const [criterion, score] of Object.entries(crits || {})) {
+        const value = typeof score === "boolean" ? (score ? 1 : 0) : score;
+        ratingTasks.push(new Promise((resolve, reject) => {
+          db.get(
+            `SELECT id FROM ratings WHERE username = ? AND participantId = ? AND category = ? AND criterion = ?`,
+            [username, participantId, category, criterion],
+            (err, row) => {
+              if (err) return reject(err);
+              if (row) {
+                db.run(
+                  `UPDATE ratings SET score = ?, createdAt = datetime('now') WHERE id = ?`,
+                  [value, row.id],
+                  err2 => err2 ? reject(err2) : resolve()
+                );
+              } else {
+                ratingInsert.run(username, participantId, category, criterion, value, err2 =>
+                  err2 ? reject(err2) : resolve()
+                );
+              }
+            }
+          );
+        }));
       }
+    }
 
-      stmt.finalize((err) => {
-        if (err) return res.status(500).send(err);
-        res.sendStatus(200);
+    // 2️⃣ Nominierungen vorbereiten (setzen oder löschen)
+    const nominationTasks = [];
+    if (Array.isArray(nominations)) {
+      for (const n of nominations) {
+        const { nominationType, active } = n;
+        nominationTasks.push(new Promise((resolve, reject) => {
+          if (active) {
+            db.get(
+              `SELECT id FROM nominations WHERE user = ? AND participantId = ? AND nominationType = ?`,
+              [username, participantId, nominationType],
+              (err, row) => {
+                if (err) return reject(err);
+                if (!row) {
+                  db.run(
+                    `INSERT INTO nominations (participantId, user, nominationType, createdAt)
+                     VALUES (?, ?, ?, datetime('now'))`,
+                    [participantId, username, nominationType],
+                    err2 => err2 ? reject(err2) : resolve()
+                  );
+                } else {
+                  resolve();
+                }
+              }
+            );
+          } else {
+            db.run(
+              `DELETE FROM nominations WHERE user = ? AND participantId = ? AND nominationType = ?`,
+              [username, participantId, nominationType],
+              err => err ? reject(err) : resolve()
+            );
+          }
+        }));
+      }
+    }
+
+    // 3️⃣ Alles speichern
+    Promise.all([...ratingTasks, ...nominationTasks])
+      .then(() => res.json({ success: true }))
+      .catch(err => {
+        console.error("❌ Fehler beim Speichern:", err);
+        res.status(500).json({ error: "Fehler beim Speichern" });
       });
-    });
   });
 });
 
-// GET alle Bewertungen (für Overview)
-app.get("/overview", (req, res) => {
-  db.all("SELECT * FROM ratings", [], (err, rows) => {
-    if (err) return res.status(500).send(err);
+
+
+
+
+
+
+// --- Overview Endpoints ---
+// Nach Judge
+app.get("/api/overview/by-judge", (req, res) => {
+  db.all(`SELECT username AS user, participantId, category, criterion, score FROM ratings ORDER BY username, participantId, category, criterion`, [], (err, rows) => {
+    if (err) return res.status(500).json({ error: err.message });
     res.json(rows);
   });
 });
 
-// === Server starten ===
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+// Alle Punkte
+app.get("/api/overview/total", (req, res) => {
+  db.all(`
+    SELECT p.id AS participantId, p.cosplayName,
+           COALESCE(SUM(CASE WHEN r.category='costume' THEN r.score ELSE 0 END), 0) AS costumeScore,
+           COALESCE(SUM(CASE WHEN r.category='performance' THEN r.score ELSE 0 END), 0) AS performanceTotal,
+           COALESCE(SUM(r.score), 0) AS totalScore
+    FROM participants p
+    LEFT JOIN ratings r ON p.id = r.participantId
+    GROUP BY p.id, p.cosplayName
+    ORDER BY p.number
+  `, [], (err, rows) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json(rows);
+  });
 });
+
+
+// Top 3 Total
+app.get("/api/overview/top/total", (req, res) => {
+  db.all(`
+    SELECT participants.id as participantId, cosplayName,
+           SUM(score) as totalScore
+    FROM ratings
+    JOIN participants ON participants.id = ratings.participantId
+    GROUP BY participantId
+    ORDER BY totalScore DESC
+    LIMIT 3
+  `, [], (err, rows) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json(rows);
+  });
+});
+
+// Top 3 Costume
+app.get("/api/overview/top/costume", (req, res) => {
+  db.all(`
+    SELECT participants.id as participantId, cosplayName,
+           SUM(score) as totalScore
+    FROM ratings
+    JOIN participants ON participants.id = ratings.participantId
+    WHERE category='costume'
+    GROUP BY participantId
+    ORDER BY totalScore DESC
+    LIMIT 3
+  `, [], (err, rows) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json(rows);
+  });
+});
+
+// Top 3 Performance
+app.get("/api/overview/top/performance", (req, res) => {
+  db.all(`
+    SELECT participants.id as participantId, cosplayName,
+           SUM(score) as totalScore
+    FROM ratings
+    JOIN participants ON participants.id = ratings.participantId
+    WHERE category='performance'
+    GROUP BY participantId
+    ORDER BY totalScore DESC
+    LIMIT 3
+  `, [], (err, rows) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json(rows);
+  });
+});
+
+
+// Nominierungen prüfen ob jury schon eine Stimme abgegeben hat
+// Nominierungen (überschreibbar)
+// ============================
+// NOMINIERUNG ABSENDEN
+// ============================
+app.post("/api/nominate", authMiddleware, (req, res) => {
+  const { username } = req.user;
+  const { participantId, nominationType } = req.body;
+
+  if (!participantId || !nominationType) {
+    return res.status(400).json({ error: "participantId und nominationType erforderlich" });
+  }
+
+  db.serialize(() => {
+    // Schritt 1️⃣: Prüfen, ob User in dieser Kategorie schon nominiert hat
+    db.get(
+      `SELECT id FROM nominations WHERE user = ? AND nominationType = ?`,
+      [username, nominationType],
+      (err, row) => {
+        if (err) return res.status(500).json({ error: err.message });
+
+        if (row) {
+          // Schritt 2️⃣: Wenn ja, vorhandene Zeile updaten statt neue erstellen
+          db.run(
+            `UPDATE nominations SET participantId = ?, createdAt = datetime('now')
+             WHERE id = ?`,
+            [participantId, row.id],
+            (err2) => {
+              if (err2) return res.status(500).json({ error: err2.message });
+              res.json({ message: "Nominierung aktualisiert ✅" });
+            }
+          );
+        } else {
+          // Schritt 3️⃣: Wenn nicht vorhanden, neue Nominierung einfügen
+          db.run(
+            `INSERT INTO nominations (participantId, user, nominationType, createdAt)
+             VALUES (?, ?, ?, datetime('now'))`,
+            [participantId, username, nominationType],
+            (err3) => {
+              if (err3) return res.status(500).json({ error: err3.message });
+              res.json({ message: "Nominierung gespeichert ✅" });
+            }
+          );
+        }
+      }
+    );
+  });
+});
+
+
+
+
+
+
+
+
+// --- Overview Routes auslagern ---
+const overviewRoutes = require("./routes/overview");
+app.use("/api/overview", overviewRoutes);
+
+// --- Server Start ---
+app.listen(PORT, () => console.log(`✅ Server läuft auf http://localhost:${PORT}`));

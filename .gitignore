@@ -1,0 +1,8 @@
+node_modules/
+frontend/node_modules/
+backend/node_modules/
+/frontend/node_modules
+frontend/node_modules/.cache/babel-loader/25f872920f31456a70451db1a7f7c085432f1fd64aee28605e81328de2a22c09.json
+/frontend/node_modules/.cache/babel-loader
+/frontend/node_modules/.cache
+/frontend/node_modules

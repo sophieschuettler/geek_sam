@@ -5,3 +5,11 @@ module.exports = {
   },
   plugins: [],
 };
+module.exports = {
+  darkMode: "class", // <— wichtig
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+};

@@ -1,80 +1,118 @@
-// frontend/src/App.js
-import React from "react";
+import React, { useEffect } from "react";
+import Navbar from "./components/Navbar";
+import { ThemeProvider } from "./context/ThemeContext";
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   Navigate,
+  useNavigate,
 } from "react-router-dom";
 
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
-import Judging from "./pages/Judging";
+import Costume from "./pages/Costume";
+import Performance from "./pages/Performance";
 import Participants from "./pages/Participants";
 import Overview from "./pages/Overview";
-
 import { AppProvider, useAppContext } from "./context/AppContext";
-
-const USERS = [
-  { username: "user1", password: "pass1", role: "user" },
-  { username: "user2", password: "pass2", role: "user" },
-  { username: "user3", password: "pass3", role: "user" },
-  { username: "admin", password: "admin", role: "admin" },
-];
 
 function AppWrapper() {
   return (
-    <AppProvider>
-      <AppRoutes />
-    </AppProvider>
+    <Router>
+      <AppProvider>
+        <ThemeProvider>
+        <Navbar />
+        <AppRoutes />
+        </ThemeProvider>
+      </AppProvider>
+    </Router>
   );
 }
 
 function AppRoutes() {
   const { user, setUser } = useAppContext();
+  const navigate = useNavigate();
 
-  function handleLogin(username, password) {
-    const match = USERS.find(
-      (u) => u.username === username && u.password === password
-    );
-    if (match) {
-      setUser(match);
-    } else {
-      alert("Invalid credentials!");
+  // ✅ Beim Start prüfen, ob User im localStorage gespeichert ist
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser && !user) {
+      setUser(JSON.parse(storedUser));
     }
-  }
+  }, [setUser, user]);
+
+  // Login-Funktion
+  const handleLogin = async (username, password) => {
+    try {
+      const res = await fetch("http://localhost:4000/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password }),
+      });
+
+      if (!res.ok) {
+        const data = await res.json();
+        return alert(data.error || "Login fehlgeschlagen");
+      }
+
+      const data = await res.json();
+      console.log("✅ Login erfolgreich:", data);
+
+      // 🔑 Context setzen
+      setUser({
+        username: data.username,
+        role: data.role,
+        token: data.token,
+      });
+
+      // 📝 localStorage speichern
+      localStorage.setItem("user", JSON.stringify(data));
+
+      // 🚀 Navigation nach Rolle
+      if (data.role === "admin") navigate("/übersicht");
+      else navigate("/dashboard");
+    } catch (err) {
+      console.error(err);
+      alert("Fehler beim Login");
+    }
+  };
 
   return (
-    <Router>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            user ? (
-              <Navigate to="/dashboard" />
-            ) : (
-              <Login onLogin={handleLogin} />
-            )
-          }
-        />
-        <Route
-          path="/dashboard"
-          element={user ? <Dashboard user={user} /> : <Navigate to="/" />}
-        />
-        <Route
-          path="/judging"
-          element={user ? <Judging /> : <Navigate to="/" />}
-        />
-        <Route
-          path="/teilnehmer"
-          element={user ? <Participants /> : <Navigate to="/" />}
-        />
-        <Route
-          path="/übersicht"
-          element={user ? <Overview /> : <Navigate to="/" />}
-        />
-      </Routes>
-    </Router>
+    <Routes>
+      <Route
+        path="/"
+        element={user ? <Navigate to={user.role === "admin" ? "/übersicht" : "/dashboard"} /> : <Login onLogin={handleLogin} />}
+      />
+
+      <Route
+        path="/dashboard"
+        element={user ? <Dashboard user={user} /> : <Navigate to="/" />}
+      />
+
+      <Route
+        path="/costume"
+        element={user?.role === "jury" ? <Costume user={user} /> : <Navigate to="/dashboard" />}
+      />
+
+      <Route
+        path="/performance"
+        element={user?.role === "jury" ? <Performance user={user} /> : <Navigate to="/dashboard" />}
+      />
+
+      <Route
+        path="/teilnehmer"
+        element={user ? <Participants user={user} /> : <Navigate to="/" />}
+      />
+      
+      <Route
+        path="/übersicht"
+        element={user ? <Overview user={user} /> : <Navigate to="/" />}
+      /> 
+      
+
+      <Route path="*" element={<Navigate to="/" />} />
+    </Routes>
   );
 }
 
