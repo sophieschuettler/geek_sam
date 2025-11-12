@@ -10,8 +10,17 @@ const app = express();
 const PORT = 4000;
 
 // --- CORS & Middleware ---
-const allowedOrigins = ["http://localhost:3000", "http://192.168.1.131:3000"];
-app.use(cors({ origin: allowedOrigins, credentials: true }));
+const allowedOrigins = [
+  "http://localhost:3000",              // lokal (zum Testen)
+  "http://192.168.1.131:3000",          // Handy im WLAN
+  "https://contest-kappa.vercel.app/"    // <– HIER deine echte Vercel-URL eintragen!
+];
+
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true,
+}));
+
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
