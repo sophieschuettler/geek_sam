@@ -45,7 +45,10 @@ function AppRoutes() {
   // Login-Funktion
   const handleLogin = async (username, password) => {
     try {
-      const res = await fetch("http://localhost:4000/api/login", {
+        const API_BASE_URL = process.env.REACT_APP_API_URL;
+
+        const res = await fetch(`${API_BASE_URL}/api/login`, {
+
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),
