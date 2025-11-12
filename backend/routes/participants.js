@@ -6,6 +6,8 @@ const sqlite3 = require("sqlite3").verbose();
 
 const router = express.Router();
 const db = new sqlite3.Database("./db/contest.db");
+const BASE_URL = process.env.BACKEND_URL || `http://localhost:${process.env.PORT || 4000}`;
+
 
 const uploadDir = path.join(__dirname, "../uploads");
 if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir);
@@ -67,9 +69,14 @@ router.get("/", (req, res) => {
 
     const fullRows = rows.map((row) => ({
       ...row,
-      characterImage: row.characterImage ? `/uploads/${row.characterImage}` : null,
-      cosplayImages: row.cosplayImages ? row.cosplayImages.split(",").map(f => `/uploads/${f}`) : [],
-      wipImages: row.wipImages ? row.wipImages.split(",").map(f => `/uploads/${f}`) : [],
+      characterImage: row.characterImage ? `${BASE_URL}/uploads/${row.characterImage}` : null,
+cosplayImages: row.cosplayImages
+  ? row.cosplayImages.split(",").map(f => `${BASE_URL}/uploads/${f}`)
+  : [],
+wipImages: row.wipImages
+  ? row.wipImages.split(",").map(f => `${BASE_URL}/uploads/${f}`)
+  : [],
+
     }));
 
     res.json(fullRows);
