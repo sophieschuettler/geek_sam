@@ -47,7 +47,7 @@ function AppRoutes() {
     try {
         const API_BASE_URL = process.env.REACT_APP_API_URL;
 
-        const res = await fetch(`${API_BASE_URL}api/login`, {
+        const res = await fetch(`${API_BASE_URL}/api/login`, {
 
         method: "POST",
         headers: { "Content-Type": "application/json" },
