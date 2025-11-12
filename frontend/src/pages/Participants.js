@@ -16,8 +16,9 @@ export default function Participants() {
   const { darkMode } = useTheme();  // darkMode aus dem Theme-Kontext holen
 
   useEffect(() => {
+    const API = process.env.REACT_APP_API_URL;
     // API Aufruf zum Laden der Teilnehmerdaten
-    fetch("http://localhost:4000/api/participants")
+    fetch(`${API}/api/participants`)
       .then((res) => res.json())
       .then((data) => {
         setParticipants(data);

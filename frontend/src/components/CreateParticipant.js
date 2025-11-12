@@ -57,14 +57,14 @@ export default function CreateParticipant() {
     files.wipImages.forEach((file) => data.append("wipImages", file));
 
     try {
-      const res = await fetch("http://localhost:4000/api/participants", {
-        method: "POST",
-        headers: {
-          // optional – kann im Backend überprüft werden
-          "X-User-Role": user.role,
-        },
-        body: data,
-      });
+     const res = await fetch(`${process.env.REACT_APP_API_URL}/api/participants`, {
+  method: "POST",
+  headers: {
+    "X-User-Role": user.role,
+  },
+  body: data,
+});
+
 
       if (res.ok) {
         alert("Teilnehmer erfolgreich erstellt!");

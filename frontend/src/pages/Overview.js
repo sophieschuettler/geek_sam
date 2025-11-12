@@ -74,34 +74,34 @@ const filteredGroups = Object.values(groupedRatings).filter(
       if (maybeArray && typeof maybeArray === "object") return [maybeArray];
       return [];
     };
-
+    const API = process.env.REACT_APP_API_URL;
     const fetchAll = async () => {
       try {
-        const resP = await fetch("http://localhost:4000/api/participants");
+        const resP = await fetch(`${API}/api/participants`);
         const dataP = await resP.json();
         setParticipants(ensureArray(dataP));
 
-        const resTotal = await fetch("http://localhost:4000/api/overview/total");
+        const resTotal = await fetch(`${API}/api/overview/total`);
         const dataTotal = await resTotal.json();
         setTotalPoints(ensureArray(dataTotal));
 
-        const resTopTotal = await fetch("http://localhost:4000/api/overview/top/total");
+        const resTopTotal = await fetch(`${API}/api/overview/top/total`);
         const dataTopTotal = await resTopTotal.json();
         setTopTotal(ensureArray(dataTopTotal));
 
-        const resTopPerf = await fetch("http://localhost:4000/api/overview/top/performance");
+        const resTopPerf = await fetch(`${API}/api/overview/top/performance`);
         const dataTopPerf = await resTopPerf.json();
         setTopPerformance(ensureArray(dataTopPerf));
 
-        const resTopCost = await fetch("http://localhost:4000/api/overview/top/costume");
+        const resTopCost = await fetch(`${API}/api/overview/top/costume`);
         const dataTopCost = await resTopCost.json();
         setTopCostume(ensureArray(dataTopCost));
 
-        const resByJudge = await fetch("http://localhost:4000/api/overview/by-judge");
+        const resByJudge = await fetch(`${API}/api/overview/by-judge`);
         const dataByJudge = await resByJudge.json();
         setByJudge(ensureArray(dataByJudge));
 
-        const resN = await fetch("http://localhost:4000/api/overview/nominations");
+        const resN = await fetch(`${API}/api/overview/nominations`);
         const dataN = await resN.json();
         setNominations(ensureArray(dataN));
 

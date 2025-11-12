@@ -20,7 +20,7 @@ export default function Costume() {
 
 
   useEffect(() => {
-    fetch("http://localhost:4000/api/participants")
+    fetch(`${process.env.REACT_APP_API_URL}/api/participants`)
       .then((res) => res.json())
       .then((data) => {
         setParticipants(data);
@@ -37,11 +37,11 @@ useEffect(() => {
   const fetchRatingsAndNominations = async () => {
     try {
       // 1️⃣ Ratings vom Judge
-      const ratingsRes = await fetch("http://localhost:4000/api/overview/by-judge");
+      const ratingsRes = await fetch(`${process.env.REACT_APP_API_URL}/api/overview/by-judge`);
       const ratingsData = await ratingsRes.json();
 
       // 2️⃣ Nominierungen
-      const nominationsRes = await fetch("http://localhost:4000/api/overview/nominations");
+      const nominationsRes = await fetch(`${process.env.REACT_APP_API_URL}/api/overview/nominations`);
       const nominationsData = await nominationsRes.json();
 
       const ratingObj = {};
@@ -154,7 +154,7 @@ const nominations = [
 
 
     // 🔹 Bewertungen + Nominierungen in EINEM Request senden
-    const res = await fetch("http://localhost:4000/api/rate", {
+    const res = await fetch(`${process.env.REACT_APP_API_URL}/api/rate`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -26,7 +26,9 @@ export default function Performance() {
 
   
   useEffect(() => {
-    fetch("http://localhost:4000/api/participants")
+      const API = process.env.REACT_APP_API_URL;
+
+    fetch(`${API}/api/participants`)
       .then(res => res.json())
       .then(data => {
         setParticipants(data);
@@ -42,8 +44,9 @@ useEffect(() => {
   if (!currentParticipant || !user) return;
 
   const fetchRatingsAndNominations = async () => {
+    const API = process.env.REACT_APP_API_URL;
     try {
-      const res = await fetch("http://localhost:4000/api/overview/by-judge");
+      const res = await fetch(`${API}/api/overview/by-judge`);
       const data = await res.json();
 
       const participantRatings = data
@@ -54,7 +57,7 @@ useEffect(() => {
           return acc;
         }, {});
 
-      const nomRes = await fetch("http://localhost:4000/api/overview/nominations");
+      const nomRes = await fetch(`${API}/api/overview/nominations`);
       const nomData = await nomRes.json();
 
       // Nominationen als boolean in ratings speichern
@@ -136,6 +139,7 @@ const submitRatings = async () => {
 
   const participantId = currentParticipant?.id;
   const current = ratings[participantId] || {};
+   const API = process.env.REACT_APP_API_URL;
 
   // 🟢 1. Nominierungen vorbereiten
  // 🟢 1. Nominierungen vorbereiten (immer mit active)
@@ -159,7 +163,7 @@ const nominations = [
   };
 
   try {
-    const res = await fetch("http://localhost:4000/api/rate", {
+    const res = await fetch(`${API}/api/rate`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
