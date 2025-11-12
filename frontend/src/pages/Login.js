@@ -2,6 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useAppContext } from "../context/AppContext";
 import { useNavigate } from "react-router-dom";
 
+
+
+const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:4000";
+
 export default function Login({ onLogin }) {
   const { setUser } = useAppContext();
   const navigate = useNavigate();
@@ -25,9 +29,11 @@ export default function Login({ onLogin }) {
         const token = userData.token;
 
         // 🔍 Anfrage zum Backend, um Token zu verifizieren
-        const res = await fetch("http://localhost:4000/api/_sessions", {
+
+       const res = await fetch(`${API_BASE_URL}/api/_sessions`, {
           headers: { Authorization: `Bearer ${token}` },
         });
+
 
         if (res.ok) {
           // ✅ Token ist gültig → Login bleibt bestehen
@@ -58,11 +64,12 @@ export default function Login({ onLogin }) {
       if (onLogin) {
         await onLogin(username, password);
       } else {
-        const res = await fetch("http://localhost:4000/api/login", {
+        const res = await fetch(`${API_BASE_URL}/api/login`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ username, password }),
         });
+
 
         if (!res.ok) {
           const data = await res.json();
