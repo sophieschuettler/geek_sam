@@ -64,6 +64,8 @@ router.post(
 
 // Alle Teilnehmer abrufen
 router.get("/", (req, res) => {
+    const BASE_URL = process.env.BACKEND_URL || `http://localhost:${process.env.PORT || 4000}`;
+
   db.all("SELECT * FROM participants", [], (err, rows) => {
     if (err) return res.status(500).json({ error: err.message });
 
