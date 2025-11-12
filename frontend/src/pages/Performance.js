@@ -61,18 +61,14 @@ useEffect(() => {
       const nomData = await nomRes.json();
 
       // Nominationen als boolean in ratings speichern
-      const nominationObj = {
-        bestPerformance: false,
-      };
-
-      nomData
+    const nominationObj = {};
+nomData
   .filter(n => n.participantId === currentParticipant.id)
   .forEach(n => {
     const judges = n.judges ? n.judges.split(",") : [];
-    if (n.category === "Best Performance" && judges.includes(user.username)) {
-      nominationObj.bestPerformance = true;
-    }
+    nominationObj[n.category] = judges.includes(user.username);
   });
+
 
       setRatings(prev => ({
         ...prev,
@@ -280,20 +276,22 @@ const nominations = [
   <input
     type="checkbox"
     id="bestPerformance"
-    checked={ratings[currentParticipant?.id]?.nominations?.bestPerformance || false} //hier hab ich .nominations? hinzugefügt
-      onChange={(e) => {
-    const checked = e.target.checked;
-    setRatings(prev => ({
-      ...prev,
-      [currentParticipant.id]: {
-        ...prev[currentParticipant.id],
-        nominations: {
-          ...(prev[currentParticipant.id]?.nominations || {}),
-          bestPerformance: checked,
-        },
+   //hier hab ich .nominations? hinzugefügt
+    checked={ratings[currentParticipant?.id]?.nominations?.["Best Performance"] || false}
+
+    onChange={e => {
+  const checked = e.target.checked;
+  setRatings(prev => ({
+    ...prev,
+    [currentParticipant.id]: {
+      ...prev[currentParticipant.id],
+      nominations: {
+        ...prev[currentParticipant.id]?.nominations,
+        "Best Performance": checked,
       },
-    }));
-  }}
+    },
+  }));
+}}
     className="sr-only peer"
   />
   <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:bg-green-500"></div>
