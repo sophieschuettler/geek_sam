@@ -79,7 +79,7 @@ useEffect(() => {
         [currentParticipant.id]: {
           ...(prev[currentParticipant.id] || {}),
           performance: participantRatings.performance || {},
-          nominations: nominationObj, //geändert
+          ...nominationObj,
         },
       }));
     } catch (err) {
@@ -148,7 +148,7 @@ const nominations = [
     participantId,
     nominationType: "Best Performance",
     user: user.username,
-    active: !!current.nominations?.bestPerformance,
+    active: !!current.bestPerformance,
   },
 ];
 
@@ -280,20 +280,17 @@ const nominations = [
   <input
     type="checkbox"
     id="bestPerformance"
-    checked={ratings[currentParticipant?.id]?.nominations?.bestPerformance || false} //hier hab ich .nominations? hinzugefügt
-      onChange={(e) => {
-    const checked = e.target.checked;
-    setRatings(prev => ({
-      ...prev,
-      [currentParticipant.id]: {
-        ...prev[currentParticipant.id],
-        nominations: {
-          ...(prev[currentParticipant.id]?.nominations || {}),
+    checked={ratings[currentParticipant?.id]?.bestPerformance || false}
+    onChange={(e) => {
+      const checked = e.target.checked;
+      setRatings(prev => ({
+        ...prev,
+        [currentParticipant.id]: {
+          ...prev[currentParticipant.id],
           bestPerformance: checked,
         },
-      },
-    }));
-  }}
+      }));
+    }}
     className="sr-only peer"
   />
   <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:bg-green-500"></div>
