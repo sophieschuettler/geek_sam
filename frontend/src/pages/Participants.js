@@ -79,7 +79,7 @@ export default function Participants() {
           }`}
         >
           {/* === Allgemeine Infos === */}
-          <div className={` p-6 rounded-2xl shadow-lg w-full max-w-5xl flex flex-col gap-8 transition-colors ${
+          <div className={` rounded-2xl shadow-lg w-full max-w-5xl flex flex-col gap-8 transition-colors ${
             darkMode ? "bg-gray-600 text-gray-100" : "bg-white text-gray-900"
           }`}>
               
