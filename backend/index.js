@@ -170,7 +170,7 @@ const hardcodedParticipants = [
     ]),
     wearingImages: JSON.stringify([
       `${BASE_URL}/uploads/Sheeshkia_Tryon1.jpg`,
-      `${BASE_URL}/uploads/Sheeshkia_Tryon2.jpg`,
+      `${BASE_URL}/uploads/Sheeshkia_Tryon2.JPG`,
     ]),
     cosplayImages: JSON.stringify([]),
     buildBook:null,
@@ -342,7 +342,7 @@ Außerdem habe ich für meine Performance einen kleinen Magic Trick eingebaut. D
     ]),
     wearingImages: JSON.stringify([
        `${BASE_URL}/uploads/Vampirfranzi_Tryon1.jpg`,
-       `${BASE_URL}/uploads/Vampirfranzi_Tryon2.jpg`,
+       `${BASE_URL}/uploads/Vampirfranzi_Tryon2.JPG`,
        `${BASE_URL}/uploads/Vampirfranzi_Tryon3.jpg`,
        `${BASE_URL}/uploads/Vampirfranzi_Tryon4.jpg`,
 
@@ -392,9 +392,9 @@ Worauf ich auch besonders stolz bin sind ihre Ohrringe und ihre Halskette, die h
     wearingImages: JSON.stringify([
        `${BASE_URL}/uploads/CosplayByMira_Tryon1.png`,
        `${BASE_URL}/uploads/CosplayByMira_Tryon2.png`,
-       `${BASE_URL}/uploads/CosplayByMira_Tryon3.png`,
-       `${BASE_URL}/uploads/CosplayByMira_Tryon4.png`,
-       `${BASE_URL}/uploads/CosplayByMira_Tryon5.png`,
+       `${BASE_URL}/uploads/CosplayByMira_Tryon3.jpg`,
+       `${BASE_URL}/uploads/CosplayByMira_Tryon4.jpg`,
+       `${BASE_URL}/uploads/CosplayByMira_Tryon5.jpg`,
 
     ]),
     cosplayImages: JSON.stringify([]),
@@ -422,10 +422,10 @@ Nach mehreren Verbesserungen hat Cassidy vor kurzem einen "D-Check" erhalten. Al
       `${BASE_URL}/uploads/Genji.Nihon_WIP7.JPEG`,
     ]),
     wearingImages: JSON.stringify([
-       `${BASE_URL}/uploads/Genji.Nihon_Tryon1.jpg`,
+       `${BASE_URL}/uploads/Genji.Nihon_Tryon1.JPG`,
        `${BASE_URL}/uploads/Genji.Nihon_Tryon2.jpg`,
-       `${BASE_URL}/uploads/Genji.Nihon_Tryon3.jpg`,
-       `${BASE_URL}/uploads/Genji.Nihon_Tryon4.jpg`,
+       `${BASE_URL}/uploads/Genji.Nihon_Tryon3.JPG`,
+       `${BASE_URL}/uploads/Genji.Nihon_Tryon4.JPG`,
 
     ]),
     cosplayImages: JSON.stringify([]),
