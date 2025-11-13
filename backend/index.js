@@ -499,10 +499,10 @@ db.serialize(() => {
 
 // --- Auth ---
 const users = [
-  { username: "Nana", password: "pw123", role: "jury" },
-  { username: "Caro", password: "pw123", role: "jury" },
-  { username: "Crispy", password: "pw123", role: "jury" },
-  { username: "admin", password: "admin", role: "admin" },
+  { username: "Nana", password: "zelda3576", role: "jury" },
+  { username: "Caro", password: "key0405", role: "jury" },
+  { username: "Crispy", password: "mango3110", role: "jury" },
+  { username: "admin", password: "pitourino13", role: "admin" },
 ];
 
 // --- Login ---

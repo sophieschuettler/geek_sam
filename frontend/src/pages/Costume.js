@@ -192,7 +192,7 @@ const nominations = [
 
   return (
     <div
-      className={`min-h-screen p-6 flex flex-col items-center transition-colors ${
+      className={`min-h-screen p-6 pb-24 flex flex-col items-center transition-colors ${
         darkMode
           ? "bg-gray-900 text-gray-100"
           : "bg-green-50 text-gray-900"

@@ -191,7 +191,7 @@ const nominations = [
   if (!currentParticipant) return <p>Lade Teilnehmer...</p>;
 
   return (
-    <div className={`min-h-screen p-6 flex flex-col items-center transition-colors ${
+    <div className={`min-h-screen p-6 pb-24 flex flex-col items-center transition-colors ${
       darkMode ? "bg-gray-900 text-gray-100" : "bg-green-50 text-gray-900"
     }`}>
       <h1 className={`text-3xl font-bold mb-6 text-center ${
