@@ -16,6 +16,7 @@ const allowedOrigins = [
   "http://192.168.1.131:3000",          // Handy im WLAN
   "https://contest-kappa.vercel.app"    // <– HIER deine echte Vercel-URL eintragen!
 ];
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.use(cors({
   origin: allowedOrigins,
