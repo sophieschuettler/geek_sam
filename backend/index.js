@@ -525,14 +525,13 @@ Bodysuit von einem alten cosplay verwendet.
  (Nicht selbst genäht)  `,
     link: "Instagram.com/snowfoxcosplay",
     wipImages: JSON.stringify([
-      `${BASE_URL}/uploads/WorldsTrouble_WIP1.jpg`,
+      `${BASE_URL}/uploads/SnowFoxCosplay_WIP1.JPG`,
+      `${BASE_URL}/uploads/SnowFoxCosplay_WIP2.JPG`,
+      `${BASE_URL}/uploads/SnowFoxCosplay_WIP3.JPG`,
+      `${BASE_URL}/uploads/SnowFoxCosplay_WIP4.JPG`,
   
     ]),
-    wearingImages: JSON.stringify([
-       `${BASE_URL}/uploads/WorldsTrouble_Tryon1.jpg`,
-  
-
-    ]),
+    wearingImages: JSON.stringify([    ]),
     cosplayImages: JSON.stringify([]),
     buildBook: null ,
   },{
