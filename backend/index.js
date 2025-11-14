@@ -497,7 +497,11 @@ Nach mehreren Verbesserungen hat Cassidy vor kurzem einen "D-Check" erhalten. Al
   
     ]),
     wearingImages: JSON.stringify([
-       `${BASE_URL}/uploads/WorldsTrouble_Tryon1.jpg`,
+       `${BASE_URL}/uploads/Syjo.Cosplay_Tryon1.jpg`,
+       `${BASE_URL}/uploads/Syjo.Cosplay_Tryon2.jpg`,
+       `${BASE_URL}/uploads/Syjo.Cosplay_Tryon3.png`,
+       `${BASE_URL}/uploads/Syjo.Cosplay_Tryon4.png`,
+       `${BASE_URL}/uploads/Syjo.Cosplay_Tryon5.jpg`,
   
 
     ]),
