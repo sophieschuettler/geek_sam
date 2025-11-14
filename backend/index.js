@@ -551,11 +551,9 @@ Bodysuit von einem alten cosplay verwendet.
 Dieses Cosplay hat sehr viel Zeit und Energie abverlangt, daher bin ich auf das Gesamtergebnis sehr stolz und auch darauf, dass ich nicht aufgegeben habe (:`,
     link: "Instagram.com/serinua_cosplay",
     wipImages: JSON.stringify([
-      `${BASE_URL}/uploads/WorldsTrouble_WIP1.jpg`,
   
     ]),
     wearingImages: JSON.stringify([
-       `${BASE_URL}/uploads/WorldsTrouble_Tryon1.jpg`,
   
 
     ]),
@@ -575,11 +573,9 @@ Dieses Cosplay hat sehr viel Zeit und Energie abverlangt, daher bin ich auf das 
     text: `- Aus alten Sachen neue Cosplays hergestellt (z.b. Rock und Pullover gebraucht gekauft / alt aus dem Schrank und umgenäht, angemalt, Sachen hinzugefügt, verändert)`,
     link: "Instagram.com/pinkfluffykichicorn",
     wipImages: JSON.stringify([
-      `${BASE_URL}/uploads/WorldsTrouble_WIP1.jpg`,
   
     ]),
     wearingImages: JSON.stringify([
-       `${BASE_URL}/uploads/WorldsTrouble_Tryon1.jpg`,
   
 
     ]),
@@ -599,11 +595,9 @@ Dieses Cosplay hat sehr viel Zeit und Energie abverlangt, daher bin ich auf das 
     text: `ich habe das Cosplay komplett selbst gebaut (bis auf die Schuhe, die sind nur gekauft). Dabei hab ich auch alle Schnittmuster selbst gemacht. Die Rüstung besteht aus Foam, Stoff, Kunstleder und Kunstfell. Die Doppelklingen bestehen aus Holzstäben, Foam und Worbla. Angemalt hab ich das meiste mit der Airbrush, und mit Oil Wash details gemacht. den Griff der doppelklingen hab ich mit Pinsel angemalt. Die Perrücke/Kopfteil war eine Besondere Herausforderung da ich aus Kunstfell eine Perrücke genäht habe. Dabei habe ich eine Perrückenbasis gekauft und daran von Hand das Fell angenäht. Auch musste ich immer wieder sacxhen von Hand nähne, z.B. dei Naht am Blauem Band vom Headpiece`,
     link: "Instagram.com/isell_cosplay",
     wipImages: JSON.stringify([
-      `${BASE_URL}/uploads/WorldsTrouble_WIP1.jpg`,
   
     ]),
     wearingImages: JSON.stringify([
-       `${BASE_URL}/uploads/WorldsTrouble_Tryon1.jpg`,
   
 
     ]),
