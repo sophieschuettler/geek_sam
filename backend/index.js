@@ -467,6 +467,103 @@ Nach mehreren Verbesserungen hat Cassidy vor kurzem einen "D-Check" erhalten. Al
     ]),
     cosplayImages: JSON.stringify([]),
     buildBook: null ,
+  },{
+    id: 12,
+    cosplayName: "Syjo Cosplay",
+    character: "SA-25 Steel Trooper",
+    game: "Helldivers 2",
+    number: 12,
+    characterImage: JSON.stringify([
+      `${BASE_URL}/uploads/SyjoCos.jpg`,
+   
+    ]),
+    text: `Der Großteil der Rüstung ist 3D gedruckt, die "mechanischen" Teile am rechten Arm und Bein habe ich aus EVA Foam gemacht sowie den Range Finder und den Stim. Das Cape habe ich auch selber genäht. Bei diesem Cosplay konnte ich viele verschiedene Methoden anwenden wie Löten, LEDs einbauen, Nähen, EVA Foam und 3D gedruckte Teile verarbeiten, Designs selber erstellen und aufkleben, Weathering usw. `,
+    link: "Instagram.com/syjo.cosplay",
+    wipImages: JSON.stringify([
+      `${BASE_URL}/uploads/WorldsTrouble_WIP1.jpg`,
+  
+    ]),
+    wearingImages: JSON.stringify([
+       `${BASE_URL}/uploads/WorldsTrouble_Tryon1.jpg`,
+  
+
+    ]),
+    cosplayImages: JSON.stringify([]),
+    buildBook: null ,
+  },{
+    id: 13,
+    cosplayName: "SnowFoxCosplay",
+    character: "Die Malerin",
+    game: "Clair Obscure Expedition 33 ",
+    number: 13,
+    characterImage: JSON.stringify([
+      `${BASE_URL}/uploads/SyjoCos.jpg`,
+   
+    ]),
+    text: `Komplett selbst gemachte helmet wig, 
+Alles ist aus foamclay modelliert und mit Blattgold verziert sowie mit latexmilch umrandet für mehr Effekt, Pinsel leuchtet.
+Bodysuit von einem alten cosplay verwendet.
+ (Nicht selbst genäht)  `,
+    link: "Instagram.com/snowfoxcosplay",
+    wipImages: JSON.stringify([
+      `${BASE_URL}/uploads/WorldsTrouble_WIP1.jpg`,
+  
+    ]),
+    wearingImages: JSON.stringify([
+       `${BASE_URL}/uploads/WorldsTrouble_Tryon1.jpg`,
+  
+
+    ]),
+    cosplayImages: JSON.stringify([]),
+    buildBook: null ,
+  },{
+    id: 14,
+    cosplayName: "Serinua_cosplay",
+    character: "Halone",
+    game: "Final Fantasy XIV",
+    number: 14,
+    characterImage: JSON.stringify([
+      `${BASE_URL}/uploads/SyjoCos.jpg`,
+   
+    ]),
+    text: `Besonders stolz bin ich auf die Stickereien, die auf dem Kleid und der Scherpe sind. Diese sind komplett von Hand gestickt (: Auch bin ich stolz auf den Paintjob: Bei allen Kanten habe ich zuerst eine Schattierung gemalt, danach noch mit einem sehr dünnen Pinsel eine schwarze Linie direkt in die Kante um es nochmehr hervorzuheben. Zusätzlich habe ich mit weisser Farbe noch die Kanten der hervorstehenden Elemente akzentuiert. (:
+
+Dieses Cosplay hat sehr viel Zeit und Energie abverlangt, daher bin ich auf das Gesamtergebnis sehr stolz und auch darauf, dass ich nicht aufgegeben habe (:`,
+    link: "Instagram.com/serinua_cosplay",
+    wipImages: JSON.stringify([
+      `${BASE_URL}/uploads/WorldsTrouble_WIP1.jpg`,
+  
+    ]),
+    wearingImages: JSON.stringify([
+       `${BASE_URL}/uploads/WorldsTrouble_Tryon1.jpg`,
+  
+
+    ]),
+    cosplayImages: JSON.stringify([]),
+    buildBook: null ,
+  },{
+    id: 15,
+    cosplayName: "Pinkfluffykichicorn",
+    character: "Rose",
+    game: "Fire Emblem Shadows",
+    number: 15,
+    characterImage: JSON.stringify([
+      `${BASE_URL}/uploads/SyjoCos.jpg`,
+   
+    ]),
+    text: `- Aus alten Sachen neue Cosplays hergestellt (z.b. Rock und Pullover gebraucht gekauft / alt aus dem Schrank und umgenäht, angemalt, Sachen hinzugefügt, verändert)`,
+    link: "Instagram.com/pinkfluffykichicorn",
+    wipImages: JSON.stringify([
+      `${BASE_URL}/uploads/WorldsTrouble_WIP1.jpg`,
+  
+    ]),
+    wearingImages: JSON.stringify([
+       `${BASE_URL}/uploads/WorldsTrouble_Tryon1.jpg`,
+  
+
+    ]),
+    cosplayImages: JSON.stringify([]),
+    buildBook: null ,
   },
   ...Array.from({ length: 6 }).map((_, i) => ({
     id: i + 6,
