@@ -474,7 +474,11 @@ Nach mehreren Verbesserungen hat Cassidy vor kurzem einen "D-Check" erhalten. Al
     game: "Helldivers 2",
     number: 12,
     characterImage: JSON.stringify([
-      `${BASE_URL}/uploads/SyjoCos.jpg`,
+      `${BASE_URL}/uploads/Syjo.Cosplay1.jpg`,
+      `${BASE_URL}/uploads/Syjo.Cosplay2.jpg`,
+      `${BASE_URL}/uploads/Syjo.Cosplay3.jpg`,
+      `${BASE_URL}/uploads/Syjo.Cosplay4.jpg`,
+      `${BASE_URL}/uploads/Syjo.Cosplay5.jpg`,
    
     ]),
     text: `Der Großteil der Rüstung ist 3D gedruckt, die "mechanischen" Teile am rechten Arm und Bein habe ich aus EVA Foam gemacht sowie den Range Finder und den Stim. Das Cape habe ich auch selber genäht. Bei diesem Cosplay konnte ich viele verschiedene Methoden anwenden wie Löten, LEDs einbauen, Nähen, EVA Foam und 3D gedruckte Teile verarbeiten, Designs selber erstellen und aufkleben, Weathering usw. `,
@@ -489,7 +493,7 @@ Nach mehreren Verbesserungen hat Cassidy vor kurzem einen "D-Check" erhalten. Al
 
     ]),
     cosplayImages: JSON.stringify([]),
-    buildBook: null ,
+    buildBook: `${BASE_URL}/uploads/Syjo.Cosplay_BuildBook.pdf` ,
   },{
     id: 13,
     cosplayName: "SnowFoxCosplay",
@@ -497,7 +501,9 @@ Nach mehreren Verbesserungen hat Cassidy vor kurzem einen "D-Check" erhalten. Al
     game: "Clair Obscure Expedition 33 ",
     number: 13,
     characterImage: JSON.stringify([
-      `${BASE_URL}/uploads/SyjoCos.jpg`,
+      `${BASE_URL}/uploads/SnowFoxCosplay1.JPG`,
+      `${BASE_URL}/uploads/SnowFoxCosplay2.JPG`,
+      `${BASE_URL}/uploads/SnowFoxCosplay3.JPG`,
    
     ]),
     text: `Komplett selbst gemachte helmet wig, 
@@ -523,7 +529,9 @@ Bodysuit von einem alten cosplay verwendet.
     game: "Final Fantasy XIV",
     number: 14,
     characterImage: JSON.stringify([
-      `${BASE_URL}/uploads/SyjoCos.jpg`,
+      `${BASE_URL}/uploads/Serinua_cosplay1.jpg`,
+      `${BASE_URL}/uploads/Serinua_cosplay2.jpg`,
+      `${BASE_URL}/uploads/Serinua_cosplay3.jpg`,
    
     ]),
     text: `Besonders stolz bin ich auf die Stickereien, die auf dem Kleid und der Scherpe sind. Diese sind komplett von Hand gestickt (: Auch bin ich stolz auf den Paintjob: Bei allen Kanten habe ich zuerst eine Schattierung gemalt, danach noch mit einem sehr dünnen Pinsel eine schwarze Linie direkt in die Kante um es nochmehr hervorzuheben. Zusätzlich habe ich mit weisser Farbe noch die Kanten der hervorstehenden Elemente akzentuiert. (:
@@ -548,6 +556,30 @@ Dieses Cosplay hat sehr viel Zeit und Energie abverlangt, daher bin ich auf das 
     game: "Fire Emblem Shadows",
     number: 15,
     characterImage: JSON.stringify([
+      `${BASE_URL}/uploads/Pinkfluffykichicorn1.png`,
+      `${BASE_URL}/uploads/Pinkfluffykichicorn2.png`,
+   
+    ]),
+    text: `- Aus alten Sachen neue Cosplays hergestellt (z.b. Rock und Pullover gebraucht gekauft / alt aus dem Schrank und umgenäht, angemalt, Sachen hinzugefügt, verändert)`,
+    link: "Instagram.com/pinkfluffykichicorn",
+    wipImages: JSON.stringify([
+      `${BASE_URL}/uploads/WorldsTrouble_WIP1.jpg`,
+  
+    ]),
+    wearingImages: JSON.stringify([
+       `${BASE_URL}/uploads/WorldsTrouble_Tryon1.jpg`,
+  
+
+    ]),
+    cosplayImages: JSON.stringify([]),
+    buildBook: null ,
+  },{
+    id: 16,
+    cosplayName: "Isell Cosplay",
+    character: "Rose",
+    game: "Fire Emblem Shadows",
+    number: 16,
+    characterImage: JSON.stringify([
       `${BASE_URL}/uploads/SyjoCos.jpg`,
    
     ]),
@@ -565,19 +597,7 @@ Dieses Cosplay hat sehr viel Zeit und Energie abverlangt, daher bin ich auf das 
     cosplayImages: JSON.stringify([]),
     buildBook: null ,
   },
-  ...Array.from({ length: 6 }).map((_, i) => ({
-    id: i + 6,
-    cosplayName: `Teilnehmer ${i + 6}`,
-    number: i + 6,
-    characterImage: JSON.stringify([
-      `${BASE_URL}/uploads/crispy_ref.jpg`,    
-    ]),
-    text: `Beschreibung zu Teilnehmer ${i + 6}`,
-    cosplayImages: JSON.stringify([]),
-    wearingImages: JSON.stringify([]),
-    wipImages: JSON.stringify([]),
-    buildBook: null,
-  })),
+
 ];
 
 db.serialize(() => {
