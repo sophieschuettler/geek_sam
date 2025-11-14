@@ -484,7 +484,16 @@ Nach mehreren Verbesserungen hat Cassidy vor kurzem einen "D-Check" erhalten. Al
     text: `Der Großteil der Rüstung ist 3D gedruckt, die "mechanischen" Teile am rechten Arm und Bein habe ich aus EVA Foam gemacht sowie den Range Finder und den Stim. Das Cape habe ich auch selber genäht. Bei diesem Cosplay konnte ich viele verschiedene Methoden anwenden wie Löten, LEDs einbauen, Nähen, EVA Foam und 3D gedruckte Teile verarbeiten, Designs selber erstellen und aufkleben, Weathering usw. `,
     link: "Instagram.com/syjo.cosplay",
     wipImages: JSON.stringify([
-      `${BASE_URL}/uploads/WorldsTrouble_WIP1.jpg`,
+      `${BASE_URL}/uploads/Syjo.Cosplay_WIP1.jpg`,
+      `${BASE_URL}/uploads/Syjo.Cosplay_WIP2.jpg`,
+      `${BASE_URL}/uploads/Syjo.Cosplay_WIP3.jpg`,
+      `${BASE_URL}/uploads/Syjo.Cosplay_WIP4.jpg`,
+      `${BASE_URL}/uploads/Syjo.Cosplay_WIP7.jpg`,
+      `${BASE_URL}/uploads/Syjo.Cosplay_WIP5.jpg`,
+      `${BASE_URL}/uploads/Syjo.Cosplay_WIP6.jpg`,
+      `${BASE_URL}/uploads/Syjo.Cosplay_WIP8.jpg`,
+      `${BASE_URL}/uploads/Syjo.Cosplay_WIP9.jpg`,
+      `${BASE_URL}/uploads/Syjo.Cosplay_WIP10.jpg`,
   
     ]),
     wearingImages: JSON.stringify([
@@ -575,16 +584,17 @@ Dieses Cosplay hat sehr viel Zeit und Energie abverlangt, daher bin ich auf das 
     buildBook: null ,
   },{
     id: 16,
-    cosplayName: "Isell Cosplay",
-    character: "Rose",
-    game: "Fire Emblem Shadows",
+    cosplayName: "Isell_Cosplay",
+    character: "Barioth Rüstung mit den Dango Dual Blades",
+    game: "Monster Hunter Rise",
     number: 16,
     characterImage: JSON.stringify([
-      `${BASE_URL}/uploads/SyjoCos.jpg`,
+      `${BASE_URL}/uploads/isell_cosplay1.jpg`,
+      `${BASE_URL}/uploads/isell_cosplay2.jpg`,
    
     ]),
-    text: `- Aus alten Sachen neue Cosplays hergestellt (z.b. Rock und Pullover gebraucht gekauft / alt aus dem Schrank und umgenäht, angemalt, Sachen hinzugefügt, verändert)`,
-    link: "Instagram.com/pinkfluffykichicorn",
+    text: `ich habe das Cosplay komplett selbst gebaut (bis auf die Schuhe, die sind nur gekauft). Dabei hab ich auch alle Schnittmuster selbst gemacht. Die Rüstung besteht aus Foam, Stoff, Kunstleder und Kunstfell. Die Doppelklingen bestehen aus Holzstäben, Foam und Worbla. Angemalt hab ich das meiste mit der Airbrush, und mit Oil Wash details gemacht. den Griff der doppelklingen hab ich mit Pinsel angemalt. Die Perrücke/Kopfteil war eine Besondere Herausforderung da ich aus Kunstfell eine Perrücke genäht habe. Dabei habe ich eine Perrückenbasis gekauft und daran von Hand das Fell angenäht. Auch musste ich immer wieder sacxhen von Hand nähne, z.B. dei Naht am Blauem Band vom Headpiece`,
+    link: "Instagram.com/isell_cosplay",
     wipImages: JSON.stringify([
       `${BASE_URL}/uploads/WorldsTrouble_WIP1.jpg`,
   
