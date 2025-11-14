@@ -625,7 +625,7 @@ Dieses Cosplay hat sehr viel Zeit und Energie abverlangt, daher bin ich auf das 
       
     ]),
     wearingImages: JSON.stringify([
-    `${BASE_URL}/uploads/isell_cosplay_Tron1.jpg`,
+    `${BASE_URL}/uploads/isell_cosplay_Tryon1.jpg`,
       `${BASE_URL}/uploads/isell_cosplay_Tryon2.jpg`,
 
     ]),
