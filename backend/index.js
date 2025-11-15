@@ -180,7 +180,7 @@ const hardcodedParticipants = [
     ]),
     wearingImages: JSON.stringify([
       `${BASE_URL}/uploads/Sheeshkia_Tryon1.jpg`,
-      `${BASE_URL}/uploads/Sheeshkia_Tryon2.JPG`,
+      `${BASE_URL}/uploads/Sheeshkia_Tryon2.jpg`,
     ]),
     cosplayImages: JSON.stringify([]),
     buildBook:null,
@@ -352,7 +352,7 @@ Außerdem habe ich für meine Performance einen kleinen Magic Trick eingebaut. D
     ]),
     wearingImages: JSON.stringify([
        `${BASE_URL}/uploads/Vampirfranzi_Tryon1.jpg`,
-       `${BASE_URL}/uploads/Vampirfranzi_Tryon2.JPG`,
+       `${BASE_URL}/uploads/Vampirfranzi_Tryon2.jpg`,
        `${BASE_URL}/uploads/Vampirfranzi_Tryon3.jpg`,
        `${BASE_URL}/uploads/Vampirfranzi_Tryon4.jpg`,
 
@@ -366,7 +366,7 @@ Außerdem habe ich für meine Performance einen kleinen Magic Trick eingebaut. D
     game: "Overwatch2",
     number: 9,
     characterImage: JSON.stringify([
-      `${BASE_URL}/uploads/CosplayByMira1.png`,
+      `${BASE_URL}/uploads/CosplayByMira1.jpg`,
       `${BASE_URL}/uploads/CosplayByMira2.jpg`,
       `${BASE_URL}/uploads/CosplayByMira3.jpg`,
       `${BASE_URL}/uploads/CosplayByMira4.jpg`,
@@ -400,8 +400,8 @@ Worauf ich auch besonders stolz bin sind ihre Ohrringe und ihre Halskette, die h
        
     ]),
     wearingImages: JSON.stringify([
-       `${BASE_URL}/uploads/CosplayByMira_Tryon1.png`,
-       `${BASE_URL}/uploads/CosplayByMira_Tryon2.png`,
+       `${BASE_URL}/uploads/CosplayByMira_Tryon1.jpg`,
+       `${BASE_URL}/uploads/CosplayByMira_Tryon2.jpg`,
        `${BASE_URL}/uploads/CosplayByMira_Tryon3.jpg`,
        `${BASE_URL}/uploads/CosplayByMira_Tryon4.jpg`,
        `${BASE_URL}/uploads/CosplayByMira_Tryon5.jpg`,
@@ -423,19 +423,19 @@ Worauf ich auch besonders stolz bin sind ihre Ohrringe und ihre Halskette, die h
 Nach mehreren Verbesserungen hat Cassidy vor kurzem einen "D-Check" erhalten. Also, komplette Neulackierung, Einbau besserer LED, Detailarbeiten an der Rüstung. In ihm stecken jetzt so ziemlich alle Skills drin, die ich in den letzten Jahren aufgebaut habe.`,
     link: "Instagram.com/genji.nihon",
     wipImages: JSON.stringify([
-      `${BASE_URL}/uploads/Genji.Nihon_WIP1.JPEG`,
-      `${BASE_URL}/uploads/Genji.Nihon_WIP2.JPEG`,
-      `${BASE_URL}/uploads/Genji.Nihon_WIP3.JPEG`,
-      `${BASE_URL}/uploads/Genji.Nihon_WIP4.JPEG`,
-      `${BASE_URL}/uploads/Genji.Nihon_WIP5.JPEG`,
-      `${BASE_URL}/uploads/Genji.Nihon_WIP6.JPEG`,
-      `${BASE_URL}/uploads/Genji.Nihon_WIP7.JPEG`,
+      `${BASE_URL}/uploads/Genji.Nihon_WIP1.jpeg`,
+      `${BASE_URL}/uploads/Genji.Nihon_WIP2.jpeg`,
+      `${BASE_URL}/uploads/Genji.Nihon_WIP3.jpeg`,
+      `${BASE_URL}/uploads/Genji.Nihon_WIP4.jpeg`,
+      `${BASE_URL}/uploads/Genji.Nihon_WIP5.jpeg`,
+      `${BASE_URL}/uploads/Genji.Nihon_WIP6.jpeg`,
+      `${BASE_URL}/uploads/Genji.Nihon_WIP7.jpeg`,
     ]),
     wearingImages: JSON.stringify([
-       `${BASE_URL}/uploads/Genji.Nihon_Tryon1.JPG`,
+       `${BASE_URL}/uploads/Genji.Nihon_Tryon1.jpg`,
        `${BASE_URL}/uploads/Genji.Nihon_Tryon2.jpg`,
-       `${BASE_URL}/uploads/Genji.Nihon_Tryon3.JPG`,
-       `${BASE_URL}/uploads/Genji.Nihon_Tryon4.JPG`,
+       `${BASE_URL}/uploads/Genji.Nihon_Tryon3.jpg`,
+       `${BASE_URL}/uploads/Genji.Nihon_Tryon4.jpg`,
 
     ]),
     cosplayImages: JSON.stringify([]),
@@ -508,8 +508,8 @@ Nach mehreren Verbesserungen hat Cassidy vor kurzem einen "D-Check" erhalten. Al
     wearingImages: JSON.stringify([
        `${BASE_URL}/uploads/Syjo.Cosplay_Tryon1.jpg`,
        `${BASE_URL}/uploads/Syjo.Cosplay_Tryon2.jpg`,
-       `${BASE_URL}/uploads/Syjo.Cosplay_Tryon3.png`,
-       `${BASE_URL}/uploads/Syjo.Cosplay_Tryon4.png`,
+       `${BASE_URL}/uploads/Syjo.Cosplay_Tryon3.jpg`,
+       `${BASE_URL}/uploads/Syjo.Cosplay_Tryon4.jpg`,
        `${BASE_URL}/uploads/Syjo.Cosplay_Tryon5.jpg`,
   
 
@@ -523,9 +523,9 @@ Nach mehreren Verbesserungen hat Cassidy vor kurzem einen "D-Check" erhalten. Al
     game: "Clair Obscure Expedition 33 ",
     number: 13,
     characterImage: JSON.stringify([
-      `${BASE_URL}/uploads/SnowFoxCosplay1.JPG`,
-      `${BASE_URL}/uploads/SnowFoxCosplay2.JPG`,
-      `${BASE_URL}/uploads/SnowFoxCosplay3.JPG`,
+      `${BASE_URL}/uploads/SnowFoxCosplay1.jpg`,
+      `${BASE_URL}/uploads/SnowFoxCosplay2.jpg`,
+      `${BASE_URL}/uploads/SnowFoxCosplay3.jpg`,
    
     ]),
     text: `Komplett selbst gemachte helmet wig, 
@@ -534,10 +534,10 @@ Bodysuit von einem alten cosplay verwendet.
  (Nicht selbst genäht)  `,
     link: "Instagram.com/snowfoxcosplay",
     wipImages: JSON.stringify([
-      `${BASE_URL}/uploads/SnowFoxCosplay_WIP1.JPG`,
-      `${BASE_URL}/uploads/SnowFoxCosplay_WIP2.JPG`,
-      `${BASE_URL}/uploads/SnowFoxCosplay_WIP3.JPG`,
-      `${BASE_URL}/uploads/SnowFoxCosplay_WIP4.JPG`,
+      `${BASE_URL}/uploads/SnowFoxCosplay_WIP1.jpg`,
+      `${BASE_URL}/uploads/SnowFoxCosplay_WIP2.jpg`,
+      `${BASE_URL}/uploads/SnowFoxCosplay_WIP3.jpg`,
+      `${BASE_URL}/uploads/SnowFoxCosplay_WIP4.jpg`,
   
     ]),
     wearingImages: JSON.stringify([    ]),
@@ -586,8 +586,8 @@ Dieses Cosplay hat sehr viel Zeit und Energie abverlangt, daher bin ich auf das 
     game: "Fire Emblem Shadows",
     number: 15,
     characterImage: JSON.stringify([
-      `${BASE_URL}/uploads/Pinkfluffykichicorn1.png`,
-      `${BASE_URL}/uploads/Pinkfluffykichicorn2.png`,
+      `${BASE_URL}/uploads/Pinkfluffykichicorn1.jpg`,
+      `${BASE_URL}/uploads/Pinkfluffykichicorn2.jpg`,
    
     ]),
     text: `- Aus alten Sachen neue Cosplays hergestellt (z.b. Rock und Pullover gebraucht gekauft / alt aus dem Schrank und umgenäht, angemalt, Sachen hinzugefügt, verändert)`,
@@ -657,16 +657,16 @@ Dieses Cosplay hat sehr viel Zeit und Energie abverlangt, daher bin ich auf das 
     text: `Besonders stolz bin ich auf die ganzen Details und Props :)`,
     link: "Instagram.com/vididubetrayme",
     wipImages: JSON.stringify([
-    `${BASE_URL}/uploads/Vididubetrayme_WIP1.JPG`,
-    `${BASE_URL}/uploads/Vididubetrayme_WIP2.JPG`,
+    `${BASE_URL}/uploads/Vididubetrayme_WIP1.jpg`,
+    `${BASE_URL}/uploads/Vididubetrayme_WIP2.jpg`,
 
    
       
     ]),
     wearingImages: JSON.stringify([
     `${BASE_URL}/uploads/Vididubetrayme_Tryon1.jpg`,
-    `${BASE_URL}/uploads/Vididubetrayme_Tryon2.JPG`,
-    `${BASE_URL}/uploads/Vididubetrayme_Tryon3.JPG`,
+    `${BASE_URL}/uploads/Vididubetrayme_Tryon2.jpg`,
+    `${BASE_URL}/uploads/Vididubetrayme_Tryon3.jpg`,
     `${BASE_URL}/uploads/Vididubetrayme_Tryon4.jpg`,
    
 
@@ -742,6 +742,7 @@ Der Bauch wird durch eine mit Peddigrohr aufgespannte Stoffkugel mit Schultertr�
     cosplayImages: JSON.stringify([]),
     buildBook: null ,
   },
+
 
 ];
 
