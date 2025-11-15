@@ -631,6 +631,39 @@ Dieses Cosplay hat sehr viel Zeit und Energie abverlangt, daher bin ich auf das 
     ]),
     cosplayImages: JSON.stringify([]),
     buildBook: null ,
+  },{
+    id: 17,
+    cosplayName: "Vididubetrayme",
+    character: "Barioth Rüstung mit den Dango Dual Blades",
+    game: "Monster Hunter Rise",
+    number: 16,
+    characterImage: JSON.stringify([
+      `${BASE_URL}/uploads/Vididubetrayme1.jpg`,
+      `${BASE_URL}/uploads/Vididubetrayme2.jpg`,
+      `${BASE_URL}/uploads/Vididubetrayme3.jpg`,
+      `${BASE_URL}/uploads/Vididubetrayme4.jpg`,
+    
+   
+    ]),
+    text: `Besonders stolz bin ich auf die ganzen Details und Props :)`,
+    link: "Instagram.com/vididubetrayme",
+    wipImages: JSON.stringify([
+    `${BASE_URL}/uploads/Vididubetrayme_WIP1.JPG`,
+    `${BASE_URL}/uploads/Vididubetrayme_WIP2.JPG`,
+
+   
+      
+    ]),
+    wearingImages: JSON.stringify([
+    `${BASE_URL}/uploads/Vididubetrayme_Tryon1.jpg`,
+    `${BASE_URL}/uploads/Vididubetrayme_Tryon2.JPG`,
+    `${BASE_URL}/uploads/Vididubetrayme_Tryon3.JPG`,
+    `${BASE_URL}/uploads/Vididubetrayme_Tryon4.jpg`,
+   
+
+    ]),
+    cosplayImages: JSON.stringify([]),
+    buildBook: null ,
   },
 
 ];
