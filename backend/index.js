@@ -349,7 +349,7 @@ Außerdem habe ich für meine Performance einen kleinen Magic Trick eingebaut. D
 
     ]),
     cosplayImages: JSON.stringify([]),
-    buildBook: `${BASE_URL}/uploads/VampirFranzi_BuildBook.pdf`,
+    buildBook: `${BASE_URL}/uploads/Vampirfranzi_BuildBook.pdf`,
   },{
     id: 9,
     cosplayName: "Cosplay by Mira",
