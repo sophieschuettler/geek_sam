@@ -17,6 +17,12 @@ const allowedOrigins = [
   "https://contest-kappa.vercel.app"    // <– HIER deine echte Vercel-URL eintragen!
 ];
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use("/uploads", express.static("uploads", {
+  setHeaders: (res) => {
+    res.setHeader("Access-Control-Allow-Origin", "https://contest-kappa.vercel.app");
+  }
+}));
+
 
 app.use(cors({
   origin: allowedOrigins,
