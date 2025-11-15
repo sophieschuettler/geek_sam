@@ -16,6 +16,10 @@ const allowedOrigins = [
   "http://192.168.1.131:3000",          // Handy im WLAN
   "https://contest-kappa.vercel.app"    // <– HIER deine echte Vercel-URL eintragen!
 ];
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true,
+}));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/uploads', express.static('uploads', {
   setHeaders: (res, path) => {
@@ -26,10 +30,7 @@ app.use('/uploads', express.static('uploads', {
 }));
 
 
-app.use(cors({
-  origin: allowedOrigins,
-  credentials: true,
-}));
+
 
 app.use(bodyParser.json());
 app.use(express.json());
