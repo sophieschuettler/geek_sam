@@ -643,9 +643,9 @@ Dieses Cosplay hat sehr viel Zeit und Energie abverlangt, daher bin ich auf das 
   },{
     id: 17,
     cosplayName: "Vididubetrayme",
-    character: "Barioth Rüstung mit den Dango Dual Blades",
-    game: "Monster Hunter Rise",
-    number: 16,
+    character: "Jinx",
+    game: "League of Legends",
+    number: 17,
     characterImage: JSON.stringify([
       `${BASE_URL}/uploads/Vididubetrayme1.jpg`,
       `${BASE_URL}/uploads/Vididubetrayme2.jpg`,
@@ -670,6 +670,74 @@ Dieses Cosplay hat sehr viel Zeit und Energie abverlangt, daher bin ich auf das 
     `${BASE_URL}/uploads/Vididubetrayme_Tryon4.jpg`,
    
 
+    ]),
+    cosplayImages: JSON.stringify([]),
+    buildBook: null ,
+  },{
+    id: 18,
+    cosplayName: "Xenight",
+    character: "Lara Croft",
+    game: "Tomb Raider (2013)",
+    number: 18,
+    characterImage: JSON.stringify([
+      `${BASE_URL}/uploads/Xenight1.jpg`,
+      `${BASE_URL}/uploads/Xenight2.jpg`,
+      `${BASE_URL}/uploads/Xenight3.jpg`,
+      `${BASE_URL}/uploads/Xenight4.jpg`,
+      `${BASE_URL}/uploads/Xenight5.jpg`,
+    ]),
+    text: `Ganz besonders stolz bin ich auf das Weathering und die Details beim Weathering. Auch auf Props wie den Bogen und das Walkie-Talkie bin ich stolz, insbesondere auf den Paintjob bei dem Holzteil des Bogens. Eine wichtige Info ist, dass die Basis für die Hose und das Top getriftet sind, sie sind also nicht selbstgenäht.`,
+    link: "Instagram.com/i_am_not_xeni",
+    wipImages: JSON.stringify([
+    `${BASE_URL}/uploads/Xenight_WIP1.jpg`,
+    `${BASE_URL}/uploads/Xenight_WIP2.jpg`,
+    `${BASE_URL}/uploads/Xenight_WIP3.jpg`,
+    `${BASE_URL}/uploads/Xenight_WIP4.jpg`,
+    `${BASE_URL}/uploads/Xenight_WIP5.jpg`,
+ 
+    ]),
+    wearingImages: JSON.stringify([
+    `${BASE_URL}/uploads/Xenight_Tryon1.jpg`,
+    `${BASE_URL}/uploads/Xenight_Tryon2.jpg`,
+    ]),
+    cosplayImages: JSON.stringify([]),
+    buildBook: null ,
+  },{
+    id: 19,
+    cosplayName: "Chris the Bird",
+    character: "King DeDeDe (SSBU Version)",
+    game: "Super Smash Bros Ultimate",
+    number: 19,
+    characterImage: JSON.stringify([
+      `${BASE_URL}/uploads/Chris1.jpg`,
+      `${BASE_URL}/uploads/Chris2.jpg`,
+      `${BASE_URL}/uploads/Chris3.jpg`,
+
+    
+   
+    ]),
+    text: `Ich war immer ein riesiger Fan des Kirby-Universums, weshalb ich unbedingt einen Kirby-Charakter cosplayen wollte. Ich hatte mich für DeDeDe entschieden, weil er in nahezu jedem Kirby-Spiel vorkommt, Kirby erster Endboss war und ich ihn sonst auch als Character richtig cool finde. Mit der Zeit hat sich das Kostüm weiterentwickelt und den neueren Designs angepasst, aktuell bin ich bei der SSBU-Version geblieben.
+
+Gekauft:
+Gelbe Jeans, Socken, Crocs, Sterntasche mit den kleinen WaddleDes und Kirby.
+weißer Untermantel gekauft (vormals Bademantel) und mit Goldstoff modifiziert.
+
+Props:
+Krone und Hammer nach Vorlage in 3D modelliert (Fusion 360) und 3D gedruckt bzw. aus Pappe (neuer Hammer aus Foamboard) gebaut. 
+
+WIP:
+Neuer Hammer ist gerade noch in Arbeit. Außerdem wird das Logo auf der Rückseite des Mantels überarbeitet und durch Kunstleder ersetzt.
+
+Der Bauch wird durch eine mit Peddigrohr aufgespannte Stoffkugel mit Schulterträgern realisiert. Die Idee dafür kam von einer Bloggerin, die versucht hat, ein Pummeluff Kostüm für ihre Kinder zu nähen :)`,
+    link: "https://pixelfed.social/Christhebirb",
+    wipImages: JSON.stringify([
+    `${BASE_URL}/uploads/Chris_WIP1.jpg`,
+    `${BASE_URL}/uploads/Chris_WIP2.jpg`,
+    `${BASE_URL}/uploads/Chris_WIP3.jpg`,
+
+    ]),
+    wearingImages: JSON.stringify([
+    `${BASE_URL}/uploads/Chris_Tryon1.jpg`,
     ]),
     cosplayImages: JSON.stringify([]),
     buildBook: null ,

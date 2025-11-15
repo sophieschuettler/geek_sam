@@ -14,9 +14,9 @@ import {
 import { useTheme as useAppTheme } from "../context/ThemeContext"; // ✅ wichtig!
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
-import Caro from "./assets/bilder/Caro.png";
+import Caro from "./assets/bilder/Caro.jpg";
 import Nana from "./assets/bilder/Nana.jpg";
-import Crispy from "./assets/bilder/Crispy.png";
+import Crispy from "./assets/bilder/Crispy.jpg";
 import Teilnehmer from "./assets/bilder/Teilnehmer.jpg";
 import Übersicht from "./assets/bilder/Übersicht.jpg";
 
