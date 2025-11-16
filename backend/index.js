@@ -767,6 +767,29 @@ Der Bauch wird durch eine mit Peddigrohr aufgespannte Stoffkugel mit Schultertr�
     ]),
     cosplayImages: JSON.stringify([]),
     buildBook: null ,
+  },{
+    id: 21,
+    cosplayName: "Lissi & Dani",
+    character: "Dame Aylin & Shadowheart",
+    game: "Baldurs Gate 3",
+    number: 21,
+    characterImage: JSON.stringify([
+      `${BASE_URL}/uploads/LissiDanni1.jpg`,
+      `${BASE_URL}/uploads/LissiDanni2.jpg`,
+
+  
+    ]),
+    text: `Lissi : Das umnähen des Body suits. handbemahlen der filigranen blauen Muster im Kostüm und das herstellen des 3D Modells der Schuhe mit meine Papa. Das Kostüm wurde mit dem Heisluftfön perfekt angepasst.\n Dani: Monate lange arbeit mit Craftfiller und Kleber der eigenen Firma. `,
+    link: "Instagram.com/dany_stgn",
+    wipImages: JSON.stringify([
+    `${BASE_URL}/uploads/LissiDanni_WIP1.jpg`,
+
+    ]),
+    wearingImages: JSON.stringify([
+   
+    ]),
+    cosplayImages: JSON.stringify([]),
+    buildBook: null ,
   },
 
 
