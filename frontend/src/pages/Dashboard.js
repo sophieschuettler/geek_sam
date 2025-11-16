@@ -91,7 +91,7 @@ const getUserImage = () => {
               src={userImage || Crispy}
               alt={user.username}
               sx={{
-                height: 180,
+                height: 200,
                 objectFit: "cover",
                 transition: "transform 0.3s ease",
                 "&:hover": {

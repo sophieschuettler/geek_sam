@@ -741,6 +741,32 @@ Der Bauch wird durch eine mit Peddigrohr aufgespannte Stoffkugel mit Schultertr√
     ]),
     cosplayImages: JSON.stringify([]),
     buildBook: null ,
+  },{
+    id: 20,
+    cosplayName: "Nudelllsuppe",
+    character: "Skull Taker",
+    game: "Hunt Showdown 1896",
+    number: 20,
+    characterImage: JSON.stringify([
+      `${BASE_URL}/uploads/Nudelllsuppe1.jpg`,
+      `${BASE_URL}/uploads/Nudelllsuppe2.jpg`,
+      `${BASE_URL}/uploads/Nudelllsuppe3.jpg`,
+      `${BASE_URL}/uploads/Nudelllsuppe4.jpg`,
+  
+    ]),
+    text: `keine Ahnung `,
+    link: "Instagram.com/nudelllsuppe",
+    wipImages: JSON.stringify([
+    `${BASE_URL}/uploads/Nudelllsuppe_WIP1.jpg`,
+    `${BASE_URL}/uploads/Nudelllsuppe_WIP2.jpg`,
+    `${BASE_URL}/uploads/Nudelllsuppe_WIP3.jpg`,
+    `${BASE_URL}/uploads/Nudelllsuppe_WIP4.jpg`,
+    ]),
+    wearingImages: JSON.stringify([
+    `${BASE_URL}/uploads/Chris_Tryon1.jpg`,
+    ]),
+    cosplayImages: JSON.stringify([]),
+    buildBook: null ,
   },
 
 
