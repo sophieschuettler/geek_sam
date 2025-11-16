@@ -763,7 +763,7 @@ Der Bauch wird durch eine mit Peddigrohr aufgespannte Stoffkugel mit Schultertr√
     `${BASE_URL}/uploads/Nudelllsuppe_WIP4.jpg`,
     ]),
     wearingImages: JSON.stringify([
-    `${BASE_URL}/uploads/Chris_Tryon1.jpg`,
+   
     ]),
     cosplayImages: JSON.stringify([]),
     buildBook: null ,
