@@ -14,7 +14,8 @@ export default function Participants() {
   const [numPages, setNumPages] = useState(null);
   const [loading, setLoading] = useState(true); // Ladezustand
   const { darkMode } = useTheme();  // darkMode aus dem Theme-Kontext holen
-  const { role } = useAppContext(); // role = "jury" oder "admin"
+const { user } = useAppContext();
+const role = user?.role;
 
   useEffect(() => {
     const API = process.env.REACT_APP_API_URL;
