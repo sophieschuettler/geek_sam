@@ -817,6 +817,10 @@ const users = [
   { username: "Caro", password: "key0405", role: "jury" },
   { username: "Crispy", password: "mango3110", role: "jury" },
   { username: "admin", password: "pitourino13", role: "admin" },
+  { username: "Lukas", password: "chino23", role: "admin" },
+  { username: "Lisa", password: "farkas34", role: "admin" },
+  { username: "Aziz", password: "pupsi2", role: "admin" },
+  { username: "Kathja", password: "shego24", role: "admin" },
 ];
 
 // --- Login ---

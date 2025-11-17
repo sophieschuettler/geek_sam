@@ -14,6 +14,7 @@ export default function Participants() {
   const [numPages, setNumPages] = useState(null);
   const [loading, setLoading] = useState(true); // Ladezustand
   const { darkMode } = useTheme();  // darkMode aus dem Theme-Kontext holen
+  const { role } = useAppContext(); // role = "jury" oder "admin"
 
   useEffect(() => {
     const API = process.env.REACT_APP_API_URL;
@@ -37,6 +38,8 @@ export default function Participants() {
   }
 
   const selectedParticipant = participants.find((p) => p.id === selectedId);
+  const isJury = role === "jury";
+  const isAdmin = role === "admin";
 
   return (
     <div
@@ -146,7 +149,7 @@ export default function Participants() {
                 </p>
               )}
 
-              {selectedParticipant.text && (
+              {isJury && selectedParticipant.text && (
                 <p className="mt-3 ">
                   {selectedParticipant.text}
                 </p>
@@ -183,7 +186,7 @@ export default function Participants() {
           )}
 
           {/* === WIP Bilder === */}
-          {selectedParticipant.wipImages?.length > 0 && (
+          {isJury && selectedParticipant.wipImages?.length > 0 && (
             <div
               className={` p-4 rounded-xl shadow-sm transition-colors ${
                     darkMode ? "bg-gray-600 text-gray-100" : "bg-white text-gray-900"
@@ -210,7 +213,7 @@ export default function Participants() {
           )}
 
           {/* === BuildBook === */}
-          {selectedParticipant.buildBook && (
+          {isJury && selectedParticipant.buildBook && (
             <div
               className={` p-4 rounded-xl shadow-sm transition-colors ${
                     darkMode ? "bg-gray-600 text-gray-100" : "bg-white text-gray-900"
