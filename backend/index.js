@@ -264,13 +264,14 @@ Alles ist selbstgemacht, außer die Hose und das Oberteil was ich unten drunter 
     text: `Ich bin glücklich mein lieblings Charakter selbst zu basteln. Ich habe meinem Perücke und Props selbst mit EVA foam gecraftet und die Kostüme habe ich selbst durch lackiert. Es ist immer großartig mit Handmade.`,
     link: "Instagram.com/Matres7IX",
     wipImages: JSON.stringify([
-      `${BASE_URL}/uploads/Matres7IX_Ref.jpg`,    
+
       `${BASE_URL}/uploads/Matres7IX_WIP.jpg`,
       `${BASE_URL}/uploads/Matres7IX_WIP1.jpg`,
       `${BASE_URL}/uploads/Matres7IX_WIP2.jpg`,
       `${BASE_URL}/uploads/Matres7IX_WIP3.jpg`,
     ]),
     wearingImages: JSON.stringify([
+      `${BASE_URL}/uploads/Matres7IX_Ref.jpg`,    
     ]),
     cosplayImages: JSON.stringify([]),
     buildBook: null ,

@@ -19,6 +19,7 @@ import Nana from "./assets/bilder/Nana.jpg";
 import Crispy from "./assets/bilder/Crispy.jpg";
 import Teilnehmer from "./assets/bilder/Teilnehmer.jpg";
 import Übersicht from "./assets/bilder/Übersicht.jpg";
+import Admin from "./assets/bilder/admin.jpg";
 
 export default function Dashboard({ user }) {
   const navigate = useNavigate();
@@ -38,7 +39,7 @@ localStorage.removeItem("token"); // oder sessionStorage
     },
   });
 const getUserImage = () => {
-    if (!user) return null;
+    if (!user) return Admin;
     switch (user.username?.toLowerCase()) {
       case "caro":
         return Caro;
@@ -47,7 +48,7 @@ const getUserImage = () => {
       case "crispy":
         return Crispy;
       default:
-        return null;
+        return Admin;
     }
   };
   const userImage = getUserImage();
@@ -88,7 +89,7 @@ const getUserImage = () => {
           >
             <CardMedia
               component="img"
-              src={userImage || Crispy}
+              src={userImage}
               alt={user.username}
               sx={{
                 height: 200,
