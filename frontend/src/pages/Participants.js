@@ -126,7 +126,7 @@ const role = user?.role;
 
               {selectedParticipant.link && (
                 <p className="mb-3">
-                  <span className="font-semibold">Instagram: </span>
+                 
                   <a
                     href={
                       selectedParticipant.link.startsWith("http")
@@ -137,7 +137,7 @@ const role = user?.role;
                     rel="noopener noreferrer"
                     className="text-blue-600 hover:text-blue-800 underline"
                   >
-                    {selectedParticipant.link.replace(/^https?:\/\//, "")}
+                    Social Media 
                   </a>
                 </p>
               )}
