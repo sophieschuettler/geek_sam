@@ -100,9 +100,7 @@ const role = user?.role;
               {/* === Charakterbilder === */}
               {selectedParticipant.characterImages?.length > 0 && (
                 <div
-                  className={`p-6 rounded-2xl  w-full max-w-5xl flex flex-col gap-4 transition-colors ${
-                    darkMode ? "bg-gray-600 text-gray-100" : "bg-white text-gray-900"
-                  }`}
+                 
                 >
                   <h3
                     className={`font-semibold text-lg mb-3 ${
