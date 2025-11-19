@@ -781,7 +781,11 @@ Der Bauch wird durch eine mit Peddigrohr aufgespannte Stoffkugel mit Schultertr�
 
   
     ]),
-    text: `Lissi : Das umnähen des Body suits. handbemahlen der filigranen blauen Muster im Kostüm und das herstellen des 3D Modells der Schuhe mit meine Papa. Das Kostüm wurde mit dem Heisluftfön perfekt angepasst.\n Dani: Monate lange arbeit mit Craftfiller und Kleber der eigenen Firma. `,
+    text: `Lissi : Da dies mein erster Cosplay ist, bin ich stolz darauf wie originalgetreu es mir gelungen ist. Ich freue mich das fertige Cosplay endlich zeigen zu können. Stolz bin ich vor allem auf das umnähen des Bodysuits, handbemalen der filigranen blauen Muster im Kostüm und das herstellen des 3D Modells der Schuhe mit meinem Papa. Das Kostüm wurde mit dem Heißluftfön perfekt an mich angepasst. 
+
+Comissioned: Teile der Flügel (durch mich aufgearbeitet und verändert), Wig (durch mich aufgearbeitet und geschnitten) und teile des Bodysuits (wurde als underlayer genutzt).\n Dani: Besonders stolz bin ich, dass ich mich an so ein großes Projekt herangewagt habe. Mit dem Projekt habe ich neue Techniken, wie das Airbrushen erlernt. Ich freue mich, dass sich mehrere Monate Planung und Herstellung gelohnt haben.
+
+Comissioned: 3D-Druck der Rüstung, (aufarbeiten, kleben und airbrush by me), Wig, Undergarments `,
     link: "Instagram.com/dany_stgn",
     wipImages: JSON.stringify([
     `${BASE_URL}/uploads/LissiDanni_WIP1.jpg`,
