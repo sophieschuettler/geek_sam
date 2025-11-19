@@ -785,9 +785,20 @@ Der Bauch wird durch eine mit Peddigrohr aufgespannte Stoffkugel mit Schultertr√
     link: "Instagram.com/dany_stgn",
     wipImages: JSON.stringify([
     `${BASE_URL}/uploads/LissiDanni_WIP1.jpg`,
+    `${BASE_URL}/uploads/LissiDanni_WIP2.jpg`,
+    `${BASE_URL}/uploads/LissiDanni_WIP3.jpg`,
+    `${BASE_URL}/uploads/LissiDanni_WIP4.jpg`,
+    `${BASE_URL}/uploads/LissiDanni_WIP5.jpg`,
+    `${BASE_URL}/uploads/LissiDanni_WIP6.jpg`,
+    `${BASE_URL}/uploads/LissiDanni_WIP7.jpg`,
+    `${BASE_URL}/uploads/LissiDanni_WIP8.jpg`,
+    `${BASE_URL}/uploads/LissiDanni_WIP9.jpg`,
+    `${BASE_URL}/uploads/LissiDanni_WIP10.jpg`,
+    `${BASE_URL}/uploads/LissiDanni_WIP11.jpg`,
 
     ]),
     wearingImages: JSON.stringify([
+    `${BASE_URL}/uploads/LissiDanni_Tryon.jpg`,
    
     ]),
     cosplayImages: JSON.stringify([]),
