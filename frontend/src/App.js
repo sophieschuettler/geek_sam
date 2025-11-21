@@ -73,7 +73,7 @@ function AppRoutes() {
       localStorage.setItem("user", JSON.stringify(data));
 
       // 🚀 Navigation nach Rolle
-      if (data.role === "admin") navigate("/übersicht");
+      if (data.role === "admin") navigate("/dashboard");
       else navigate("/dashboard");
     } catch (err) {
       console.error(err);
