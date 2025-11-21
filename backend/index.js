@@ -158,39 +158,12 @@ const hardcodedParticipants = [
     wipImages: JSON.stringify([]),
     cosplayImages: JSON.stringify([]),
     buildBook: `${BASE_URL}/uploads/tunaj_buildbook.pdf`,
-  }, 
-  {
+  },  {
     id: 3,
-    cosplayName: "Sheeshkia",
-    character: "Link",
-    game: "The Legend of Zelda Ocarina of Time ",
-    number: 3,
-    characterImage: JSON.stringify([
-      `${BASE_URL}/uploads/Sheeshkia.jpg`,
-      `${BASE_URL}/uploads/Sheeshkia2.jpg`,
-      `${BASE_URL}/uploads/Sheeshkia3.jpg`,
-    ]),
-    text: `Der Ikonische Grüne Tunik + die Mütze, die Hose, der Schwerhaltergurt, der Gürtel sowie die Stumpen an den Armen und Beinen sind selbst gemacht. Details wie der Topf den man im Spiel kaputt machen kann und Rubine sind 3D Gedruckt, ein Plüschhuhn und Navi, welche Sounds spielen oder Leuchten kann sowie andere Items aus dem Spiel habe ich dabei `,
-    link: "Instagram.com/sheeshkie/",
-    wipImages: JSON.stringify([
-      `${BASE_URL}/uploads/Sheeshkia_WIP1.jpg`,
-      `${BASE_URL}/uploads/Sheeshkia_WIP2.jpg`,
-      `${BASE_URL}/uploads/Sheeshkia_WIP3.jpg`,
-      `${BASE_URL}/uploads/Sheeshkia_WIP4.jpg`,
-    ]),
-    wearingImages: JSON.stringify([
-      `${BASE_URL}/uploads/Sheeshkia_Tryon1.jpg`,
-      `${BASE_URL}/uploads/Sheeshkia_Tryon2.jpg`,
-    ]),
-    cosplayImages: JSON.stringify([]),
-    buildBook:null,
-  },
-   {
-    id: 4,
     cosplayName: "KellyGreeny",
     character: "Nick Valentine",
     game: "Fallout 4",
-    number: 4,
+    number: 3,
     characterImage: JSON.stringify([`${BASE_URL}/uploads/KellyGreeny.jpg`]), 
     
     text: `Die mechanische Hand und das Make-Up, sowie die versteckten Holster sind meine Lieblingsteile neben dem ikonischen Mantel. Der Mantel besteht aus zwei Secondhand Mänteln, dich ich auseinandergenommen habe und auf den Charakter angepasst sowie gewettert und mit Zierstichen versehen habe. Das Hemd ist komplett selbstgemacht. Die Hose, Schue, Gürtel, Kravatte und Hut sind zum großen Teil Seconhand oder gekauft, aber auch angepasst und gewettert. Die beiden Revolver sowie das Holotape sind 3D gedruckt, zusammengebaut, bemalt und gewettert von mir. Die mechanische Hand ist komplett selbst entworfen und gebaut aus Foam, Worbla und Holz. Der Basis Handschuh ist mein bester Handschuh bis jetzt! Zudem bringe ich meine Lieblingsrequsite mit, wo ich sogar LEDs drin verbaut habe.`,
@@ -215,11 +188,11 @@ const hardcodedParticipants = [
     cosplayImages: JSON.stringify([]),
     buildBook: null ,
   },{
-    id: 5,
+    id: 4,
     cosplayName: "CosplayManie",
     character: "Oathbreaker Knight / Eidbrecher Ritter",
     game: "Baldurs Gate 3",
-    number: 5,
+    number: 4,
     characterImage: JSON.stringify([
       `${BASE_URL}/uploads/CosplayManie.jpg`,
       `${BASE_URL}/uploads/CosplayManie2.jpeg`,
@@ -253,34 +226,11 @@ Alles ist selbstgemacht, außer die Hose und das Oberteil was ich unten drunter 
     cosplayImages: JSON.stringify([]),
     buildBook: null ,
   },{
-    id: 6,
-    cosplayName: "Matres7IX",
-    character: "Handsome Jack",
-    game: "Borderlands",
-    number: 6,
-    characterImage: JSON.stringify([
-      `${BASE_URL}/uploads/Matres7IX_Ref1.jpg`,    
-    ]),
-    text: `Ich bin glücklich mein lieblings Charakter selbst zu basteln. Ich habe meinem Perücke und Props selbst mit EVA foam gecraftet und die Kostüme habe ich selbst durch lackiert. Es ist immer großartig mit Handmade.`,
-    link: "Instagram.com/Matres7IX",
-    wipImages: JSON.stringify([
-
-      `${BASE_URL}/uploads/Matres7IX_WIP.jpg`,
-      `${BASE_URL}/uploads/Matres7IX_WIP1.jpg`,
-      `${BASE_URL}/uploads/Matres7IX_WIP2.jpg`,
-      `${BASE_URL}/uploads/Matres7IX_WIP3.jpg`,
-    ]),
-    wearingImages: JSON.stringify([
-      `${BASE_URL}/uploads/Matres7IX_Ref.jpg`,    
-    ]),
-    cosplayImages: JSON.stringify([]),
-    buildBook: null ,
-  },{
-    id: 7,
+    id: 5,
     cosplayName: "elandacosplay",
     character: "Ranni",
     game: "Elden Ring",
-    number: 7,
+    number: 5,
     characterImage: JSON.stringify([
       `${BASE_URL}/uploads/elandacosplay.webp`,
       `${BASE_URL}/uploads/elandacosplay1.webp`,
@@ -333,90 +283,11 @@ Die Krone hab ich selber aus Draht gebogen.`,
     cosplayImages: JSON.stringify([]),
     buildBook: null ,
   },{
-    id: 8,
-    cosplayName: "Vampirfranzi",
-    character: "Xal´atath",
-    game: "World of Warcraft",
-    number: 8,
-    characterImage: JSON.stringify([
-      `${BASE_URL}/uploads/Vampirfranzi1.jpg`,
-      `${BASE_URL}/uploads/Vampirfranzi2.jpg`,
-      `${BASE_URL}/uploads/Vampirfranzi3.jpg`,
-      `${BASE_URL}/uploads/Vampirfranzi4.jpg`,
-   
-  
-    ]),
-    text: `Das Cosplay ist zu fast allen Teilen selbst gemacht, nur Basics wie Perücke oder Strumpfhosen wurden gekauft, jedoch selbst weiter verarbeitet bzw gestyled. Alle Schnittmuster sind selbst angefertigt, egal ob für Schneiderarbeiten oder Foamarbeiten. Ich habe zudem viele verschiedene Techniken genutzt, zum Beispiel 3D Modellierung, 3D Druck, Foamarbeit, Schneiderarbiet und Elektronik. Der Galaxystoff für den Umhang habe ich händisch in Procreate gezeichnet und drucken lassen, zudem ist der Umhang mit LEDs bestückt, um die Galaxy zum Leben zu erwecken. Die zwei Porps, die Xal´atath hat, das Dunkle Herz und ihre Klinge sind 3D gedruckt und selbst modelliert. Die Klinge hat zudem noch einige Foamschichten bekommen. In beiden Props befinden sich LEDs, die wie der Umhang von einem Arduino gesteuert werden. Ein Details, das ich besonders gerne mag, sind die handgeknüpften Augenbrauen, die ich mit den abgeschnittenen Perückenhaaren und einem Stück Perückennetz, das ich von einer Lacefront abgeschnitten habe, gemacht habe. 
-Außerdem habe ich für meine Performance einen kleinen Magic Trick eingebaut. Das Dunkle Herz schwebt häufig in Xal´ataths Hand, deshalb habe ich einen befreundeten Magier gefragt, und wir haben es mit einem ganz einfachen und alten Trick genutzt, um das auf der Bühne möglich zu machen. `,
-    link: "Instagram.com/franziska_adam",
-    wipImages: JSON.stringify([
-         
-    ]),
-    wearingImages: JSON.stringify([
-       `${BASE_URL}/uploads/Vampirfranzi_Tryon1.jpg`,
-       `${BASE_URL}/uploads/Vampirfranzi_Tryon2.jpg`,
-       `${BASE_URL}/uploads/Vampirfranzi_Tryon3.jpg`,
-       `${BASE_URL}/uploads/Vampirfranzi_Tryon4.jpg`,
-
-    ]),
-    cosplayImages: JSON.stringify([]),
-    buildBook: `${BASE_URL}/uploads/Vampirfranzi_BuildBook.pdf`,
-  },{
-    id: 9,
-    cosplayName: "Cosplay by Mira",
-    character: "Kiriko (Antifragile Skin)",
-    game: "Overwatch2",
-    number: 9,
-    characterImage: JSON.stringify([
-      `${BASE_URL}/uploads/CosplayByMira1.jpg`,
-      `${BASE_URL}/uploads/CosplayByMira2.jpg`,
-      `${BASE_URL}/uploads/CosplayByMira3.jpg`,
-      `${BASE_URL}/uploads/CosplayByMira4.jpg`,
-    ]),
-    text: `Ich habe die Perücke aus zwei Perücken zusammengenäht,zusätzliche Haarsträhnen per Hand eingenäht und die Perücke gestyled. 
-Die Jeansjacke ist komplett selbst genäht. Ich habe erst ein eigenes Schnittmuster erstellt, basierend auf einer Jeansjacke die ich habe und Ingame Bildern von Kiriko ihrer Jacke. 
-Genauso habe ich detailgetreu Ziernähte per Hand angenäht.
-Die Jacke habe ich dann noch im Verlauf gebleached und das Holographische Design hinten mit Bügelfolie per Hand ausgeschnitten und aufgebügelt.
-Für ihr Oberteil habe ich ein gekauftes Shirt abgeändert sodass es bauchfrei ist und anschließend auch die Holographische Bügelfolie aufgebügelt und anschließend um die ganzen Buchstaben mit der Nähmaschine einen sehr engen Zickzack Stich gemacht, sodass es einen ähnlichen Look wie beim original hat.
-Für ihren BH, bei dem man die Träger und auch am Bauch die überkreuzten Bänder sieht, habe ich einen Trägerlosen Bh gekauft, diesen dann noch abgeändert sodass er schmäler wird und anschließend die Träger sowie auch die Bänder am Bauch aus schwarzen stretch Leder genäht und gekaufte Bügel und Haken an diese genäht. 
-Für die Kniestrümpfe habe ich passende in der Farbe gekauft und dann noch an eine Hautfarbene Strumpfhose angenäht sodass die Kniestrümpfe nicht runter rutschen können.
-So ziemlich alle Accessoires habe ich auch selbst gemacht. Wie zb den Fuchs Anhänger, bei dem habe ich Fleece stoff eingefärbt und per Hand zusammen genäht.
-Für den "Pachimari"- Pin an der Jacke habe ich ihn erst digital illustriert und anschließend online einen herzförmigen Pin mit dem Design gestaltet sodass es ähnlich wie im Spiel aussieht.
-Ihren Oberarmreif habe ich auch mit dem selben Jeansstoff wie die Jacke genäht.
-Ihre Handschuhe habe ich aus Imitat Leder genäht und dann noch die Details außen mit foam gefertigt. 
-Die Armreife von ihr habe ich selbst 3d designed und dann gedruckt und abgeschliffen. Ich habe sie sogar so designed dass sie auch leuchten.
-Dafür habe ich kleine Led leuchtkugeln und darüber eingefärbten lichtdurchlässigen Foam verwendet.
-Für ihre Schuhe habe ich fertige Schuhe geupgraded indem ich Lederbänder genäht und angenäht habe. Dabei habe ich versucht so gut es geht an dem original Design der Schuhe zu bleiben.
-Anschließend habe ich alles mit Lederfarbe angemalt sodass sie ungefähr die Farbe wie im Spiel haben.
-Die Schnallen bei den Schuhen oben habe ich gekauft und die "Verzierungen" unten an den Schuhen habe ich aus Foam und stretch Leder gemacht.
-Für ihre Ofuda Blätter habe ich sie digital erst gezeichnet mit Vorlagen vom Spiel, dann ausgedruckt und mit Holographischer Folie beklebt.
-Worauf ich auch besonders stolz bin sind ihre Ohrringe und ihre Halskette, die habe ich komplett selbst handgefertigt aus 925 Sterlingsilber, da ich Goldschmiedin bin und das nutzen wollte.  `,
-    link: "Instagram.com/cosplay_by_mira",
-    wipImages: JSON.stringify([
-      `${BASE_URL}/uploads/CosplayByMira_WIP1.jpg`,
-      `${BASE_URL}/uploads/CosplayByMira_WIP2.jpg`,
-      `${BASE_URL}/uploads/CosplayByMira_WIP3.jpg`,
-      `${BASE_URL}/uploads/CosplayByMira_WIP4.jpg`,
-      `${BASE_URL}/uploads/CosplayByMira_WIP5.jpg`,
-      `${BASE_URL}/uploads/CosplayByMira_WIP6.jpg`,
-       
-    ]),
-    wearingImages: JSON.stringify([
-       `${BASE_URL}/uploads/CosplayByMira_Tryon1.jpg`,
-       `${BASE_URL}/uploads/CosplayByMira_Tryon2.jpg`,
-       `${BASE_URL}/uploads/CosplayByMira_Tryon3.jpg`,
-       `${BASE_URL}/uploads/CosplayByMira_Tryon4.jpg`,
-       `${BASE_URL}/uploads/CosplayByMira_Tryon5.jpg`,
-
-    ]),
-    cosplayImages: JSON.stringify([]),
-    buildBook: null ,
-  },{
-    id: 10,
+    id: 6,
     cosplayName: "Genji Nihon",
     character: "Cassidy (ehem. McCree)",
     game: "Overwatch",
-    number: 10,
+    number: 6,
     characterImage: JSON.stringify([
       `${BASE_URL}/uploads/Genji.Nihon1.jpg`,
       `${BASE_URL}/uploads/Genji.Nihon2.jpg`,
@@ -442,7 +313,37 @@ Nach mehreren Verbesserungen hat Cassidy vor kurzem einen "D-Check" erhalten. Al
     ]),
     cosplayImages: JSON.stringify([]),
     buildBook: null ,
-  },{
+  },
+  {
+    id: 7,
+    cosplayName: "Vampirfranzi",
+    character: "Xal´atath",
+    game: "World of Warcraft",
+    number: 7,
+    characterImage: JSON.stringify([
+      `${BASE_URL}/uploads/Vampirfranzi1.jpg`,
+      `${BASE_URL}/uploads/Vampirfranzi2.jpg`,
+      `${BASE_URL}/uploads/Vampirfranzi3.jpg`,
+      `${BASE_URL}/uploads/Vampirfranzi4.jpg`,
+   
+  
+    ]),
+    text: `Das Cosplay ist zu fast allen Teilen selbst gemacht, nur Basics wie Perücke oder Strumpfhosen wurden gekauft, jedoch selbst weiter verarbeitet bzw gestyled. Alle Schnittmuster sind selbst angefertigt, egal ob für Schneiderarbeiten oder Foamarbeiten. Ich habe zudem viele verschiedene Techniken genutzt, zum Beispiel 3D Modellierung, 3D Druck, Foamarbeit, Schneiderarbiet und Elektronik. Der Galaxystoff für den Umhang habe ich händisch in Procreate gezeichnet und drucken lassen, zudem ist der Umhang mit LEDs bestückt, um die Galaxy zum Leben zu erwecken. Die zwei Porps, die Xal´atath hat, das Dunkle Herz und ihre Klinge sind 3D gedruckt und selbst modelliert. Die Klinge hat zudem noch einige Foamschichten bekommen. In beiden Props befinden sich LEDs, die wie der Umhang von einem Arduino gesteuert werden. Ein Details, das ich besonders gerne mag, sind die handgeknüpften Augenbrauen, die ich mit den abgeschnittenen Perückenhaaren und einem Stück Perückennetz, das ich von einer Lacefront abgeschnitten habe, gemacht habe. 
+Außerdem habe ich für meine Performance einen kleinen Magic Trick eingebaut. Das Dunkle Herz schwebt häufig in Xal´ataths Hand, deshalb habe ich einen befreundeten Magier gefragt, und wir haben es mit einem ganz einfachen und alten Trick genutzt, um das auf der Bühne möglich zu machen. `,
+    link: "Instagram.com/franziska_adam",
+    wipImages: JSON.stringify([
+         
+    ]),
+    wearingImages: JSON.stringify([
+       `${BASE_URL}/uploads/Vampirfranzi_Tryon1.jpg`,
+       `${BASE_URL}/uploads/Vampirfranzi_Tryon2.jpg`,
+       `${BASE_URL}/uploads/Vampirfranzi_Tryon3.jpg`,
+       `${BASE_URL}/uploads/Vampirfranzi_Tryon4.jpg`,
+
+    ]),
+    cosplayImages: JSON.stringify([]),
+    buildBook: `${BASE_URL}/uploads/Vampirfranzi_BuildBook.pdf`,
+  },/* {
     id: 11,
     cosplayName: "World's Trouble",
     character: "Gambit",
@@ -478,12 +379,12 @@ Nach mehreren Verbesserungen hat Cassidy vor kurzem einen "D-Check" erhalten. Al
     ]),
     cosplayImages: JSON.stringify([]),
     buildBook: null ,
-  },{
-    id: 12,
+  } */,{
+    id: 8,
     cosplayName: "Syjo Cosplay",
     character: "SA-25 Steel Trooper",
     game: "Helldivers 2",
-    number: 12,
+    number: 8,
     characterImage: JSON.stringify([
       `${BASE_URL}/uploads/Syjo.Cosplay1.jpg`,
       `${BASE_URL}/uploads/Syjo.Cosplay2.jpg`,
@@ -519,11 +420,11 @@ Nach mehreren Verbesserungen hat Cassidy vor kurzem einen "D-Check" erhalten. Al
     cosplayImages: JSON.stringify([]),
     buildBook: `${BASE_URL}/uploads/Syjo.Cosplay_BuildBook.pdf` ,
   },{
-    id: 13,
+    id: 9,
     cosplayName: "SnowFoxCosplay",
     character: "Die Malerin",
     game: "Clair Obscure Expedition 33 ",
-    number: 13,
+    number: 9,
     characterImage: JSON.stringify([
       `${BASE_URL}/uploads/SnowFoxCosplay1.jpg`,
       `${BASE_URL}/uploads/SnowFoxCosplay2.jpg`,
@@ -546,11 +447,11 @@ Bodysuit von einem alten cosplay verwendet.
     cosplayImages: JSON.stringify([]),
     buildBook: null ,
   },{
-    id: 14,
+    id: 10,
     cosplayName: "Serinua_cosplay",
     character: "Halone",
     game: "Final Fantasy XIV",
-    number: 14,
+    number: 10,
     characterImage: JSON.stringify([
       `${BASE_URL}/uploads/Serinua_cosplay1.jpg`,
       `${BASE_URL}/uploads/Serinua_cosplay2.jpg`,
@@ -581,7 +482,7 @@ Dieses Cosplay hat sehr viel Zeit und Energie abverlangt, daher bin ich auf das 
     ]),
     cosplayImages: JSON.stringify([]),
     buildBook: null ,
-  },{
+  },/* {
     id: 15,
     cosplayName: "Pinkfluffykichicorn",
     character: "Rose",
@@ -612,12 +513,12 @@ Dieses Cosplay hat sehr viel Zeit und Energie abverlangt, daher bin ich auf das 
     ]),
     cosplayImages: JSON.stringify([]),
     buildBook: null ,
-  },{
-    id: 16,
+  } */,{
+    id: 11,
     cosplayName: "Isell_Cosplay",
     character: "Barioth Rüstung mit den Dango Dual Blades",
     game: "Monster Hunter Rise",
-    number: 16,
+    number: 11,
     characterImage: JSON.stringify([
       `${BASE_URL}/uploads/isell_cosplay1.jpg`,
       `${BASE_URL}/uploads/isell_cosplay2.jpg`,
@@ -643,11 +544,11 @@ Dieses Cosplay hat sehr viel Zeit und Energie abverlangt, daher bin ich auf das 
     cosplayImages: JSON.stringify([]),
     buildBook: null ,
   },{
-    id: 17,
+    id: 15,
     cosplayName: "Vididubetrayme",
     character: "Jinx",
     game: "League of Legends",
-    number: 17,
+    number: 15,
     characterImage: JSON.stringify([
       `${BASE_URL}/uploads/Vididubetrayme1.jpg`,
       `${BASE_URL}/uploads/Vididubetrayme2.jpg`,
@@ -676,11 +577,11 @@ Dieses Cosplay hat sehr viel Zeit und Energie abverlangt, daher bin ich auf das 
     cosplayImages: JSON.stringify([]),
     buildBook: null ,
   },{
-    id: 18,
+    id: 12,
     cosplayName: "Xenight",
     character: "Lara Croft",
     game: "Tomb Raider (2013)",
-    number: 18,
+    number: 12,
     characterImage: JSON.stringify([
       `${BASE_URL}/uploads/Xenight1.jpg`,
       `${BASE_URL}/uploads/Xenight2.jpg`,
@@ -705,11 +606,11 @@ Dieses Cosplay hat sehr viel Zeit und Energie abverlangt, daher bin ich auf das 
     cosplayImages: JSON.stringify([]),
     buildBook: null ,
   },{
-    id: 19,
+    id: 13,
     cosplayName: "Chris the Bird",
     character: "King DeDeDe (SSBU Version)",
     game: "Super Smash Bros Ultimate",
-    number: 19,
+    number: 13,
     characterImage: JSON.stringify([
       `${BASE_URL}/uploads/Chris1.jpg`,
       `${BASE_URL}/uploads/Chris2.jpg`,
@@ -743,7 +644,7 @@ Der Bauch wird durch eine mit Peddigrohr aufgespannte Stoffkugel mit Schultertr�
     ]),
     cosplayImages: JSON.stringify([]),
     buildBook: null ,
-  },{
+  },/* {
     id: 20,
     cosplayName: "Nudelllsuppe",
     character: "Skull Taker",
@@ -769,12 +670,12 @@ Der Bauch wird durch eine mit Peddigrohr aufgespannte Stoffkugel mit Schultertr�
     ]),
     cosplayImages: JSON.stringify([]),
     buildBook: null ,
-  },{
-    id: 21,
+  }, */{
+    id: 16,
     cosplayName: "Lissi & Dani",
     character: "Dame Aylin & Shadowheart",
     game: "Baldurs Gate 3",
-    number: 21,
+    number: 16,
     characterImage: JSON.stringify([
       `${BASE_URL}/uploads/LissiDanni1.jpg`,
       `${BASE_URL}/uploads/LissiDanni2.jpg`,
@@ -832,11 +733,12 @@ const users = [
   { username: "Nana", password: "zelda3576", role: "jury" },
   { username: "Caro", password: "key0405", role: "jury" },
   { username: "Crispy", password: "mango3110", role: "jury" },
-  { username: "admin", password: "pitourino13", role: "admin" },
+  { username: "admin", password: "pitourino13", role: "jury" },
   { username: "Lukas", password: "chino23", role: "admin" },
   { username: "Lisa", password: "farkas34", role: "admin" },
   { username: "Aziz", password: "pupsi2", role: "admin" },
   { username: "Kathja", password: "shego24", role: "admin" },
+  { username: "Mona", password: "media7", role: "admin" },
 ];
 
 // --- Login ---
