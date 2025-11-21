@@ -201,6 +201,7 @@ const nominations = [
           ? "bg-gray-900 text-gray-100"
           : "bg-green-50 text-gray-900"
       }`}
+      style={{ overflowX: "hidden", width: "100%" }}
     >
 
       <h1
@@ -404,7 +405,8 @@ const nominations = [
                         >
                           Work in Progress
                         </h3>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 w-full overflow-hidden">
+
                           {currentParticipant.wipImages.map((img, index) => (
                             <img
                               key={index}
@@ -431,7 +433,7 @@ const nominations = [
                         >
                           BuildBook
                         </h3>
-                        <div className="flex flex-col items-center">
+                        <div className="flex flex-col items-center" style={{ width: "100%", overflowX: "hidden" }}  >
                           <Document
                             file={currentParticipant.buildBook}
                             onLoadSuccess={({ numPages }) => setNumPages(numPages)}
@@ -441,7 +443,7 @@ const nominations = [
                               <Page
                                 key={`page_${index + 1}`}
                                 pageNumber={index + 1}
-                                width={Math.min(window.innerWidth * 0.9, 800)}
+                                width={Math.min(window.innerWidth * 0.85, 700)}
                                 className="shadow-md my-4 rounded-lg"
                                 renderTextLayer={false}
                                 renderAnnotationLayer={false}
