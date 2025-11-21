@@ -376,10 +376,8 @@ const nominations = [
       </Box>
 {currentParticipant && (
                   <div
-                    className={`min-h-screen p-6 pb-24 flex flex-col items-center transition-colors ${
-                      darkMode
-                        ? "bg-gray-900 text-gray-100"
-                        : "bg-green-50 text-gray-900"
+                    className={` p-6 rounded-2xl  w-full max-w-5xl flex flex-col gap-8 transition-colors ${
+                      darkMode ? "bg-transparent text-gray-100" : "bg-transparent text-gray-900"
                     }`}
                   >
                     {/* === Allgemeine Infos === */}
