@@ -366,7 +366,7 @@ const nominations = [
           </Grid>
         </Grid>
         <p className="mt-3 ">
-          {selectedParticipant.text}
+          {currentParticipant.text}
       </p>
        <div
               className={` p-4 rounded-xl shadow-sm transition-colors ${
@@ -381,7 +381,7 @@ const nominations = [
                 Work in Progress
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                {selectedParticipant.wipImages.map((img, index) => (
+                {currentParticipant.wipImages.map((img, index) => (
                   <img
                     key={index}
                     src={img}
@@ -405,7 +405,7 @@ const nominations = [
                           </h3>
                           <div className="flex flex-col items-center">
                             <Document
-                              file={selectedParticipant.buildBook}
+                              file={currentParticipant.buildBook}
                               onLoadSuccess={({ numPages }) => setNumPages(numPages)}
                               className="w-full flex flex-col items-center"
                             >
