@@ -368,8 +368,7 @@ const nominations = [
 
             </Item>
           </Grid>
-        </Grid>
-        <p className="mt-3 ">
+          <p className="mt-3 ">
           {currentParticipant.text}
       </p>
        <div
@@ -426,6 +425,8 @@ const nominations = [
                             </Document>
                           </div>
                         </div>
+        </Grid>
+        
       </Box>
 
 
