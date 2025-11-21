@@ -369,7 +369,10 @@ const nominations = [
 
             </Item>
           </Grid>
-           {currentParticipant && (
+           
+        </Grid>
+        
+{currentParticipant && (
                   <div
                     className={` p-6 rounded-2xl  w-full max-w-5xl flex flex-col gap-8 transition-colors ${
                       darkMode ? "bg-transparent text-gray-100" : "bg-transparent text-gray-900"
@@ -455,8 +458,6 @@ const nominations = [
                     )}
                   </div>
                 )}
-        </Grid>
-        
       </Box>
 
 
