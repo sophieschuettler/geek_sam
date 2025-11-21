@@ -440,7 +440,7 @@ const nominations = [
                           </p>
                         )}
           
-                        {isJury && currentParticipant.text && (
+                        {currentParticipant.text && (
                           <p className="mt-3 ">
                             {currentParticipant.text}
                           </p>
@@ -477,7 +477,7 @@ const nominations = [
                     )}
           
                     {/* === WIP Bilder === */}
-                    {isJury && currentParticipant.wipImages?.length > 0 && (
+                    {currentParticipant.wipImages?.length > 0 && (
                       <div
                         className={` p-4 rounded-xl shadow-sm transition-colors ${
                               darkMode ? "bg-gray-600 text-gray-100" : "bg-white text-gray-900"
@@ -504,7 +504,7 @@ const nominations = [
                     )}
           
                     {/* === BuildBook === */}
-                    {isJury && currentParticipant.buildBook && (
+                    {currentParticipant.buildBook && (
                       <div
                         className={` p-4 rounded-xl shadow-sm transition-colors ${
                               darkMode ? "bg-gray-600 text-gray-100" : "bg-white text-gray-900"
