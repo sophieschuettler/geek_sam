@@ -17,6 +17,7 @@ export default function Costume() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [ratings, setRatings] = useState({});
   const [nominations, setNominations] = useState([]);
+  const [numPages, setNumPages] = useState(0);
 
 
   useEffect(() => {
