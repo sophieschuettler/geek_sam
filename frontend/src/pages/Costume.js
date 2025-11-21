@@ -382,100 +382,14 @@ const nominations = [
                       <div className={` p-6 rounded-2xl  w-full max-w-5xl flex flex-col gap-8 transition-colors ${
                       darkMode ? "bg-gray-600 text-gray-100" : "bg-white text-gray-900"
                     }`}>
-                        <h2
-                          className={`text-2xl font-semibold ${
-                            darkMode ? "text-green-300" : "text-green-800"
-                          } mb-2`}
-                        >
-                          {currentParticipant.cosplayName} (#{currentParticipant.number})
-                        </h2>
-                        {/* === Charakterbilder === */}
-                        {currentParticipant.characterImages?.length > 0 && (
-                          <div
-                           
-                          >
-                            <h3
-                              className={`font-semibold text-lg mb-3 ${
-                                darkMode ? "text-green-300" : "text-green-700"
-                              }`}
-                            >
-                              Charakterbilder
-                            </h3>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                              {currentParticipant.characterImages.map((img, index) => (
-                                <img
-                                  key={index}
-                                  src={img}
-                                  alt={`Charakterbild ${index + 1}`}
-                                  className="rounded-xl shadow-md w-full object-cover"
-                                />
-                              ))}
-                            </div>
-                          </div>
-                        )}
-          
-                        {currentParticipant.link && (
-                          <p className="mb-3">
-                           
-                            <a
-                              href={
-                                currentParticipant.link.startsWith("http")
-                                  ? currentParticipant.link
-                                  : `https://${currentParticipant.link}`
-                              }
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="text-blue-600 hover:text-blue-800 underline"
-                            >
-                              Social Media 
-                            </a>
-                          </p>
-                        )}
-          
-          
-                        {currentParticipant.character && (
-                          <p className="mb-1">
-                            <span className="font-semibold">Charakter:</span>{" "}
-                            {currentParticipant.character}
-                          </p>
-                        )}
-          
-                        {currentParticipant.text && (
+                       {currentParticipant.text && (
                           <p className="mt-3 ">
                             {currentParticipant.text}
                           </p>
                         )}
                       </div>
                     </div>
-                    
-          
-                    {/* === Tragebilder === */}
-                    {currentParticipant.wearingImages?.length > 0 && (
-                      <div
-                        className={`p-4 rounded-xl shadow-sm transition-colors ${
-                              darkMode ? "bg-gray-600 text-gray-100" : "bg-white text-gray-900"
-                        }`}
-                      >
-                        <h3
-                          className={`font-semibold text-lg mb-3 ${
-                            darkMode ? "text-green-300" : "text-green-700"
-                          }`}
-                        >
-                          Tragebilder
-                        </h3>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 ">
-                          {currentParticipant.wearingImages.map((img, index) => (
-                            <img
-                              key={index}
-                              src={img}
-                              alt={`Tragebild ${index + 1}`}
-                              className="rounded-lg shadow-md object-cover w-full h-auto"
-                            />
-                          ))}
-                        </div>
-                      </div>
-                    )}
-          
+                              
                     {/* === WIP Bilder === */}
                     {currentParticipant.wipImages?.length > 0 && (
                       <div
