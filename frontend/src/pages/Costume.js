@@ -365,6 +365,63 @@ const nominations = [
             </Item>
           </Grid>
         </Grid>
+        <p className="mt-3 ">
+          {selectedParticipant.text}
+      </p>
+       <div
+              className={` p-4 rounded-xl shadow-sm transition-colors ${
+                    darkMode ? "bg-gray-600 text-gray-100" : "bg-white text-gray-900"
+              }`}
+            >
+              <h3
+                className={`font-semibold text-lg mb-3 ${
+                  darkMode ? "text-green-300" : "text-green-700"
+                }`}
+              >
+                Work in Progress
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                {selectedParticipant.wipImages.map((img, index) => (
+                  <img
+                    key={index}
+                    src={img}
+                    alt={`WIP ${index + 1}`}
+                    className="rounded-lg shadow-md object-cover w-full h-auto"
+                  />
+                ))}
+              </div>
+            </div>
+            <div
+                          className={` p-4 rounded-xl shadow-sm transition-colors ${
+                                darkMode ? "bg-gray-600 text-gray-100" : "bg-white text-gray-900"
+                          }`}
+                        >
+                          <h3
+                            className={`font-semibold text-lg mb-3 ${
+                              darkMode ? "text-green-300" : "text-green-700"
+                            }`}
+                          >
+                            BuildBook
+                          </h3>
+                          <div className="flex flex-col items-center">
+                            <Document
+                              file={selectedParticipant.buildBook}
+                              onLoadSuccess={({ numPages }) => setNumPages(numPages)}
+                              className="w-full flex flex-col items-center"
+                            >
+                              {Array.from(new Array(numPages), (el, index) => (
+                                <Page
+                                  key={`page_${index + 1}`}
+                                  pageNumber={index + 1}
+                                  width={Math.min(window.innerWidth * 0.9, 800)}
+                                  className="shadow-md my-4 rounded-lg"
+                                  renderTextLayer={false}
+                                  renderAnnotationLayer={false}
+                                />
+                              ))}
+                            </Document>
+                          </div>
+                        </div>
       </Box>
 
 
