@@ -292,7 +292,7 @@ const nominations = [
               }
               className={`border p-1 w-full rounded ${
                 darkMode
-                  ? "bg-gray-800 border-gray-700 text-gray-100"
+                  ? "bg-gray-900 border-gray-700 text-gray-100"
                   : "bg-white border-gray-300"
               }`}
             >
@@ -335,7 +335,7 @@ const nominations = [
 
                     className="sr-only peer"
                   />
-                  <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:bg-green-500"></div>
+                  <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-900 peer-checked:bg-green-500"></div>
                   <div className="absolute left-[2px] top-[2px] bg-white border border-gray-300 h-5 w-5 rounded-full transition-all peer-checked:translate-x-full"></div>
                 </label>
               </div>
@@ -361,7 +361,7 @@ const nominations = [
 
                     className="sr-only peer"
                   />
-                  <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:bg-green-500"></div>
+                  <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-900 peer-checked:bg-green-500"></div>
                   <div className="absolute left-[2px] top-[2px] bg-white border border-gray-300 h-5 w-5 rounded-full transition-all peer-checked:translate-x-full"></div>
                 </label>
               </div>
@@ -382,11 +382,11 @@ const nominations = [
                   >
                     {/* === Allgemeine Infos === */}
                     <div className={` rounded-2xl shadow-lg w-full max-w-5xl flex flex-col gap-8 transition-colors ${
-                      darkMode ? "bg-gray-600 text-gray-100" : "bg-white text-gray-900"
+                      darkMode ? "bg-gray-900 text-gray-100" : "bg-white text-gray-900"
                     }`}>
                         
                       <div className={` p-6 rounded-2xl  w-full max-w-5xl flex flex-col gap-8 transition-colors ${
-                      darkMode ? "bg-gray-600 text-gray-100" : "bg-white text-gray-900"
+                      darkMode ? "bg-gray-900 text-gray-100" : "bg-white text-gray-900"
                     }`}>
                        {currentParticipant.text && (
                           <p className="mt-3 ">
@@ -400,7 +400,7 @@ const nominations = [
                     {currentParticipant.wipImages?.length > 0 && (
                       <div
                         className={` p-4 rounded-xl shadow-sm transition-colors ${
-                              darkMode ? "bg-gray-600 text-gray-100" : "bg-white text-gray-900"
+                              darkMode ? "bg-gray-900 text-gray-100" : "bg-white text-gray-900"
                         }`}
                       >
                         <h3
@@ -428,7 +428,7 @@ const nominations = [
                     {currentParticipant.buildBook && (
                       <div
                         className={` p-4 rounded-xl shadow-sm transition-colors ${
-                              darkMode ? "bg-gray-600 text-gray-100" : "bg-white text-gray-900"
+                              darkMode ? "bg-gray-900 text-gray-100" : "bg-white text-gray-900"
                         }`}
                       >
                         <h3
@@ -486,7 +486,7 @@ const nominations = [
             onClick={() => setCurrentIndex((i) => Math.max(0, i - 1))}
             className={`px-4 py-2 rounded font-medium transition ${
               darkMode
-                ? "bg-gray-700 hover:bg-gray-600 text-gray-100"
+                ? "bg-gray-900 hover:bg-gray-600 text-gray-100"
                 : "bg-gray-300 hover:bg-gray-400 text-gray-900"
             } disabled:opacity-50`}
           >
