@@ -372,6 +372,8 @@ const nominations = [
            
         </Grid>
         
+
+      </Box>
 {currentParticipant && (
                   <div
                     className={` p-6 rounded-2xl  w-full max-w-5xl flex flex-col gap-8 transition-colors ${
@@ -458,8 +460,6 @@ const nominations = [
                     )}
                   </div>
                 )}
-      </Box>
-
 
       {/* --- Fixierte Navigationsleiste unten --- */}
       <AppBar
