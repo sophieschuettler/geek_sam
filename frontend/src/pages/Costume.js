@@ -368,63 +368,177 @@ const nominations = [
 
             </Item>
           </Grid>
-          <p className="mt-3 ">
-          {currentParticipant.text}
-      </p>
-       <div
-              className={` p-4 rounded-xl shadow-sm transition-colors ${
-                    darkMode ? "bg-gray-600 text-gray-100" : "bg-white text-gray-900"
-              }`}
-            >
-              <h3
-                className={`font-semibold text-lg mb-3 ${
-                  darkMode ? "text-green-300" : "text-green-700"
-                }`}
-              >
-                Work in Progress
-              </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                {currentParticipant.wipImages.map((img, index) => (
-                  <img
-                    key={index}
-                    src={img}
-                    alt={`WIP ${index + 1}`}
-                    className="rounded-lg shadow-md object-cover w-full h-auto"
-                  />
-                ))}
-              </div>
-            </div>
-            <div
-                          className={` p-4 rounded-xl shadow-sm transition-colors ${
-                                darkMode ? "bg-gray-600 text-gray-100" : "bg-white text-gray-900"
-                          }`}
+           {currentParticipant && (
+                  <div
+                    className={` p-6 rounded-2xl  w-full max-w-5xl flex flex-col gap-8 transition-colors ${
+                      darkMode ? "bg-transparent text-gray-100" : "bg-transparent text-gray-900"
+                    }`}
+                  >
+                    {/* === Allgemeine Infos === */}
+                    <div className={` rounded-2xl shadow-lg w-full max-w-5xl flex flex-col gap-8 transition-colors ${
+                      darkMode ? "bg-gray-600 text-gray-100" : "bg-white text-gray-900"
+                    }`}>
+                        
+                      <div className={` p-6 rounded-2xl  w-full max-w-5xl flex flex-col gap-8 transition-colors ${
+                      darkMode ? "bg-gray-600 text-gray-100" : "bg-white text-gray-900"
+                    }`}>
+                        <h2
+                          className={`text-2xl font-semibold ${
+                            darkMode ? "text-green-300" : "text-green-800"
+                          } mb-2`}
                         >
-                          <h3
-                            className={`font-semibold text-lg mb-3 ${
-                              darkMode ? "text-green-300" : "text-green-700"
-                            }`}
+                          {currentParticipant.cosplayName} (#{currentParticipant.number})
+                        </h2>
+                        {/* === Charakterbilder === */}
+                        {currentParticipant.characterImages?.length > 0 && (
+                          <div
+                           
                           >
-                            BuildBook
-                          </h3>
-                          <div className="flex flex-col items-center">
-                            <Document
-                              file={currentParticipant.buildBook}
-                              onLoadSuccess={({ numPages }) => setNumPages(numPages)}
-                              className="w-full flex flex-col items-center"
+                            <h3
+                              className={`font-semibold text-lg mb-3 ${
+                                darkMode ? "text-green-300" : "text-green-700"
+                              }`}
                             >
-                              {Array.from(new Array(numPages), (el, index) => (
-                                <Page
-                                  key={`page_${index + 1}`}
-                                  pageNumber={index + 1}
-                                  width={Math.min(window.innerWidth * 0.9, 800)}
-                                  className="shadow-md my-4 rounded-lg"
-                                  renderTextLayer={false}
-                                  renderAnnotationLayer={false}
+                              Charakterbilder
+                            </h3>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                              {currentParticipant.characterImages.map((img, index) => (
+                                <img
+                                  key={index}
+                                  src={img}
+                                  alt={`Charakterbild ${index + 1}`}
+                                  className="rounded-xl shadow-md w-full object-cover"
                                 />
                               ))}
-                            </Document>
+                            </div>
                           </div>
+                        )}
+          
+                        {currentParticipant.link && (
+                          <p className="mb-3">
+                           
+                            <a
+                              href={
+                                currentParticipant.link.startsWith("http")
+                                  ? currentParticipant.link
+                                  : `https://${currentParticipant.link}`
+                              }
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-blue-600 hover:text-blue-800 underline"
+                            >
+                              Social Media 
+                            </a>
+                          </p>
+                        )}
+          
+          
+                        {currentParticipant.character && (
+                          <p className="mb-1">
+                            <span className="font-semibold">Charakter:</span>{" "}
+                            {currentParticipant.character}
+                          </p>
+                        )}
+          
+                        {isJury && currentParticipant.text && (
+                          <p className="mt-3 ">
+                            {currentParticipant.text}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                    
+          
+                    {/* === Tragebilder === */}
+                    {currentParticipant.wearingImages?.length > 0 && (
+                      <div
+                        className={`p-4 rounded-xl shadow-sm transition-colors ${
+                              darkMode ? "bg-gray-600 text-gray-100" : "bg-white text-gray-900"
+                        }`}
+                      >
+                        <h3
+                          className={`font-semibold text-lg mb-3 ${
+                            darkMode ? "text-green-300" : "text-green-700"
+                          }`}
+                        >
+                          Tragebilder
+                        </h3>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 ">
+                          {currentParticipant.wearingImages.map((img, index) => (
+                            <img
+                              key={index}
+                              src={img}
+                              alt={`Tragebild ${index + 1}`}
+                              className="rounded-lg shadow-md object-cover w-full h-auto"
+                            />
+                          ))}
                         </div>
+                      </div>
+                    )}
+          
+                    {/* === WIP Bilder === */}
+                    {isJury && currentParticipant.wipImages?.length > 0 && (
+                      <div
+                        className={` p-4 rounded-xl shadow-sm transition-colors ${
+                              darkMode ? "bg-gray-600 text-gray-100" : "bg-white text-gray-900"
+                        }`}
+                      >
+                        <h3
+                          className={`font-semibold text-lg mb-3 ${
+                            darkMode ? "text-green-300" : "text-green-700"
+                          }`}
+                        >
+                          Work in Progress
+                        </h3>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                          {currentParticipant.wipImages.map((img, index) => (
+                            <img
+                              key={index}
+                              src={img}
+                              alt={`WIP ${index + 1}`}
+                              className="rounded-lg shadow-md object-cover w-full h-auto"
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    )}
+          
+                    {/* === BuildBook === */}
+                    {isJury && currentParticipant.buildBook && (
+                      <div
+                        className={` p-4 rounded-xl shadow-sm transition-colors ${
+                              darkMode ? "bg-gray-600 text-gray-100" : "bg-white text-gray-900"
+                        }`}
+                      >
+                        <h3
+                          className={`font-semibold text-lg mb-3 ${
+                            darkMode ? "text-green-300" : "text-green-700"
+                          }`}
+                        >
+                          BuildBook
+                        </h3>
+                        <div className="flex flex-col items-center">
+                          <Document
+                            file={currentParticipant.buildBook}
+                            onLoadSuccess={({ numPages }) => setNumPages(numPages)}
+                            className="w-full flex flex-col items-center"
+                          >
+                            {Array.from(new Array(numPages), (el, index) => (
+                              <Page
+                                key={`page_${index + 1}`}
+                                pageNumber={index + 1}
+                                width={Math.min(window.innerWidth * 0.9, 800)}
+                                className="shadow-md my-4 rounded-lg"
+                                renderTextLayer={false}
+                                renderAnnotationLayer={false}
+                              />
+                            ))}
+                          </Document>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
         </Grid>
         
       </Box>
