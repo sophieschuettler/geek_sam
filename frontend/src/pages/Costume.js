@@ -382,7 +382,14 @@ const nominations = [
                         : "bg-green-50 text-gray-900"
                     }`}
                   >
-                    
+                    {/* === Allgemeine Infos === */}
+                    <div className={` rounded-2xl shadow-lg w-full max-w-5xl flex flex-col gap-8 transition-colors ${
+                      darkMode ? "bg-gray-600 text-gray-100" : "bg-white text-gray-900"
+                    }`}>
+                        
+                      <div className={` p-6 rounded-2xl  w-full max-w-5xl flex flex-col gap-8 transition-colors ${
+                      darkMode ? "bg-gray-600 text-gray-100" : "bg-white text-gray-900"
+                    }`}>
                        {currentParticipant.text && (
                           <p className="mt-3 ">
                             {currentParticipant.text}
