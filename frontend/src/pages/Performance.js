@@ -16,6 +16,7 @@ export default function Performance() {
   const { darkMode } = useTheme();
   const [participants, setParticipants] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [selectedId, setSelectedId] = useState(null);
 
 
 
@@ -33,6 +34,7 @@ export default function Performance() {
       .then(res => res.json())
       .then(data => {
         setParticipants(data);
+        setSelectedId(data[0]?.id || null);
         setCurrentIndex(0);
       })
       .catch(err => console.error("Error loading participants:", err));
