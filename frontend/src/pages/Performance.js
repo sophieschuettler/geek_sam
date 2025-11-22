@@ -264,7 +264,7 @@ const nominations = [
               </h3>
               {Object.entries(criteria.performance).map(([crit, max]) => (
                 <div key={crit} className="mb-2">
-                  <label>{crit} ({max})
+                  <label  className="flex items-center gap-1">{crit} ({max})
                     <Tooltip
                   title={infoText[crit]}
                   arrow
