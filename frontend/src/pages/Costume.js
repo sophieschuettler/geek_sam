@@ -12,6 +12,9 @@ import { styled } from "@mui/material/styles";
 import { Document, Page } from "react-pdf";
 import "react-pdf/dist/esm/Page/TextLayer.css";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
+import Tooltip from "@mui/material/Tooltip";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+
 
 export default function Costume() {
   const { user } = useAppContext();
@@ -97,6 +100,13 @@ useEffect(() => {
       "Handwerk und Details": 15,
     },
   };
+  const infoText = {
+  Genauigkeit: "Farben und Materialien: Stimmen die Farben mit den Referenzbildern überein? Wurde das passende Material gewählt (glänzend oder matt etc.)?, Positionierung: Wurden Kostümteile richtig positioniert? Perücke/Make-up: Passen Perücke und Make-up zum Charakter? (wird natürlich nicht bei Charakteren mit Helmen berücksichtigt, dann zählt alles andere in Relation mehr) Proportionen: Entsprechen die Kostümteile den Proportionen des Charakters (Kleidlänge, Mantellänge, Form von Rüstungen)?",
+  Komplexität: "Aufwand: Hat das Kostüm viele Schichten? Wurden viele unterschiedliche Materialien verwendet? Techniken: Wurden viele Techniken verwendet? Zum Beispiel: Sticken, Häkeln, Airbrush, 3D Modellierung, Schnittmuster selbst anfertigen, etc..",
+  "Handwerk und Details":
+    "Verarbeitung: Sind die Details sauber gearbeitet? Keine Klebereste, saubere Übergänge, saubere Nähte. Tragbarkeit: Ist das Kostüm funktional und tragbar? Ist der Sitz gut? Bearbeitung: Wurden Teile sauber bemalt, geweathert oder bearbeitet? Feinarbeit: Wurden kleinere Details, die erst bei genauem Hinsehen entdeckt werden, zu dem Kostüm hinzugefügt?"
+};
+
 
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: darkMode ? "#1f2937" : "#fff",
@@ -282,8 +292,16 @@ const nominations = [
         </h3>
         {Object.entries(criteria.costume).map(([crit, max]) => (
           <div key={crit} className="mb-2">
-            <label>
-              {crit} ({max}):
+            <label className="flex items-center gap-1">
+              {crit} ({max})
+              <Tooltip title={infoText[crit]} arrow>
+                <InfoOutlinedIcon
+                  fontSize="small"
+                  className={`cursor-pointer ${
+                    darkMode ? "text-gray-300" : "text-gray-600"
+                  }`}
+                />
+              </Tooltip>
             </label>
             <select
               value={ratings[currentParticipant?.id]?.costume?.[crit] || ""}
