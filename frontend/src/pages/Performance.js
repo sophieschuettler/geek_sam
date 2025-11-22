@@ -208,20 +208,24 @@ const nominations = [
       <h1 className={`text-3xl font-bold mb-6 text-center ${
         darkMode ? "text-green-300" : "text-green-700"
       }`}>
-        Bewertung Performance : {selectedParticipant.cosplayName} (#{selectedParticipant.number})
+        Bewertung Performance : {currentParticipant?.cosplayName}
       </h1>
 
       {/* Teilnehmer-Auswahl */}
-      <div className="flex justify-center mb-6">
+       <div className="mb-6 w-full max-w-xs">
         <select
-          value={selectedId || ""}
-          onChange={e => setCurrentIndex(parseInt(e.target.value))}
-          className={`border p-2 rounded text-center ${
-            darkMode ? "bg-gray-800 border-gray-700 text-gray-100" : "bg-white border-gray-300"
+          className={`border rounded-lg p-2 w-full shadow-sm focus:ring-2 ${
+            darkMode
+              ? "bg-gray-800 border-gray-700 text-gray-100"
+              : "bg-white border-gray-300"
           }`}
+          value={selectedId || ""}
+          onChange={(e) => setSelectedId(Number(e.target.value))}
         >
-          {participants.map((p, i) => (
-            <option key={p.id} value={i}>{p.number} - {p.cosplayName}</option>
+          {participants.map((p) => (
+            <option key={p.id} value={p.id}>
+              {p.number} - {p.cosplayName}
+            </option>
           ))}
         </select>
       </div>
