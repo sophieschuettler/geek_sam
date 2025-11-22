@@ -723,12 +723,12 @@ Comissioned: 3D-Druck der Rüstung, (aufarbeiten, kleben und airbrush by me), Wi
 db.serialize(() => {
   const insert = db.prepare(
     `INSERT OR IGNORE INTO participants
-    (id, cosplayName, number, characterImage, text, cosplayImages, wearingImages, wipImages, buildBook, link)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+    (id, cosplayName, number, characterImage, text, character, game, cosplayImages, wearingImages, wipImages, buildBook, link)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
   );
   hardcodedParticipants.forEach((p) => {
     insert.run(
-      p.id, p.cosplayName, p.number, p.characterImage, p.text,
+      p.id, p.cosplayName, p.number, p.characterImage, p.text, p.character, p.game,
       p.cosplayImages, p.wearingImages, p.wipImages, p.buildBook, p.link
     );
   });
