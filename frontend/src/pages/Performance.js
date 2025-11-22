@@ -208,20 +208,20 @@ const nominations = [
       <h1 className={`text-3xl font-bold mb-6 text-center ${
         darkMode ? "text-green-300" : "text-green-700"
       }`}>
-        Bewertung Performance : {currentParticipant?.cosplayName}
+        Bewertung Performance : {selectedParticipant.cosplayName} (#{selectedParticipant.number})
       </h1>
 
       {/* Teilnehmer-Auswahl */}
       <div className="flex justify-center mb-6">
         <select
-          value={currentIndex}
+          value={selectedId || ""}
           onChange={e => setCurrentIndex(parseInt(e.target.value))}
           className={`border p-2 rounded text-center ${
             darkMode ? "bg-gray-800 border-gray-700 text-gray-100" : "bg-white border-gray-300"
           }`}
         >
           {participants.map((p, i) => (
-            <option key={p.id} value={i}>{p.cosplayName}</option>
+            <option key={p.id} value={i}>{p.number} - {p.cosplayName}</option>
           ))}
         </select>
       </div>
