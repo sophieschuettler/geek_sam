@@ -150,7 +150,7 @@ const role = user?.role;
               )}
               {selectedParticipant.game && (
                 <p className="mb-1">
-                  <span className="font-semibold">Charakter:</span>{" "}
+                  <span className="font-semibold">Game:</span>{" "}
                   {selectedParticipant.game}
                 </p>
               )}
