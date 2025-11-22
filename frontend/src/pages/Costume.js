@@ -305,7 +305,7 @@ const nominations = [
                   title={infoText[crit]}
                   arrow
                   enterTouchDelay={0}
-                  leaveTouchDelay={4000}
+                  leaveTouchDelay={10000}
                 >
                   <button
                     type="button"

@@ -9,7 +9,7 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Switch from "@mui/material/Switch";
-
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 export default function Performance() {
   const { user } = useAppContext();
   const { darkMode } = useTheme();
@@ -101,6 +101,16 @@ useEffect(() => {
       "Nutzung von Audio": 5,
     },
   };
+    const infoText = {
+  Schauspiel: ( <> Gestik und Mimik des Charakters: Wie überzeugend stellt ihr den Charakter dar? <br/>
+  Ausdruck: Seid ihr emotional glaubwürdig, wie ihr in der Szene als Charakter reagiert? <br/>
+  Konsistenz: Bleibt ihr während dem ganzen Auftritt “in Character”?<br/></>) ,
+  Kreativität: (<> Storytelling: Erzählt euer Auftritt eine Geschichte? <br/>
+    Originalität: Gibt es eigene Ideen, die über bekannte Szenen hinausgehen? <br/>
+    Choreografie: Sind Bewegungen und Übergänge durchdacht, nutzt ihr die Bühne sinnvoll? <br/>
+    Überraschende Elemente: Gibt es unerwartete Elemente, die eingebaut wurden?  </>),
+  "Nutzung von Audio": <>Nutzung: Wird die Audio sinnvoll genutzt? Ist sie passend? Ist die Choreographie im Takt der Musik? Ist das Lipsync gut? </>
+};
 
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: darkMode ? "#1f2937" : "#fff",
@@ -254,7 +264,31 @@ const nominations = [
               </h3>
               {Object.entries(criteria.performance).map(([crit, max]) => (
                 <div key={crit} className="mb-2">
-                  <label>{crit} ({max}):</label>
+                  <label>{crit} ({max})
+                    <Tooltip
+                  title={infoText[crit]}
+                  arrow
+                  enterTouchDelay={0}
+                  leaveTouchDelay={10000}
+                >
+                  <button
+                    type="button"
+                    className="p-1"
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      background: "none",
+                      border: "none",
+                      cursor: "pointer"
+                    }}
+                  >
+                    <InfoOutlinedIcon
+                      fontSize="small"
+                      className={darkMode ? "text-gray-300" : "text-gray-600"}
+                    />
+                  </button>
+                </Tooltip>
+                  </label>
                   <select
                     value={ratings[currentParticipant?.id]?.performance?.[crit] || ""}
                     onChange={e => handleChange("performance", crit, e.target.value)}
