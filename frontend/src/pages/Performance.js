@@ -16,7 +16,7 @@ export default function Performance() {
   const { darkMode } = useTheme();
   const [participants, setParticipants] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [selectedId, setSelectedId] = useState(null);
+
 
 
 
@@ -34,7 +34,6 @@ export default function Performance() {
       .then(res => res.json())
       .then(data => {
         setParticipants(data);
-        setSelectedId(data[0]?.id || null);
         setCurrentIndex(0);
       })
       .catch(err => console.error("Error loading participants:", err));
@@ -221,16 +220,17 @@ const nominations = [
               ? "bg-gray-800 border-gray-700 text-gray-100"
               : "bg-white border-gray-300"
           }`}
-          value={selectedId || ""}
-          onChange={(e) => setSelectedId(Number(e.target.value))}
+          value={currentIndex}
+          onChange={(e) => setCurrentIndex(parseInt(e.target.value))}
         >
-          {participants.map((p) => (
-            <option key={p.id} value={p.id}>
+          {participants.map((p, i) => (
+            <option key={p.id} value={i}>
               {p.number} - {p.cosplayName}
             </option>
           ))}
         </select>
       </div>
+
 
       {/* Hauptbereich */}
       <Box sx={{
