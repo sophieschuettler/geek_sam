@@ -544,39 +544,6 @@ Dieses Cosplay hat sehr viel Zeit und Energie abverlangt, daher bin ich auf das 
     cosplayImages: JSON.stringify([]),
     buildBook: null ,
   },{
-    id: 15,
-    cosplayName: "Vididubetrayme",
-    character: "Jinx",
-    game: "League of Legends",
-    number: 15,
-    characterImage: JSON.stringify([
-      `${BASE_URL}/uploads/Vididubetrayme1.jpg`,
-      `${BASE_URL}/uploads/Vididubetrayme2.jpg`,
-      `${BASE_URL}/uploads/Vididubetrayme3.jpg`,
-      `${BASE_URL}/uploads/Vididubetrayme4.jpg`,
-    
-   
-    ]),
-    text: `Besonders stolz bin ich auf die ganzen Details und Props :)`,
-    link: "Instagram.com/vididubetrayme",
-    wipImages: JSON.stringify([
-    `${BASE_URL}/uploads/Vididubetrayme_WIP1.jpg`,
-    `${BASE_URL}/uploads/Vididubetrayme_WIP2.jpg`,
-
-   
-      
-    ]),
-    wearingImages: JSON.stringify([
-    `${BASE_URL}/uploads/Vididubetrayme_Tryon1.jpg`,
-    `${BASE_URL}/uploads/Vididubetrayme_Tryon2.jpg`,
-    `${BASE_URL}/uploads/Vididubetrayme_Tryon3.jpg`,
-    `${BASE_URL}/uploads/Vididubetrayme_Tryon4.jpg`,
-   
-
-    ]),
-    cosplayImages: JSON.stringify([]),
-    buildBook: null ,
-  },{
     id: 12,
     cosplayName: "Xenight",
     character: "Lara Croft",
@@ -644,12 +611,12 @@ Der Bauch wird durch eine mit Peddigrohr aufgespannte Stoffkugel mit Schultertr�
     ]),
     cosplayImages: JSON.stringify([]),
     buildBook: null ,
-  },/* {
-    id: 20,
+  },{
+    id: 14,
     cosplayName: "Nudelllsuppe",
     character: "Skull Taker",
     game: "Hunt Showdown 1896",
-    number: 20,
+    number: 14,
     characterImage: JSON.stringify([
       `${BASE_URL}/uploads/Nudelllsuppe1.jpg`,
       `${BASE_URL}/uploads/Nudelllsuppe2.jpg`,
@@ -657,7 +624,13 @@ Der Bauch wird durch eine mit Peddigrohr aufgespannte Stoffkugel mit Schultertr�
       `${BASE_URL}/uploads/Nudelllsuppe4.jpg`,
   
     ]),
-    text: `keine Ahnung `,
+    text: `Einfach gesagt an meinem Cosplay ist nicht von Grund auf selbstgemacht:
+Hose, Pulli, Basis der Handschuhe und Schuhe und 2 Ledergürtel.
+Diese sind aber entweder Bemalt, umgenäht oder im mindesten angepasst und geweathered.
+
+Zudem bekomme ich von ner Freundin den Revolver und den Rabenschädel geliehen, welche sie Gebastelt hat.
+
+Alles andere wie Maske, Schädel, Zähne, Flinte, Rucksack, Geflochtener Gürtel, Armschienen, Schulterpelz, die Details an den Gürteln etc sind Selbstgemacht aus diversen Grundmaterialien  `,
     link: "Instagram.com/nudelllsuppe",
     wipImages: JSON.stringify([
     `${BASE_URL}/uploads/Nudelllsuppe_WIP1.jpg`,
@@ -670,7 +643,41 @@ Der Bauch wird durch eine mit Peddigrohr aufgespannte Stoffkugel mit Schultertr�
     ]),
     cosplayImages: JSON.stringify([]),
     buildBook: null ,
-  }, */{
+  } ,{
+    id: 15,
+    cosplayName: "Vididubetrayme",
+    character: "Jinx",
+    game: "League of Legends",
+    number: 15,
+    characterImage: JSON.stringify([
+      `${BASE_URL}/uploads/Vididubetrayme1.jpg`,
+      `${BASE_URL}/uploads/Vididubetrayme2.jpg`,
+      `${BASE_URL}/uploads/Vididubetrayme3.jpg`,
+      `${BASE_URL}/uploads/Vididubetrayme4.jpg`,
+    
+   
+    ]),
+    text: `Besonders stolz bin ich auf die ganzen Details und Props :)`,
+    link: "Instagram.com/vididubetrayme",
+    wipImages: JSON.stringify([
+    `${BASE_URL}/uploads/Vididubetrayme_WIP1.jpg`,
+    `${BASE_URL}/uploads/Vididubetrayme_WIP2.jpg`,
+
+   
+      
+    ]),
+    wearingImages: JSON.stringify([
+    `${BASE_URL}/uploads/Vididubetrayme_Tryon1.jpg`,
+    `${BASE_URL}/uploads/Vididubetrayme_Tryon2.jpg`,
+    `${BASE_URL}/uploads/Vididubetrayme_Tryon3.jpg`,
+    `${BASE_URL}/uploads/Vididubetrayme_Tryon4.jpg`,
+   
+
+    ]),
+    cosplayImages: JSON.stringify([]),
+    buildBook: null ,
+  },
+  {
     id: 16,
     cosplayName: "Lissi & Dani",
     character: "Dame Aylin & Shadowheart",
