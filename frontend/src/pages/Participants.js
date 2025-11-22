@@ -121,8 +121,21 @@ const role = user?.role;
                   </div>
                 </div>
               )}
-
+              <h2
+                className={`text-l font-semibold ${
+                  darkMode ? "text-green-300" : "text-green-800"
+                } mb-2`}
+              >
+                {selectedParticipant.character} 
+              </h2><h2
+                className={`text-l font-semibold ${
+                  darkMode ? "text-green-300" : "text-green-800"
+                } mb-2`}
+              >
+                {selectedParticipant.game}
+              </h2>
               {selectedParticipant.link && (
+                
                 <p className="mb-3">
                  
                   <a
