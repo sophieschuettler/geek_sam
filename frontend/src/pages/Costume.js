@@ -101,10 +101,17 @@ useEffect(() => {
     },
   };
   const infoText = {
-  Genauigkeit: "Farben und Materialien: Stimmen die Farben mit den Referenzbildern überein? Wurde das passende Material gewählt (glänzend oder matt etc.)?, Positionierung: Wurden Kostümteile richtig positioniert? Perücke/Make-up: Passen Perücke und Make-up zum Charakter? (wird natürlich nicht bei Charakteren mit Helmen berücksichtigt, dann zählt alles andere in Relation mehr) Proportionen: Entsprechen die Kostümteile den Proportionen des Charakters (Kleidlänge, Mantellänge, Form von Rüstungen)?",
-  Komplexität: "Aufwand: Hat das Kostüm viele Schichten? Wurden viele unterschiedliche Materialien verwendet? Techniken: Wurden viele Techniken verwendet? Zum Beispiel: Sticken, Häkeln, Airbrush, 3D Modellierung, Schnittmuster selbst anfertigen, etc..",
-  "Handwerk und Details":
-    "Verarbeitung: Sind die Details sauber gearbeitet? Keine Klebereste, saubere Übergänge, saubere Nähte. Tragbarkeit: Ist das Kostüm funktional und tragbar? Ist der Sitz gut? Bearbeitung: Wurden Teile sauber bemalt, geweathert oder bearbeitet? Feinarbeit: Wurden kleinere Details, die erst bei genauem Hinsehen entdeckt werden, zu dem Kostüm hinzugefügt?"
+  Genauigkeit: ( <>Farben und Materialien: Stimmen die Farben mit den Referenzbildern überein? Wurde das passende Material gewählt (glänzend oder matt etc.)?, <br/>
+  Positionierung: Wurden Kostümteile richtig positioniert? <br/>
+  Perücke/Make-up: Passen Perücke und Make-up zum Charakter? (wird natürlich nicht bei Charakteren mit Helmen berücksichtigt, dann zählt alles andere in Relation mehr)<br/>
+  Proportionen: Entsprechen die Kostümteile den Proportionen des Charakters (Kleidlänge, Mantellänge, Form von Rüstungen)?</>) ,
+  Komplexität: (<> Aufwand: Hat das Kostüm viele Schichten? Wurden viele unterschiedliche Materialien verwendet? <br/>
+    Techniken: Wurden viele Techniken verwendet? Zum Beispiel: Sticken, Häkeln, Airbrush, 3D Modellierung, Schnittmuster selbst anfertigen, etc.."
+  </>),
+  "Handwerk und Details": <>Verarbeitung: Sind die Details sauber gearbeitet? Keine Klebereste, saubere Übergänge, saubere Nähte. <br/>
+  Tragbarkeit: Ist das Kostüm funktional und tragbar? Ist der Sitz gut? Bearbeitung: Wurden Teile sauber bemalt, geweathert oder bearbeitet? <br/>
+   Feinarbeit: Wurden kleinere Details, die erst bei genauem Hinsehen entdeckt werden, zu dem Kostüm hinzugefügt?
+  </>
 };
 
 
@@ -294,14 +301,29 @@ const nominations = [
           <div key={crit} className="mb-2">
             <label className="flex items-center gap-1">
               {crit} ({max})
-              <Tooltip title={infoText[crit]} arrow>
-                <InfoOutlinedIcon
-                  fontSize="small"
-                  className={`cursor-pointer ${
-                    darkMode ? "text-gray-300" : "text-gray-600"
-                  }`}
-                />
-              </Tooltip>
+               <Tooltip
+                  title={infoText[crit]}
+                  arrow
+                  enterTouchDelay={0}
+                  leaveTouchDelay={4000}
+                >
+                  <button
+                    type="button"
+                    className="p-1"
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      background: "none",
+                      border: "none",
+                      cursor: "pointer"
+                    }}
+                  >
+                    <InfoOutlinedIcon
+                      fontSize="small"
+                      className={darkMode ? "text-gray-300" : "text-gray-600"}
+                    />
+                  </button>
+                </Tooltip>
             </label>
             <select
               value={ratings[currentParticipant?.id]?.costume?.[crit] || ""}
