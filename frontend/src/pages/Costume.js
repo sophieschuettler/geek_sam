@@ -238,11 +238,11 @@ const nominations = [
               ? "bg-gray-800 border-gray-700 text-gray-100"
               : "bg-white border-gray-300"
           }`}
-          value={currentIndex || ""}
+          value={currentIndex}
           onChange={(e) => setCurrentIndex(parseInt(e.target.value))}
         >
-          {participants.map((p) => (
-            <option key={p.id} value={p.id}>
+          {participants.map((p, i) => (
+            <option key={p.id} value={i}>
               {p.number} - {p.cosplayName}
             </option>
           ))}
