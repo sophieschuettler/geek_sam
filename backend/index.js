@@ -14,7 +14,7 @@ const BASE_URL = process.env.BACKEND_URL || `http://localhost:${PORT}`;
 const allowedOrigins = [
   "http://localhost:3000",              // lokal (zum Testen)
   "http://192.168.1.131:3000",          // Handy im WLAN
-  "https://contest-kappa.vercel.app"    // <– HIER deine echte Vercel-URL eintragen!
+  "https://gaming-contest.vercel.app"    // <– HIER deine echte Vercel-URL eintragen!
 ];
 app.use(cors({
   origin: allowedOrigins,
@@ -23,7 +23,7 @@ app.use(cors({
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/uploads', express.static('uploads', {
   setHeaders: (res, path) => {
-    res.setHeader('Access-Control-Allow-Origin', 'https://contest-kappa.vercel.app');
+    res.setHeader('Access-Control-Allow-Origin', 'https://gaming-contest.vercel.app');
     res.setHeader('Access-Control-Allow-Methods', 'GET');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   }
