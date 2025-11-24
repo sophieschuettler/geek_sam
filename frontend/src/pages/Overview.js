@@ -124,7 +124,7 @@ const filteredGroups = Object.values(groupedRatings).filter(
 
   const getParticipantName = (id) => {
     const p = participants.find((p) => p.id === id);
-    return p ? p.cosplayName : `#${id}`;
+    return p ? `${p.id}. ${p.cosplayName}` : `#${id}`;
   };
 
  
