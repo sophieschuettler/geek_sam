@@ -196,7 +196,7 @@ const filteredGroups = Object.values(groupedRatings).filter(
                 <tbody>
                   {totalPoints.map((row) => (
                     <tr key={row.participantId}>
-                      <td className="border px-2 py-1">{row.cosplayName || "-"}</td>
+                      <td className="border px-2 py-1">{getParticipantName(row.participantId)}</td>
                       <td className="border px-2 py-1">{row.totalScore || 0}</td>
                       <td className="border px-2 py-1">{row.costumeScore || 0}</td>
                       <td className="border px-2 py-1">{row.performanceTotal || 0}</td>
