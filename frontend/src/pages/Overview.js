@@ -237,7 +237,8 @@ const filteredGroups = Object.values(groupedRatings).filter(
             <div className="pl-6 py-2">
               {items.length > 0 ? (
                 items.map((n, idx) => {
-                  const participantName = n.cosplayName || `#${n.participantId}`;
+                  const participantName = getParticipantName(n.participantId);
+
                   const votes = n.votes ?? 0;
 
                   const judges = n.judges ? n.judges.split(",").join(", ") : "—";
