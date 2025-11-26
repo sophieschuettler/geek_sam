@@ -573,45 +573,6 @@ Dieses Cosplay hat sehr viel Zeit und Energie abverlangt, daher bin ich auf das 
     cosplayImages: JSON.stringify([]),
     buildBook: null ,
   },{
-    id: 13,
-    cosplayName: "Chris the Bird",
-    character: "King DeDeDe (SSBU Version)",
-    game: "Super Smash Bros Ultimate",
-    number: 13,
-    characterImage: JSON.stringify([
-      `${BASE_URL}/uploads/Chris1.jpg`,
-      `${BASE_URL}/uploads/Chris2.jpg`,
-      `${BASE_URL}/uploads/Chris3.jpg`,
-
-    
-   
-    ]),
-    text: `Ich war immer ein riesiger Fan des Kirby-Universums, weshalb ich unbedingt einen Kirby-Charakter cosplayen wollte. Ich hatte mich für DeDeDe entschieden, weil er in nahezu jedem Kirby-Spiel vorkommt, Kirby erster Endboss war und ich ihn sonst auch als Character richtig cool finde. Mit der Zeit hat sich das Kostüm weiterentwickelt und den neueren Designs angepasst, aktuell bin ich bei der SSBU-Version geblieben.
-
-Gekauft:
-Gelbe Jeans, Socken, Crocs, Sterntasche mit den kleinen WaddleDes und Kirby.
-weißer Untermantel gekauft (vormals Bademantel) und mit Goldstoff modifiziert.
-
-Props:
-Krone und Hammer nach Vorlage in 3D modelliert (Fusion 360) und 3D gedruckt bzw. aus Pappe (neuer Hammer aus Foamboard) gebaut. 
-
-WIP:
-Neuer Hammer ist gerade noch in Arbeit. Außerdem wird das Logo auf der Rückseite des Mantels überarbeitet und durch Kunstleder ersetzt.
-
-Der Bauch wird durch eine mit Peddigrohr aufgespannte Stoffkugel mit Schulterträgern realisiert. Die Idee dafür kam von einer Bloggerin, die versucht hat, ein Pummeluff Kostüm für ihre Kinder zu nähen :)`,
-    link: "https://pixelfed.social/Christhebirb",
-    wipImages: JSON.stringify([
-    `${BASE_URL}/uploads/Chris_WIP1.jpg`,
-    `${BASE_URL}/uploads/Chris_WIP2.jpg`,
-    `${BASE_URL}/uploads/Chris_WIP3.jpg`,
-
-    ]),
-    wearingImages: JSON.stringify([
-    `${BASE_URL}/uploads/Chris_Tryon1.jpg`,
-    ]),
-    cosplayImages: JSON.stringify([]),
-    buildBook: null ,
-  },{
     id: 14,
     cosplayName: "Nudelllsuppe",
     character: "Skull Taker",
@@ -678,11 +639,11 @@ Alles andere wie Maske, Schädel, Zähne, Flinte, Rucksack, Geflochtener Gürtel
     buildBook: null ,
   },
   {
-    id: 16,
+    id: 13,
     cosplayName: "Lissi & Dani",
     character: "Dame Aylin & Shadowheart",
     game: "Baldurs Gate 3",
-    number: 16,
+    number: 13,
     characterImage: JSON.stringify([
       `${BASE_URL}/uploads/LissiDanni1.jpg`,
       `${BASE_URL}/uploads/LissiDanni2.jpg`,
