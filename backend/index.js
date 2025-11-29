@@ -545,9 +545,9 @@ Dieses Cosplay hat sehr viel Zeit und Energie abverlangt, daher bin ich auf das 
     buildBook: null ,
   },{
     id: 12,
-    cosplayName: "Xenight",
-    character: "Lara Croft",
-    game: "Tomb Raider (2013)",
+    cosplayName: " ",
+    character: " ",
+    game: " ",
     number: 12,
     characterImage: JSON.stringify([
       `${BASE_URL}/uploads/Xenight1.jpg`,
