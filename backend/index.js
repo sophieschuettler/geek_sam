@@ -124,13 +124,12 @@ const hardcodedParticipants = [
     text2: `Ich habe die Jacke selber bedruckt und genäht außer dem habe ich die Schere selbst gebaut `,
 
     link: "",
-    wearingImages: JSON.stringify([
-      `${BASE_URL}/uploads/Roxy_Ref.4.png`,
-    ]),
+    wearingImages: JSON.stringify([]),
     wipImages: JSON.stringify([
       `${BASE_URL}/uploads/Roxy_Ref.1.jpg`,
       `${BASE_URL}/uploads/Roxy_Ref.2.png`,
       `${BASE_URL}/uploads/Roxy_Ref.3.png`,
+       `${BASE_URL}/uploads/Roxy_Ref.4.png`,
 
     ]),
     cosplayImages: JSON.stringify([]),
@@ -149,10 +148,8 @@ const hardcodedParticipants = [
     text1: `Eva Foam/Stoff/LEDs/Heißkleber/Watte /silberne Plastik Folie/Stern Stanzer/Ast für den Elfen Stab `,
     text2: `LED Eigenkreation `,
     link: "",
-    wearingImages: JSON.stringify([
-      `${BASE_URL}/uploads/Vani_Ref.2.JPG`,
-    ]),
-    wipImages: JSON.stringify([]),
+    wearingImages: JSON.stringify([]),
+    wipImages: JSON.stringify([`${BASE_URL}/uploads/Vani_Ref.2.JPG`]),
     cosplayImages: JSON.stringify([]),
     buildBook: null,
   },  {
@@ -174,11 +171,8 @@ Zusätzlich wurden sämtliche Stoffteile individuell konstruiert, gefüttert und
 Auf kleine Details welche viel Zeit in Anspruch genommen haben, wie die Strumpfhose, habe ich Wert gelegt. Auch wenn diese auf den ersten Blick kaum sichtbar sind.
 Die Stoffauswahl hat ebenfalls viel Zeit in Anspruch genommen, da ich verschiedene Texturen und Materialien verwenden wollte, um das Cosplay optisch noch spannender wirken zu lassen. `,
     link: "",
-    wipImages: JSON.stringify([]),
-    wearingImages: JSON.stringify([
-       `${BASE_URL}/uploads/Alice-2.jpg`,
-
-    ]),
+    wipImages: JSON.stringify([`${BASE_URL}/uploads/Alice-2.jpg`,]),
+    wearingImages: JSON.stringify([]),
     cosplayImages: JSON.stringify([]),
     buildBook: `${BASE_URL}/uploads/Buildbook_Alice-Liddell_Cheesu-Cosplay.pdf`,
   },{
@@ -225,14 +219,12 @@ Fun fact: Gen und ich haben am selben Tag Geburtstag! (Wir sind beide Aprilscher
     link: "",
     wipImages: JSON.stringify([
       `${BASE_URL}/uploads/Spongebob_Ref.4.jpg`,
+      `${BASE_URL}/uploads/Spongebob_Ref.2.jpg`,
+       `${BASE_URL}/uploads/Spongebob_Ref.3.jpg`,
 
    
     ]),
-    wearingImages: JSON.stringify([
-       `${BASE_URL}/uploads/Spongebob_Ref.2.jpg`,
-       `${BASE_URL}/uploads/Spongebob_Ref.3.jpg`,
- 
-    ]),
+    wearingImages: JSON.stringify([]),
     cosplayImages: JSON.stringify([]),
     buildBook: null ,
   },{

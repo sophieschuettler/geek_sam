@@ -107,7 +107,7 @@ const role = user?.role;
                       darkMode ? "text-blue-300" : "text-blue-700"
                     }`}
                   >
-                    Charakterbilder
+                    Charakterbild
                   </h3>
                   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                     {selectedParticipant.characterImages.map((img, index) => (
@@ -136,7 +136,6 @@ const role = user?.role;
                     rel="noopener noreferrer"
                     className="text-blue-600 hover:text-blue-800 underline"
                   >
-                    Social Media 
                   </a>
                 </p>
               )}
@@ -150,14 +149,21 @@ const role = user?.role;
               )}
               {selectedParticipant.game && (
                 <p className="mb-1">
-                  <span className="font-semibold">Game:</span>{" "}
+                  <span className="font-semibold">Fandom:</span>{" "}
                   {selectedParticipant.game}
                 </p>
               )}
 
-              {isJury && selectedParticipant.text && (
+              {isJury && selectedParticipant.text1 && (
                 <p className="mt-3 ">
-                  {selectedParticipant.text}
+                  <span className="font-semibold">Auf welche Techniken, Materialien, Aspekte möchtest du bei deinem Cosplay besonderen Wert legen: </span>{" "}
+                  {selectedParticipant.text1}
+                </p>
+              )}
+              {isJury && selectedParticipant.text2 && (
+                <p className="mt-3 ">
+                  <span className="font-semibold">Besonderheiten des Cosplays:</span>{" "}
+                  {selectedParticipant.text2}
                 </p>
               )}
             </div>
@@ -176,7 +182,7 @@ const role = user?.role;
                   darkMode ? "text-blue-300" : "text-blue-700"
                 }`}
               >
-                Tragebilder
+                
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 ">
                 {selectedParticipant.wearingImages.map((img, index) => (
@@ -203,7 +209,6 @@ const role = user?.role;
                   darkMode ? "text-blue-300" : "text-blue-700"
                 }`}
               >
-                Work in Progress
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 {selectedParticipant.wipImages.map((img, index) => (
