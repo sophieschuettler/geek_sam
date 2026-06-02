@@ -154,7 +154,11 @@ export default function Navbar() {
               className="block px-4 py-3"
             >
               {label}
-{user && (
+
+            </NavLink>
+            
+          ))}
+          {user && (
               <button
                 onClick={handleLogout}
                 className="block px-3 py-1 bg-red-600 rounded"
@@ -162,9 +166,6 @@ export default function Navbar() {
                 Logout
               </button>
             )}
-            </NavLink>
-            
-          ))}
           
         </div>
       )}
