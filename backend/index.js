@@ -658,12 +658,7 @@ app.post("/api/login", (req, res) => {
   });
 });
 app.post("/api/logout", (req, res) => {
-  const auth = req.headers.authorization;
-  if (!auth) return res.status(400).json({ error: "Kein Token übermittelt" });
-  const token = auth.split(" ")[1];
-  delete sessions[token];
-  saveSessions();
-  res.json({ message: "Erfolgreich ausgeloggt ✅" });
+  res.json({ message: "Logout erfolgreich (Token clientseitig löschen)" });
 });
 
 
