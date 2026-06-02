@@ -66,24 +66,11 @@ export default function Navbar() {
 
   const API = process.env.REACT_APP_API_URL;
 
-  const handleLogout = async () => {
-    try {
-      if (user?.token) {
-        await fetch(`${API}/api/logout`, {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-          },
-        });
-      }
-    } catch (err) {
-      console.error(err);
-    }
-
-    localStorage.removeItem("user");
-    setUser(null);
-    navigate("/login");
-  };
+const logout = () => {
+  localStorage.removeItem("user");
+  setUser(null);
+  navigate("/");
+};
 
   const links = [
     { to: "/dashboard", label: "Dashboard" },

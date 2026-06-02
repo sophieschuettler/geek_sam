@@ -658,7 +658,7 @@ app.post("/api/login", (req, res) => {
   });
 });
 app.post("/api/logout", (req, res) => {
-  res.json({ message: "Logout erfolgreich (Token clientseitig löschen)" });
+  res.json({ message: "ok" });
 });
 
 
