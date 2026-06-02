@@ -58,7 +58,9 @@ const getUserImage = () => {
     <ThemeProvider theme={muiTheme}>
       <div
         className={`min-h-screen flex flex-col items-center py-10 px-4 transition-colors duration-300 ${
-          darkMode ? "bg-gray-900 text-gray-100" : "bg-green-50 text-green-800"
+          darkMode
+          ? "bg-gradient-to-b from-[#9c2d50] to-[#5E689A] text-gray-100"
+          : "bg-gradient-to-b from-[#ff7ea7] to-[#5E689A] text-gray-900"
         }`}
       >
         {/* Titel */}

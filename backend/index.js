@@ -14,7 +14,7 @@ const BASE_URL = process.env.BACKEND_URL || `http://localhost:${PORT}`;
 const allowedOrigins = [
   "http://localhost:3000",              // lokal (zum Testen)
   "http://192.168.1.131:3000",          // Handy im WLAN
-  "https://contest-kappa.vercel.app"    // <– HIER deine echte Vercel-URL eintragen!
+     // <– HIER deine echte Vercel-URL eintragen!
 ];
 app.use(cors({
   origin: allowedOrigins,
@@ -160,30 +160,30 @@ const hardcodedParticipants = [
     buildBook: `${BASE_URL}/uploads/tunaj_buildbook.pdf`,
   },  {
     id: 3,
-    cosplayName: "KellyGreeny",
+    cosplayName: "Kellybluey",
     character: "Nick Valentine",
     game: "Fallout 4",
     number: 3,
-    characterImage: JSON.stringify([`${BASE_URL}/uploads/KellyGreeny.jpg`]), 
+    characterImage: JSON.stringify([`${BASE_URL}/uploads/Kellybluey.jpg`]), 
     
     text: `Die mechanische Hand und das Make-Up, sowie die versteckten Holster sind meine Lieblingsteile neben dem ikonischen Mantel. Der Mantel besteht aus zwei Secondhand Mänteln, dich ich auseinandergenommen habe und auf den Charakter angepasst sowie gewettert und mit Zierstichen versehen habe. Das Hemd ist komplett selbstgemacht. Die Hose, Schue, Gürtel, Kravatte und Hut sind zum großen Teil Seconhand oder gekauft, aber auch angepasst und gewettert. Die beiden Revolver sowie das Holotape sind 3D gedruckt, zusammengebaut, bemalt und gewettert von mir. Die mechanische Hand ist komplett selbst entworfen und gebaut aus Foam, Worbla und Holz. Der Basis Handschuh ist mein bester Handschuh bis jetzt! Zudem bringe ich meine Lieblingsrequsite mit, wo ich sogar LEDs drin verbaut habe.`,
-    link: "Instagram.com/kellygreenycosplay",
+    link: "Instagram.com/kellyblueycosplay",
     wipImages: JSON.stringify([
-      `${BASE_URL}/uploads/KellyGreeny_WIP1.jpg`,
-      `${BASE_URL}/uploads/KellyGreeny_WIP2.jpg`,
-      `${BASE_URL}/uploads/KellyGreeny_WIP3.jpg`,
-      `${BASE_URL}/uploads/KellyGreeny_WIP4.jpg`,
-      `${BASE_URL}/uploads/KellyGreeny_WIP5.jpg`,
-      `${BASE_URL}/uploads/KellyGreeny_WIP6.jpg`,
-      `${BASE_URL}/uploads/KellyGreeny_WIP7.jpg`,
-      `${BASE_URL}/uploads/KellyGreeny_WIP8.jpg`,
-      `${BASE_URL}/uploads/KellyGreeny_WIP9.jpg`,
-      `${BASE_URL}/uploads/KellyGreeny_WIP10.jpg`,
+      `${BASE_URL}/uploads/Kellybluey_WIP1.jpg`,
+      `${BASE_URL}/uploads/Kellybluey_WIP2.jpg`,
+      `${BASE_URL}/uploads/Kellybluey_WIP3.jpg`,
+      `${BASE_URL}/uploads/Kellybluey_WIP4.jpg`,
+      `${BASE_URL}/uploads/Kellybluey_WIP5.jpg`,
+      `${BASE_URL}/uploads/Kellybluey_WIP6.jpg`,
+      `${BASE_URL}/uploads/Kellybluey_WIP7.jpg`,
+      `${BASE_URL}/uploads/Kellybluey_WIP8.jpg`,
+      `${BASE_URL}/uploads/Kellybluey_WIP9.jpg`,
+      `${BASE_URL}/uploads/Kellybluey_WIP10.jpg`,
     ]),
     wearingImages: JSON.stringify([
-       `${BASE_URL}/uploads/KellyGreeny_Tryon1.jpg`,
-       `${BASE_URL}/uploads/KellyGreeny_Tryon2.jpg`,
-       `${BASE_URL}/uploads/KellyGreeny_Tryon3.jpg`,
+       `${BASE_URL}/uploads/Kellybluey_Tryon1.jpg`,
+       `${BASE_URL}/uploads/Kellybluey_Tryon2.jpg`,
+       `${BASE_URL}/uploads/Kellybluey_Tryon3.jpg`,
     ]),
     cosplayImages: JSON.stringify([]),
     buildBook: null ,
@@ -699,7 +699,10 @@ db.serialize(() => {
 // --- Auth ---
 const users = [
   { username: "Pitou", password: "bertil13", role: "jury" },
-  { username: "admin", password: "pitourino13", role: "jury" },
+  { username: "Berni", password: "ahri", role: "jury" },
+  { username: "Ashley", password: "zelda", role: "jury" },
+  { username: "Lukas&Lisa", password: "farkas", role: "jury" },
+  { username: "Orga", password: "13", role: "jury" },
 
 ];
 

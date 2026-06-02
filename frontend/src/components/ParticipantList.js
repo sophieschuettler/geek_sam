@@ -12,11 +12,11 @@ export default function ParticipantList() {
 
   return (
     <div className="p-4 max-w-5xl mx-auto">
-      <h2 className="text-2xl font-bold mb-4 text-green-700">Alle Teilnehmer</h2>
+      <h2 className="text-2xl font-bold mb-4 text-blue-700">Alle Teilnehmer</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {participants.map((p, i) => (
           <div key={i} className="border rounded-xl p-4 bg-white shadow">
-            <h3 className="text-xl font-semibold text-green-800">{p.cosplayName}</h3>
+            <h3 className="font-heading text-xl text-blue-800">{p.cosplayName}</h3>
             <p><strong>Charakter:</strong> {p.character}</p>
             <p><strong>Game:</strong> {p.game}</p>
 

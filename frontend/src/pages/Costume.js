@@ -108,10 +108,9 @@ useEffect(() => {
   Komplexität: (<> Aufwand: Hat das Kostüm viele Schichten? Wurden viele unterschiedliche Materialien verwendet? <br/>
     Techniken: Wurden viele Techniken verwendet? Zum Beispiel: Sticken, Häkeln, Airbrush, 3D Modellierung, Schnittmuster selbst anfertigen, etc.."
   </>),
-  "Handwerk und Details": <>Verarbeitung: Sind die Details sauber gearbeitet? Keine Klebereste, saubere Übergänge, saubere Nähte. <br/>
-  Tragbarkeit: Ist das Kostüm funktional und tragbar? Ist der Sitz gut? Bearbeitung: Wurden Teile sauber bemalt, geweathert oder bearbeitet? <br/>
-   Feinarbeit: Wurden kleinere Details, die erst bei genauem Hinsehen entdeckt werden, zu dem Kostüm hinzugefügt?
-  </>
+  "Handwerk und Details": <>Verarbeitung/Bearbeitung:: Wurde insgesamt sauber gearbeitet? Keine Klebereste, saubere Übergänge, saubere Nähte, sauber bemalt und geweathert. 3D-Drucke sauber geschliffen. <br/>
+  Tragbarkeit: Ist das Kostüm funktional und tragbar? Ist der Sitz gut? <br/>
+   Feinarbeit: Wurden kleinere Details sauber und fein verarbeitet und wurden welche hinzugefügt, die erst bei genauem Hinsehen entdeckt werden.</>
 };
 
 
@@ -215,15 +214,15 @@ const nominations = [
     <div
       className={`min-h-screen p-6 pb-24 flex flex-col items-center transition-colors ${
         darkMode
-          ? "bg-gray-900 text-gray-100"
-          : "bg-green-50 text-gray-900"
+          ? "bg-gradient-to-b from-[#9c2d50] to-[#5E689A] text-gray-100"
+          : "bg-gradient-to-b from-[#ff7ea7] to-[#5E689A] text-gray-900"
       }`}
       style={{ overflowX: "hidden", width: "100%" }}
     >
 
       <h1
         className={`text-3xl font-bold mb-6 text-center ${
-          darkMode ? "text-green-300" : "text-green-700"
+          darkMode ? "text-blue-300" : "text-[#5E689A]"
         }`}
       >
          Bewertung Kostüm : {currentParticipant?.cosplayName}
@@ -350,7 +349,7 @@ const nominations = [
           Total: {getTotal("costume")} / 40
         </p>
         {/* --- Nominierung Switches --- */}
-            <div className="mt-5">
+            {/* <div className="mt-5">
               <h4 className="font-semibold mb-2 text-lg">
                 Nominierungen
               </h4>
@@ -376,7 +375,7 @@ const nominations = [
 
                     className="sr-only peer"
                   />
-                  <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-800 peer-checked:bg-green-500"></div>
+                  <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-800 peer-checked:bg-blue-500"></div>
                   <div className="absolute left-[2px] top-[2px] bg-white border border-gray-300 h-5 w-5 rounded-full transition-all peer-checked:translate-x-full"></div>
                 </label>
               </div>
@@ -402,11 +401,11 @@ const nominations = [
 
                     className="sr-only peer"
                   />
-                  <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-800 peer-checked:bg-green-500"></div>
+                  <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-800 peer-checked:bg-blue-500"></div>
                   <div className="absolute left-[2px] top-[2px] bg-white border border-gray-300 h-5 w-5 rounded-full transition-all peer-checked:translate-x-full"></div>
                 </label>
               </div>
-            </div>
+            </div> */}
 
             </Item>
           </Grid>
@@ -446,7 +445,7 @@ const nominations = [
                       >
                         <h3
                           className={`font-semibold text-lg mb-3 ${
-                            darkMode ? "text-green-300" : "text-green-700"
+                            darkMode ? "text-blue-300" : "text-blue-700"
                           }`}
                         >
                           Work in Progress
@@ -474,7 +473,7 @@ const nominations = [
                       >
                         <h3
                           className={`font-semibold text-lg mb-3 ${
-                            darkMode ? "text-green-300" : "text-green-700"
+                            darkMode ? "text-blue-300" : "text-blue-700"
                           }`}
                         >
                           BuildBook
@@ -552,8 +551,8 @@ const nominations = [
             onClick={submitRatings}
             className={`ml-auto px-5 py-2 rounded font-semibold transition ${
               darkMode
-                ? "bg-green-600 hover:bg-green-500 text-white"
-                : "bg-green-600 hover:bg-green-700 text-white"
+                ? "bg-blue-600 hover:bg-blue-500 text-white"
+                : "bg-blue-600 hover:bg-blue-700 text-white"
             }`}
           >
             Punkte absenden

@@ -18,7 +18,7 @@ export default function AdminOverview() {
 
   return (
     <div className="p-6">
-      <h2 className="text-2xl font-bold mb-6 text-green-700">Admin Übersicht</h2>
+      <h2 className="text-2xl font-bold mb-6 text-blue-700">Admin Übersicht</h2>
 
       {data.map((p) => (
         <div key={p.id} className="border rounded-lg p-4 mb-6 bg-white shadow">
@@ -51,7 +51,7 @@ export default function AdminOverview() {
                       ))}
                     </tr>
                   ))}
-                  <tr className="font-semibold bg-green-50">
+                  <tr className="font-semibold bg-blue-50">
                     <td className="border px-2 py-1">⌀ Durchschnitt</td>
                     {Object.keys(p.averages).map((crit) => (
                       <td key={crit} className="border px-2 py-1 text-center">{p.averages[crit] ?? "-"}</td>

@@ -152,12 +152,14 @@ const filteredGroups = Object.values(groupedRatings).filter(
     <ThemeProvider theme={muiTheme}>
       <div
         className={`min-h-screen p-4 sm:p-6 transition-colors ${
-          darkMode ? "bg-gray-900 text-gray-100" : "bg-gray-50 text-gray-900"
+           darkMode
+          ? "bg-gradient-to-b from-[#9c2d50] to-[#5E689A] text-gray-100"
+          : "bg-gradient-to-b from-[#ff7ea7] to-[#5E689A] text-gray-900"
         }`}
       >
         <h1
           className={`text-3xl font-bold mb-6 text-center ${
-            darkMode ? "text-green-300" : "text-green-700"
+            darkMode ? "text-blue-300" : "text-blue-700"
           }`}
         >
           Bewertungsübersicht
@@ -216,7 +218,7 @@ const filteredGroups = Object.values(groupedRatings).filter(
 {/* Nominierungen */}
 {view === "nominations" && (
   <div className="mt-6">
-    <h3 className="font-semibold mb-2 text-lg">Nominierungen</h3>
+    <h3 className="font-semibold mb-2 text-lg">Judges Award</h3>
     {["Best Sewing", "Best Craftsmanship", "Best Performance"].map((category) => {
       const items = nominations.filter((n) => n.category === category);
 

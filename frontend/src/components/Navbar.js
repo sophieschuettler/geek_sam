@@ -6,6 +6,8 @@ import { styled } from "@mui/material/styles";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
+import Logo from "./assets/Logo.png";
+
 
 /* ---------- Custom MUI Switch ---------- */
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
@@ -26,9 +28,9 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
       },
       "& + .MuiSwitch-track": {
         opacity: 1,
-        backgroundColor: "#aab4be",
+        backgroundColor: "#5E689A",
         ...theme.applyStyles?.("dark", {
-          backgroundColor: "#8796A5",
+          backgroundColor: "#DD3F70",
         }),
       },
     },
@@ -74,29 +76,33 @@ export default function Navbar() {
     { to: "/teilnehmer", label: "Teilnehmer" },
     { to: "/costume", label: "Kostüm" },
     { to: "/performance", label: "Performance" },
+    { to: "/judgesaward", label: "JudgesAward" },
     { to: "/übersicht", label: "Übersicht" },
   ];
 
   return (
-    <nav className="bg-green-700 dark:bg-green-900 text-white shadow-md sticky top-0 z-50 transition">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<nav className="bg-gradient-to-b from-[#DD3F70] to-[#5E689A] text-white shadow-md sticky top-0 z-50 transition">      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
-          {/* Logo */}
-          <div className="text-xl font-bold tracking-wide">
+          <img
+              src={Logo}
+              alt={"Logo"}
+              className="w-[150px] rounded-lg object-cover shadow-md"
+            />
+          <div className="font-heading text-xl font-bold tracking-wide">
             Contest Bewertung
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-4 items-center">
+          <div className="font-heading hidden md:flex space-x-4 items-center">
             {links.map(({ to, label }) => (
               <NavLink
                 key={to}
                 to={to}
                 className={({ isActive }) =>
-                  `px-3 py-2 rounded-md text-sm font-medium transition ${
+                  `font-heading px-3 py-2 rounded-md text-sm font-medium transition ${
                     isActive
-                      ? "bg-green-500 text-white dark:bg-green-700"
-                      : "hover:bg-green-600 dark:hover:bg-green-800 hover:text-white"
+                      ? "bg-[#DD3F70] text-white dark:bg-[#5E689A]"
+                      : "hover:bg-[#DD3F70] dark:hover:bg-[#5E689A] hover:text-white"
                   }`
                 }
               >
@@ -127,7 +133,7 @@ export default function Navbar() {
               onChange={toggleTheme}
             />
             <button
-              className="p-2 rounded-md hover:bg-green-600 transition"
+              className="p-2 rounded-md hover:bg-blue-600 transition"
               onClick={() => setOpen(!open)}
             >
               {open ? <X size={24} /> : <Menu size={24} />}
@@ -138,7 +144,7 @@ export default function Navbar() {
 
       {/* Mobile Dropdown */}
       {open && (
-        <div className="md:hidden bg-green-800 dark:bg-green-950 shadow-lg">
+        <div className="md:hidden bg-blue-800 dark:bg-blue-950 shadow-lg">
           {links.map(({ to, label }) => (
             <NavLink
               key={to}
@@ -147,8 +153,8 @@ export default function Navbar() {
               className={({ isActive }) =>
                 `block px-4 py-3 text-sm font-medium transition ${
                   isActive
-                    ? "bg-green-600 text-white dark:bg-green-700"
-                    : "hover:bg-green-700 dark:hover:bg-green-800 hover:text-white"
+                    ? "bg-blue-600 text-white dark:bg-blue-700"
+                    : "hover:bg-blue-700 dark:hover:bg-blue-800 hover:text-white"
                 }`
               }
             >

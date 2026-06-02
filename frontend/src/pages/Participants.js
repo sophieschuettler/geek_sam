@@ -45,12 +45,12 @@ const role = user?.role;
   return (
     <div
       className={`min-h-screen p-6 flex flex-col items-center transition-colors ${
-        darkMode ? "bg-gray-900 text-gray-100" : "bg-green-50 text-gray-900"
+        darkMode ? "bg-gray-900 text-gray-100" : "bg-blue-50 text-gray-900"
       }`}
     >
       <h1
         className={`text-3xl font-bold mb-6 text-center ${
-          darkMode ? "text-green-300" : "text-green-700"
+          darkMode ? "text-blue-300" : "text-blue-700"
         }`}
       >
         Teilnehmer Übersicht
@@ -60,9 +60,9 @@ const role = user?.role;
       <div className="mb-6 w-full max-w-xs">
         <select
           className={`border rounded-lg p-2 w-full shadow-sm focus:ring-2 ${
-            darkMode
-              ? "bg-gray-800 border-gray-700 text-gray-100"
-              : "bg-white border-gray-300"
+             darkMode
+          ? "bg-gradient-to-b from-[#9c2d50] to-[#5E689A] text-gray-100"
+          : "bg-gradient-to-b from-[#ff7ea7] to-[#5E689A] text-gray-900"
           }`}
           value={selectedId || ""}
           onChange={(e) => setSelectedId(Number(e.target.value))}
@@ -92,7 +92,7 @@ const role = user?.role;
           }`}>
               <h2
                 className={`text-2xl font-semibold ${
-                  darkMode ? "text-green-300" : "text-green-800"
+                  darkMode ? "text-blue-300" : "text-blue-800"
                 } mb-2`}
               >
                 {selectedParticipant.cosplayName} (#{selectedParticipant.number})
@@ -104,7 +104,7 @@ const role = user?.role;
                 >
                   <h3
                     className={`font-semibold text-lg mb-3 ${
-                      darkMode ? "text-green-300" : "text-green-700"
+                      darkMode ? "text-blue-300" : "text-blue-700"
                     }`}
                   >
                     Charakterbilder
@@ -173,7 +173,7 @@ const role = user?.role;
             >
               <h3
                 className={`font-semibold text-lg mb-3 ${
-                  darkMode ? "text-green-300" : "text-green-700"
+                  darkMode ? "text-blue-300" : "text-blue-700"
                 }`}
               >
                 Tragebilder
@@ -200,7 +200,7 @@ const role = user?.role;
             >
               <h3
                 className={`font-semibold text-lg mb-3 ${
-                  darkMode ? "text-green-300" : "text-green-700"
+                  darkMode ? "text-blue-300" : "text-blue-700"
                 }`}
               >
                 Work in Progress
@@ -227,7 +227,7 @@ const role = user?.role;
             >
               <h3
                 className={`font-semibold text-lg mb-3 ${
-                  darkMode ? "text-green-300" : "text-green-700"
+                  darkMode ? "text-blue-300" : "text-blue-700"
                 }`}
               >
                 BuildBook

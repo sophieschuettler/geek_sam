@@ -11,7 +11,7 @@ import Typography from "@mui/material/Typography";
 import Switch from "@mui/material/Switch";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import Tooltip from "@mui/material/Tooltip";
-export default function Performance() {
+export default function JudgesAward() {
   const { user } = useAppContext();
   const { darkMode } = useTheme();
   const [participants, setParticipants] = useState([]);
@@ -99,21 +99,19 @@ useEffect(() => {
   const criteria = {
     performance: {
       Schauspiel: 5,
-      Kreativität: 10,
+      Kreativität: 5,
       Publikumsreaktion: 5,
     },
   };
     const infoText = {
   Schauspiel: ( <> Gestik und Mimik des Charakters: Wie überzeugend stellt ihr den Charakter dar? <br/>
   Ausdruck: Seid ihr emotional glaubwürdig, wie ihr in der Szene als Charakter reagiert? <br/>
-  Konsistenz: Bleibt ihr während dem ganzen Auftritt “in Character”?<br/>
-  Choreografie: Sind Bewegungen und Übergänge durchdacht, nutzt ihr die Bühne sinnvoll?</>) ,
+  Konsistenz: Bleibt ihr während dem ganzen Auftritt “in Character”?<br/></>) ,
   Kreativität: (<> Storytelling: Erzählt euer Auftritt eine Geschichte? <br/>
     Originalität: Gibt es eigene Ideen, die über bekannte Szenen hinausgehen? <br/>
-    Überraschende Elemente: Gibt es unerwartete Elemente, die eingebaut wurden?  <br/>
-    Einsatz von Requisiten: Werden Requisiten verwendet? Passen diese zum Style des Cosplays? Wunden sie extra angefertigt?<br/>
-    Audio: Wird Audio passend und sinnvoll verwendet. Ist der Auftritt im Takt, passt das Lipsync? </>),
-  Publikumsreaktion: <>Gibt es sicht- und hörbare Resonanz des Publikums. Wie Applaus, Lachen und allgemein Begeisterung. Wie stark reagiert das Publikum auf den Auftritt.</>
+    Choreografie: Sind Bewegungen und Übergänge durchdacht, nutzt ihr die Bühne sinnvoll? <br/>
+    Überraschende Elemente: Gibt es unerwartete Elemente, die eingebaut wurden?  </>),
+  Publikumsreaktion: <>Nutzung: Wird die Audio sinnvoll genutzt? Ist sie passend? Ist die Choreographie im Takt der Musik? Ist das Lipsync gut? </>
 };
 
   const Item = styled(Paper)(({ theme }) => ({
@@ -271,7 +269,7 @@ const nominations = [
           <Grid item xs={12} md={10}>
             <Item>
               <h3 className="font-semibold mb-3 text-lg">
-                Performance (max. 20 Punkte)
+                Performance (max. 15 Punkte)
               </h3>
               {Object.entries(criteria.performance).map(([crit, max]) => (
                 <div key={crit} className="mb-2">
@@ -315,38 +313,38 @@ const nominations = [
                 </div>
               ))}
               <p className="mt-3 font-bold">
-                Total: {getTotal("performance")} / 20
+                Total: {getTotal("performance")} / 25
               </p>
 
               {/* Nominierung */}
-              {/* <div className="mt-6 flex items-center justify-between">
+              <div className="mt-6 flex items-center justify-between">
                 <Typography>Best Performance</Typography>
              <label className="relative inline-flex items-center cursor-pointer">
-              <input
-                type="checkbox"
-                id="bestPerformance"
-                checked={ratings[currentParticipant?.id]?.bestPerformance || false}
-                onChange={(e) => {
-                  const checked = e.target.checked;
-                  setRatings(prev => ({
-                    ...prev,
-                    [currentParticipant.id]: {
-                      ...prev[currentParticipant.id],
-                      bestPerformance: checked,
-                    },
-                  }));
-                }}
-                className="sr-only peer"
-              />
-              <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:bg-blue-500"></div>
-              <div className="absolute left-[2px] top-[2px] bg-white border border-gray-300 h-5 w-5 rounded-full transition-all peer-checked:translate-x-full"></div>
-            </label>
+  <input
+    type="checkbox"
+    id="bestPerformance"
+    checked={ratings[currentParticipant?.id]?.bestPerformance || false}
+    onChange={(e) => {
+      const checked = e.target.checked;
+      setRatings(prev => ({
+        ...prev,
+        [currentParticipant.id]: {
+          ...prev[currentParticipant.id],
+          bestPerformance: checked,
+        },
+      }));
+    }}
+    className="sr-only peer"
+  />
+  <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:bg-blue-500"></div>
+  <div className="absolute left-[2px] top-[2px] bg-white border border-gray-300 h-5 w-5 rounded-full transition-all peer-checked:translate-x-full"></div>
+</label>
 
 
 
 
 
-              </div> */}
+              </div>
             </Item>
           </Grid>
         </Grid>

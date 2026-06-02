@@ -85,7 +85,7 @@ export default function CreateParticipant() {
       onSubmit={handleSubmit}
       className="flex flex-col gap-4 p-4 bg-white shadow rounded max-w-xl mx-auto"
     >
-      <h2 className="text-xl font-bold text-center text-green-700">
+      <h2 className="text-xl font-bold text-center text-blue-700">
         Teilnehmer anlegen
       </h2>
 
@@ -145,7 +145,7 @@ export default function CreateParticipant() {
 
       <button
         type="submit"
-        className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
       >
         Teilnehmer erstellen
       </button>

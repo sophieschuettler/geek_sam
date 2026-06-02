@@ -14,6 +14,7 @@ import Dashboard from "./pages/Dashboard";
 import Costume from "./pages/Costume";
 import Performance from "./pages/Performance";
 import Participants from "./pages/Participants";
+import JudgesAward from "./pages/JudgesAward";
 import Overview from "./pages/Overview";
 import { AppProvider, useAppContext } from "./context/AppContext";
 
@@ -101,6 +102,10 @@ function AppRoutes() {
       <Route
         path="/performance"
         element={user?.role === "jury" ? <Performance user={user} /> : <Navigate to="/dashboard" />}
+      />
+      <Route
+        path="/judgesaward"
+        element={user?.role === "jury" ? <JudgesAward user={user} /> : <Navigate to="/dashboard" />}
       />
 
       <Route
