@@ -72,6 +72,7 @@ const logout = () => {
   navigate("/");
 };
 
+
   const links = [
     { to: "/dashboard", label: "Dashboard" },
     { to: "/teilnehmer", label: "Teilnehmer" },
@@ -109,7 +110,7 @@ const logout = () => {
             </FormGroup>
             {user && (
               <button
-                onClick={handleLogout}
+                onClick={logout}
                 className="ml-3 px-4 py-2 rounded bg-red-600 hover:bg-red-700"
               >
                 Logout
@@ -147,7 +148,7 @@ const logout = () => {
           ))}
           {user && (
               <button
-                onClick={handleLogout}
+                onClick={logout}
                 className="block px-3 py-1 bg-red-600 rounded"
               >
                 Logout
