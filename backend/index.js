@@ -642,9 +642,9 @@ db.serialize(() => {
 // --- Auth ---
 const users = [
   { username: "Pitou", password: "bertil13", role: "jury" },
-  { username: "Berni", password: "ahri", role: "jury" },
-  { username: "Ashley", password: "zelda", role: "jury" },
-  { username: "Lukas&Lisa", password: "farkas", role: "jury" },
+  { username: "Sina", password: "123", role: "jury" },
+  { username: "Sebastian", password: "123", role: "jury" },
+  { username: "other", password: "", role: "jury" },
   { username: "Orga", password: "13", role: "jury" },
 
 ];
