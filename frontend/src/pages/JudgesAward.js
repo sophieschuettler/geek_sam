@@ -1,380 +1,235 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useAppContext } from "../context/AppContext";
 import { useTheme } from "../context/ThemeContext";
-import { styled } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
-import Grid from "@mui/material/Grid";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Switch from "@mui/material/Switch";
-import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-import Tooltip from "@mui/material/Tooltip";
+
 export default function JudgesAward() {
   const { user } = useAppContext();
   const { darkMode } = useTheme();
+
   const [participants, setParticipants] = useState([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [selectedNominee, setSelectedNominee] = useState(null);
+  const [saving, setSaving] = useState(false);
 
+  const API = process.env.REACT_APP_API_URL;
 
-
-
-  // 🔹 Punkte
-  const [ratings, setRatings] = useState({}); 
-  // 🔹 Nominierungen
-  const [nominations, setNominations] = useState({}); 
-
-
-  
   useEffect(() => {
-      const API = process.env.REACT_APP_API_URL;
-
-    fetch(`${API}/api/participants`)
-      .then(res => res.json())
-      .then(data => {
-        setParticipants(data);
-        setCurrentIndex(0);
-      })
-      .catch(err => console.error("Error loading participants:", err));
+    loadData();
   }, []);
 
-    const currentParticipant = participants[currentIndex];
-    
-// --- NEUER USEEFFECT: Ratings + Nominierungen laden ---
-useEffect(() => {
-  if (!currentParticipant || !user) return;
-
-  const fetchRatingsAndNominations = async () => {
-    const API = process.env.REACT_APP_API_URL;
+  const loadData = async () => {
     try {
-      const res = await fetch(`${API}/api/overview/by-judge`);
-      const data = await res.json();
+      const [participantsRes, nominationsRes] = await Promise.all([
+        fetch(`${API}/api/participants`),
+        fetch(`${API}/api/overview/nominations`)
+      ]);
 
-      const participantRatings = data
-        .filter(r => r.user === user.username && r.participantId === currentParticipant.id)
-        .reduce((acc, r) => {
-          if (!acc[r.category]) acc[r.category] = {};
-          acc[r.category][r.criterion] = r.score;
-          return acc;
-        }, {});
+      const participantsData = await participantsRes.json();
+      const nominationsData = await nominationsRes.json();
 
-      const nomRes = await fetch(`${API}/api/overview/nominations`);
-      const nomData = await nomRes.json();
+      setParticipants(participantsData);
 
-      // Nominationen als boolean in ratings speichern
-      const nominationObj = {
-        bestPerformance: false,
-      };
+      const myNomination = nominationsData.find(
+        n =>
+          n.category === "Judges Award" &&
+          n.judges?.split(", ").includes(user.username)
+      );
 
-      nomData
-  .filter(n => n.participantId === currentParticipant.id)
-  .forEach(n => {
-    const judges = n.judges ? n.judges.split(",") : [];
-    if (n.category === "Best Performance" && judges.includes(user.username)) {
-      nominationObj.bestPerformance = true;
-    }
-  });
-
-      setRatings(prev => ({
-        ...prev,
-        [currentParticipant.id]: {
-          ...(prev[currentParticipant.id] || {}),
-          performance: participantRatings.performance || {},
-          ...nominationObj,
-        },
-      }));
+      if (myNomination) {
+        setSelectedNominee(myNomination.participantId);
+      }
     } catch (err) {
       console.error(err);
     }
   };
 
-  fetchRatingsAndNominations();
-}, [currentParticipant, user]);
-
-
-
-
-
-  const criteria = {
-    performance: {
-      Schauspiel: 5,
-      Kreativität: 5,
-      Publikumsreaktion: 5,
-    },
-  };
-    const infoText = {
-  Schauspiel: ( <> Gestik und Mimik des Charakters: Wie überzeugend stellt ihr den Charakter dar? <br/>
-  Ausdruck: Seid ihr emotional glaubwürdig, wie ihr in der Szene als Charakter reagiert? <br/>
-  Konsistenz: Bleibt ihr während dem ganzen Auftritt “in Character”?<br/></>) ,
-  Kreativität: (<> Storytelling: Erzählt euer Auftritt eine Geschichte? <br/>
-    Originalität: Gibt es eigene Ideen, die über bekannte Szenen hinausgehen? <br/>
-    Choreografie: Sind Bewegungen und Übergänge durchdacht, nutzt ihr die Bühne sinnvoll? <br/>
-    Überraschende Elemente: Gibt es unerwartete Elemente, die eingebaut wurden?  </>),
-  Publikumsreaktion: <>Nutzung: Wird die Audio sinnvoll genutzt? Ist sie passend? Ist die Choreographie im Takt der Musik? Ist das Lipsync gut? </>
-};
-
-  const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: darkMode ? "#1f2937" : "#fff",
-    color: darkMode ? "#f9fafb" : "#111827",
-    padding: theme.spacing(2.5),
-    borderRadius: "10px",
-    boxShadow: darkMode
-      ? "0 4px 10px rgba(255,255,255,0.05)"
-      : "0 4px 10px rgba(0,0,0,0.08)",
-  }));
-
-  const handleChange = (category, criterion, value) => {
-    const participantId = currentParticipant?.id;
-    setRatings(prev => ({
-      ...prev,
-      [participantId]: {
-        ...prev[participantId],
-        [category]: {
-          ...(prev[participantId]?.[category] || {}),
-          [criterion]: parseInt(value, 10),
-        },
-      },
-    }));
-  };
-
-  const getTotal = category => {
-    const values = Object.values(ratings[currentParticipant?.id]?.[category] || {});
-    return values.reduce((sum, val) => sum + (val || 0), 0);
-  };
-
-const submitRatings = async () => {
-  if (!user) {
-    alert("Bitte zuerst einloggen.");
-    return;
-  }
-
-  const participantId = currentParticipant?.id;
-  const current = ratings[participantId] || {};
-   const API = process.env.REACT_APP_API_URL;
-
-  // 🟢 1. Nominierungen vorbereiten
- // 🟢 1. Nominierungen vorbereiten (immer mit active)
-const nominations = [
-  {
-    participantId,
-    nominationType: "Best Performance",
-    user: user.username,
-    active: !!current.bestPerformance,
-  },
-];
-
-
-  // 🟢 2. Payload aufbauen
-  const payload = {
-    participantId,
-    ratings: {
-      performance: current.performance || {},
-    },
-    nominations, // nur aktive Switches
-  };
-
-  try {
-    const res = await fetch(`${API}/api/rate`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${user.token}`,
-      },
-      body: JSON.stringify(payload),
-    });
-
-    if (!res.ok) {
-      const txt = await res.text();
-      console.error("Fehler beim Speichern:", txt);
-      alert("Fehler beim Speichern: " + txt);
+  const saveNomination = async () => {
+    if (!selectedNominee) {
+      alert("Bitte einen Teilnehmer auswählen.");
       return;
     }
 
-    alert("Bewertung & Nominierungen erfolgreich gespeichert!");
-  } catch (err) {
-    console.error("Netzwerkfehler:", err);
-    alert("Netzwerkfehler beim Speichern.");
+    try {
+      setSaving(true);
+
+      const res = await fetch(`${API}/api/nominate`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user.token}`
+        },
+        body: JSON.stringify({
+          participantId: selectedNominee,
+          nominationType: "Judges Award"
+        })
+      });
+
+      if (!res.ok) {
+        const text = await res.text();
+        throw new Error(text);
+      }
+
+      alert("🏆 Judges Award Nominierung gespeichert!");
+    } catch (err) {
+      console.error(err);
+      alert("Fehler beim Speichern.");
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  if (!user) {
+    return (
+      <div className="p-8 text-center">
+        Bitte zuerst einloggen.
+      </div>
+    );
   }
-};
 
-
-  if (!user) return <p>Bitte zuerst einloggen.</p>;
-  if (!currentParticipant) return <p>Lade Teilnehmer...</p>;
+  const selectedParticipant = participants.find(
+    p => p.id === selectedNominee
+  );
 
   return (
-    <div className={`min-h-screen p-6 pb-24 flex flex-col items-center transition-colors ${
-       darkMode
-          ? "bg-gradient-to-b from-[#9c2d50] to-[#5E689A] text-gray-100"
+    <div
+      className={`min-h-screen p-6 ${
+        darkMode
+          ? "bg-gradient-to-b from-[#9c2d50] to-[#5E689A] text-white"
           : "bg-gradient-to-b from-[#ff7ea7] to-[#5E689A] text-gray-900"
-    }`}>
-      <h1 className={`text-3xl font-bold mb-6 text-center ${
-        darkMode ? "text-blue-300" : "text-blue-700"
-      }`}>
-        Bewertung Performance : {currentParticipant?.cosplayName}
-      </h1>
+      }`}
+    >
+      <div className="max-w-7xl mx-auto">
 
-      {/* Teilnehmer-Auswahl */}
-       <div className="mb-6 w-full max-w-xs">
-        <select
-          className={`border rounded-lg p-2 w-full shadow-sm focus:ring-2 ${
+        <h1 className="text-4xl font-bold text-center mb-4">
+          🏆 Judges Award
+        </h1>
+
+        <p className="text-center mb-8 text-lg">
+          Wähle den Teilnehmer aus, den du für den Judges Award nominieren
+          möchtest.
+        </p>
+
+        <div
+          className={`mb-8 p-4 rounded-xl text-center ${
             darkMode
-              ? "bg-gray-800 border-gray-700 text-gray-100"
-              : "bg-white border-gray-300"
+              ? "bg-gray-800"
+              : "bg-white"
           }`}
-          value={currentIndex}
-          onChange={(e) => setCurrentIndex(parseInt(e.target.value))}
         >
-          {participants.map((p, i) => (
-            <option key={p.id} value={i}>
-              {p.number} - {p.cosplayName}
-            </option>
-          ))}
-        </select>
-      </div>
-
-
-      {/* Hauptbereich */}
-      <Box sx={{
-        display: "flex",
-        flexDirection: { xs: "column", md: "row" },
-        justifyContent: "center",
-        alignItems: "center",
-        gap: { xs: 3, md: 3 },
-        px: { xs: 2, md: 6 },
-      }}>
-        {/* Bild */}
-        <Box sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          width: { xs: "100%", md: "35%" },
-        }}>
-          {currentParticipant?.characterImages?.length > 0 ? (
-            <img
-              src={currentParticipant.characterImages[0]}
-              alt={currentParticipant.cosplayName}
-              className="w-[250px] rounded-lg object-cover shadow-md"
-            />
-          ) : (
-            <Typography variant="body2" color="text.secondary">
-              Kein Referenzbild vorhanden
-            </Typography>
-          )}
-        </Box>
-
-        {/* Bewertung */}
-        <Grid container spacing={2} sx={{ width: { xs: "100%", md: "55%" }, display: "flex", justifyContent: "center" }}>
-          <Grid item xs={12} md={10}>
-            <Item>
-              <h3 className="font-semibold mb-3 text-lg">
-                Performance (max. 15 Punkte)
-              </h3>
-              {Object.entries(criteria.performance).map(([crit, max]) => (
-                <div key={crit} className="mb-2">
-                  <label  className="flex items-center gap-1">{crit} ({max})
-                    <Tooltip
-                  title={infoText[crit]}
-                  arrow
-                  enterTouchDelay={0}
-                  leaveTouchDelay={10000}
-                >
-                  <button
-                    type="button"
-                    className="p-1"
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      background: "none",
-                      border: "none",
-                      cursor: "pointer"
-                    }}
-                  >
-                    <InfoOutlinedIcon
-                      fontSize="small"
-                      className={darkMode ? "text-gray-300" : "text-gray-600"}
-                    />
-                  </button>
-                </Tooltip>
-                  </label>
-                  <select
-                    value={ratings[currentParticipant?.id]?.performance?.[crit] || ""}
-                    onChange={e => handleChange("performance", crit, e.target.value)}
-                    className={`border p-1 w-full rounded ${
-                      darkMode ? "bg-gray-800 border-gray-700 text-gray-100" : "bg-white border-gray-300"
-                    }`}
-                  >
-                    <option value="">--</option>
-                    {[...Array(max + 1).keys()].map(v => (
-                      <option key={v} value={v}>{v}</option>
-                    ))}
-                  </select>
-                </div>
-              ))}
-              <p className="mt-3 font-bold">
-                Total: {getTotal("performance")} / 25
-              </p>
-
-              {/* Nominierung */}
-              <div className="mt-6 flex items-center justify-between">
-                <Typography>Best Performance</Typography>
-             <label className="relative inline-flex items-center cursor-pointer">
-  <input
-    type="checkbox"
-    id="bestPerformance"
-    checked={ratings[currentParticipant?.id]?.bestPerformance || false}
-    onChange={(e) => {
-      const checked = e.target.checked;
-      setRatings(prev => ({
-        ...prev,
-        [currentParticipant.id]: {
-          ...prev[currentParticipant.id],
-          bestPerformance: checked,
-        },
-      }));
-    }}
-    className="sr-only peer"
-  />
-  <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:bg-blue-500"></div>
-  <div className="absolute left-[2px] top-[2px] bg-white border border-gray-300 h-5 w-5 rounded-full transition-all peer-checked:translate-x-full"></div>
-</label>
-
-
-
-
-
+          {selectedParticipant ? (
+            <>
+              Aktuell nominiert:
+              <div className="font-bold text-xl mt-2">
+                🏆 #{selectedParticipant.number}{" "}
+                {selectedParticipant.cosplayName}
               </div>
-            </Item>
-          </Grid>
-        </Grid>
-      </Box>
+            </>
+          ) : (
+            <span>Noch kein Teilnehmer ausgewählt.</span>
+          )}
+        </div>
 
-      {/* Navigation unten */}
-      <AppBar position="fixed" sx={{
-        top: "auto",
-        bottom: 0,
-        backgroundColor: darkMode ? "#111827" : "#e5e7eb",
-        color: darkMode ? "#f9fafb" : "#111827",
-        boxShadow: "0 -2px 10px rgba(0,0,0,0.15)"
-      }}>
-        <Toolbar sx={{ display: "flex", gap: 2, justifyContent: "center", alignItems: "center", py: 1.5 }}>
-          <button disabled={currentIndex === 0} onClick={() => setCurrentIndex(i => Math.max(0, i - 1))}
-            className={`px-4 py-2 rounded font-medium transition ${darkMode ? "bg-gray-700 hover:bg-gray-600 text-gray-100" : "bg-gray-300 hover:bg-gray-400 text-gray-900"} disabled:opacity-50`}>
-            Zurück
-          </button>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
 
-          <button disabled={currentIndex >= participants.length - 1} onClick={() => setCurrentIndex(i => Math.min(participants.length - 1, i + 1))}
-            className={`px-4 py-2 rounded font-medium transition ${darkMode ? "bg-gray-700 hover:bg-gray-600 text-gray-100" : "bg-gray-300 hover:bg-gray-400 text-gray-900"} disabled:opacity-50`}>
-            Weiter
-          </button>
+          {participants.map(participant => {
+            const selected =
+              selectedNominee === participant.id;
 
-          <button onClick={submitRatings}
-            className={`ml-auto px-5 py-2 rounded font-semibold transition ${darkMode ? "bg-blue-600 hover:bg-blue-500 text-white" : "bg-blue-600 hover:bg-blue-700 text-white"}`}>
-            Punkte absenden
+            return (
+              <div
+                key={participant.id}
+                onClick={() =>
+                  setSelectedNominee(participant.id)
+                }
+                className={`
+                  cursor-pointer
+                  rounded-2xl
+                  overflow-hidden
+                  transition-all
+                  duration-200
+                  hover:scale-[1.02]
+                  ${
+                    selected
+                      ? "ring-4 ring-yellow-400"
+                      : ""
+                  }
+                  ${
+                    darkMode
+                      ? "bg-gray-800"
+                      : "bg-white"
+                  }
+                `}
+              >
+                <img
+                  src={
+                    participant.characterImages?.[0]
+                  }
+                  alt={participant.cosplayName}
+                  className="w-full h-72 object-cover"
+                />
+
+                <div className="p-4">
+
+                  <div className="font-bold text-lg">
+                    #{participant.number}
+                  </div>
+
+                  <div className="font-semibold text-xl">
+                    {participant.cosplayName}
+                  </div>
+
+                  <div className="opacity-80">
+                    {participant.character}
+                  </div>
+
+                  <div className="opacity-70 text-sm">
+                    {participant.game}
+                  </div>
+
+                  <div className="mt-4 flex items-center gap-2">
+
+                    <input
+                      type="radio"
+                      checked={selected}
+                      readOnly
+                    />
+
+                    <span>
+                      Für Judges Award nominieren
+                    </span>
+                  </div>
+
+                  {selected && (
+                    <div className="mt-3 font-bold text-yellow-500">
+                      🏆 Deine Nominierung
+                    </div>
+                  )}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        <div className="flex justify-center mt-10">
+          <button
+            onClick={saveNomination}
+            disabled={saving || !selectedNominee}
+            className="
+              px-8
+              py-4
+              text-lg
+              font-bold
+              rounded-xl
+              bg-yellow-500
+              hover:bg-yellow-400
+              disabled:opacity-50
+            "
+          >
+            {saving
+              ? "Speichern..."
+              : "🏆 Judges Award speichern"}
           </button>
-        </Toolbar>
-      </AppBar>
+        </div>
+      </div>
     </div>
   );
 }

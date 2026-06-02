@@ -116,7 +116,7 @@ router.get("/top/costume", (req, res) => {
 
 // --- Nominierungen nach Kategorie für alle Teilnehmer ---
 router.get("/nominations", (req, res) => {
-  const categories = ["Best Sewing", "Best Craftsmanship", "Best Performance"];
+  const categories = ["Best Sewing", "Best Craftsmanship", "Best Performance", "Judges Award"];
 
   // Alle Teilnehmer holen
   db.all("SELECT id, cosplayName FROM participants ORDER BY number ASC", [], (err, participants) => {

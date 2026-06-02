@@ -169,6 +169,12 @@ const nominations = [
     user: user.username,
     active: !!participantRatings.bestCraft,
   },
+  {
+    participantId,
+    nominationType: "Judges Award",
+    user: user.username,
+    active: !!participantRatings.bestCraft,
+  },
 ];
 
 
