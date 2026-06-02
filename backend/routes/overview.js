@@ -115,89 +115,97 @@ router.get("/top/costume", (req, res) => {
 // --- Nominierungen ---
 
 // --- Nominierungen nach Kategorie für alle Teilnehmer ---
+// --- Judges Award Übersicht ---
 router.get("/nominations", (req, res) => {
-  const categories = ["Best Sewing", "Best Craftsmanship", "Best Performance", "Judges Award"];
+  db.all(
+    `
+    SELECT
+      p.id AS participantId,
+      p.cosplayName,
+      COUNT(n.id) AS votes,
+      COALESCE(GROUP_CONCAT(n.user, ', '), '') AS judges
+    FROM participants p
+    LEFT JOIN nominations n
+      ON p.id = n.participantId
+      AND n.nominationType = 'Judges Award'
+    GROUP BY p.id
+    ORDER BY votes DESC, p.id ASC
+    `,
+    [],
+    (err, rows) => {
+      if (err) {
+        return res.status(500).json({ error: err.message });
+      }
 
-  // Alle Teilnehmer holen
-  db.all("SELECT id, cosplayName FROM participants ORDER BY number ASC", [], (err, participants) => {
-    if (err) return res.status(500).json({ error: err.message });
-
-    // Alle Nominierungen aus DB holen
-    db.all("SELECT participantId, nominationType, user FROM nominations", [], (err2, rows) => {
-      if (err2) return res.status(500).json({ error: err2.message });
-
-      const result = [];
-
-      categories.forEach((cat) => {
-        participants.forEach((p) => {
-          // Welche Jury-Mitglieder haben diesen Teilnehmer für diese Kategorie nominiert?
-          const users = rows
-            .filter(r => r.participantId === p.id && r.nominationType === cat)
-            .map(r => r.user);
-
-          result.push({
-            participantId: p.id,
-            cosplayName: p.cosplayName,
-            category: cat,
-            votes: users.length,
-            judges: users.join(", ") || "—", // leer = —
-          });
-        });
-      });
-
-      res.json(result);
-    });
-  });
+      res.json(rows);
+    }
+  );
 });
 
 // --- Neue oder geänderte Nominierung speichern / löschen ---
+// --- Judges Award speichern ---
 router.post("/nominations", (req, res) => {
   const { participantId, nominationType, user, active } = req.body;
 
   if (!participantId || !nominationType || !user) {
-    return res.status(400).json({ error: "Missing participantId, nominationType or user" });
+    return res.status(400).json({
+      error: "Missing participantId, nominationType or user",
+    });
   }
 
   if (active) {
-    // ✅ Nominierung setzen oder aktualisieren (pro User + Kategorie nur einmal)
-    db.get(
-      `SELECT id FROM nominations WHERE user = ? AND nominationType = ? AND participantId = ?`,
-      [user, nominationType, participantId],
-      (err, row) => {
-        if (err) return res.status(500).json({ error: err.message });
-
-        if (row) {
-          // schon vorhanden → nur Zeit aktualisieren
-          db.run(
-            `UPDATE nominations SET createdAt = datetime('now') WHERE id = ?`,
-            [row.id],
-            err2 => {
-              if (err2) return res.status(500).json({ error: err2.message });
-              res.json({ success: true, action: "updated" });
-            }
-          );
-        } else {
-          // noch nicht vorhanden → neu anlegen
-          db.run(
-            `INSERT INTO nominations (participantId, nominationType, user, createdAt)
-             VALUES (?, ?, ?, datetime('now'))`,
-            [participantId, nominationType, user],
-            function (err2) {
-              if (err2) return res.status(500).json({ error: err2.message });
-              res.json({ success: true, id: this.lastID, action: "inserted" });
-            }
-          );
+    // Judge darf nur EINEN Judges Award vergeben
+    db.run(
+      `
+      DELETE FROM nominations
+      WHERE user = ?
+      AND nominationType = 'Judges Award'
+      `,
+      [user],
+      (err) => {
+        if (err) {
+          return res.status(500).json({ error: err.message });
         }
+
+        db.run(
+          `
+          INSERT INTO nominations
+          (participantId, nominationType, user, createdAt)
+          VALUES (?, 'Judges Award', ?, datetime('now'))
+          `,
+          [participantId, user],
+          function (err2) {
+            if (err2) {
+              return res.status(500).json({ error: err2.message });
+            }
+
+            res.json({
+              success: true,
+              id: this.lastID,
+              action: "replaced",
+            });
+          }
+        );
       }
     );
   } else {
-    // ❌ Switch deaktiviert → Nominierung löschen
     db.run(
-      `DELETE FROM nominations WHERE user = ? AND nominationType = ? AND participantId = ?`,
-      [user, nominationType, participantId],
+      `
+      DELETE FROM nominations
+      WHERE participantId = ?
+      AND user = ?
+      AND nominationType = 'Judges Award'
+      `,
+      [participantId, user],
       function (err) {
-        if (err) return res.status(500).json({ error: err.message });
-        res.json({ success: true, action: "deleted" });
+        if (err) {
+          return res.status(500).json({ error: err.message });
+        }
+
+        res.json({
+          success: true,
+          action: "deleted",
+        });
       }
     );
   }

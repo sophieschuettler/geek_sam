@@ -27,7 +27,7 @@ export default function Overview() {
   const [openGroups, setOpenGroups] = useState({});
   const [openCostume, setOpenCostume] = useState({});
   const [openPerformance, setOpenPerformance] = useState({});
-  const [openNominationCategories, setOpenNominationCategories] = useState({});
+
   // ================================
 // Nach-Judge: gruppierte Bewertungen
 // ================================
@@ -219,14 +219,13 @@ const filteredGroups = Object.values(groupedRatings).filter(
 {view === "nominations" && (
   <div className="mt-6">
     <h3 className="font-semibold mb-4 text-xl">
-      🏆 Judges Award
+      Judges Award
     </h3>
 
     <div className="overflow-x-auto">
       <table className="table-auto w-full border text-sm sm:text-base">
         <thead>
           <tr>
-            <th className="border px-3 py-2">Platz</th>
             <th className="border px-3 py-2">Teilnehmer</th>
             <th className="border px-3 py-2">Nominierungen</th>
             <th className="border px-3 py-2">Judges</th>
@@ -243,16 +242,6 @@ const filteredGroups = Object.values(groupedRatings).filter(
               }
             >
               <td className="border px-3 py-2">
-                {index === 0
-                  ? "🥇"
-                  : index === 1
-                  ? "🥈"
-                  : index === 2
-                  ? "🥉"
-                  : index + 1}
-              </td>
-
-              <td className="border px-3 py-2">
                 {getParticipantName(n.participantId)}
               </td>
 
@@ -266,13 +255,13 @@ const filteredGroups = Object.values(groupedRatings).filter(
             </tr>
           ))}
         </tbody>
-      </table>
+      </table> 
     </div>
 
     {nominations.length > 0 && (
       <div className="mt-6 p-4 rounded-lg bg-yellow-100 dark:bg-yellow-900 border">
         <h4 className="font-bold text-lg mb-2">
-          🏆 Aktueller Gewinner
+          Aktueller Gewinner
         </h4>
 
         <p>
