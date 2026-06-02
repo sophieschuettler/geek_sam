@@ -34,17 +34,13 @@ export default function Login({ onLogin }) {
        const res = await fetch(`${API_BASE_URL}/api/_sessions`, {
           headers: { Authorization: `Bearer ${token}` },
         });
-
-
-        if (res.ok) {
-          // ✅ Token ist gültig → Login bleibt bestehen
+       if (!res.ok) {
+          console.log("Ungültiger Token, Session entfernt.");
+          localStorage.removeItem("user");
+        } else {
           setUser(userData);
           if (userData.role === "admin") navigate("/übersicht");
           else navigate("/dashboard");
-        } else {
-          // ❌ Token ungültig → löschen
-          console.log("Ungültiger Token, Session entfernt.");
-          localStorage.removeItem("user");
         }
       } catch (err) {
         console.warn("Fehler beim Session-Check:", err);
@@ -82,14 +78,16 @@ export default function Login({ onLogin }) {
         const data = await res.json();
         console.log("✅ Login erfolgreich:", data);
 
-        // 🔑 User speichern
-        setUser({
+        const userObj = {
           username: data.username,
           role: data.role,
           token: data.token,
-        });
+        };
 
-        localStorage.setItem("user", JSON.stringify(data));
+        setUser(userObj);
+
+        localStorage.setItem("user", JSON.stringify(userObj));
+
 
         if (data.role === "admin") navigate("/übersicht");
         else navigate("/dashboard");
