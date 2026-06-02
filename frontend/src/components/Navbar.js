@@ -132,7 +132,7 @@ export default function Navbar() {
           </div>
 
           {/* Mobile */}
-          <div className="flex items-center gap-2 md:hidden bg-gradient-to-b from-[#DD3F70] to-[#5E689A]">
+          <div className="flex items-center gap-2 md:hidden ">
             
             <MaterialUISwitch checked={darkMode} onChange={toggleTheme} />
 
@@ -145,7 +145,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {open && (
-        <div className="md:hidden bg-[#5E689A]">
+        <div className="md:hidden bg-gradient-to-b from-[#DD3F70] to-[#5E689A]">
           {links.map(({ to, label }) => (
             <NavLink
               key={to}
