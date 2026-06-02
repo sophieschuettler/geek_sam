@@ -146,6 +146,8 @@ useEffect(() => {
   };
 
 const submitRatings = async () => {
+   console.log("USER:", user);
+  console.log("TOKEN:", user?.token);
   if (!user) {
     alert("Bitte zuerst einloggen.");
     return;

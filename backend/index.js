@@ -43,20 +43,8 @@ if (!fs.existsSync(dbDir)) fs.mkdirSync(dbDir, { recursive: true });
 const dbPath = path.join(dbDir, "contest.db");
 const db = new sqlite3.Database(dbPath);
 
-// --- Sessions ---
-const sessionFile = path.join(dbDir, "sessions.json");
-let sessions = {};
-if (fs.existsSync(sessionFile)) {
-  try {
-    sessions = JSON.parse(fs.readFileSync(sessionFile, "utf-8"));
-    console.log("🔄 Alte Sessions geladen:", Object.keys(sessions).length);
-  } catch (err) {
-    console.error("⚠️ Fehler beim Laden der Session-Datei:", err);
-  }
-}
-function saveSessions() {
-  fs.writeFileSync(sessionFile, JSON.stringify(sessions, null, 2));
-}
+
+
 
 // --- Tables ---
 db.serialize(() => {
@@ -642,15 +630,32 @@ const users = [
 ];
 
 // --- Login ---
+const jwt = require("jsonwebtoken");
+
+const JWT_SECRET = process.env.JWT_SECRET || "dev_secret_change_me";
+
 app.post("/api/login", (req, res) => {
   const { username, password } = req.body;
-  const found = users.find(u => u.username === username && u.password === password);
-  if (!found) return res.status(401).json({ error: "Ungültige Anmeldedaten" });
 
-  const token = Math.random().toString(36).substring(2, 12);
-  sessions[token] = { username: found.username, role: found.role };
-  saveSessions();
-  res.json({ token, username: found.username, role: found.role });
+  const found = users.find(
+    u => u.username === username && u.password === password
+  );
+
+  if (!found) {
+    return res.status(401).json({ error: "Ungültige Anmeldedaten" });
+  }
+
+  const token = jwt.sign(
+    { username: found.username, role: found.role },
+    JWT_SECRET,
+    { expiresIn: "7d" }
+  );
+
+  res.json({
+    token,
+    username: found.username,
+    role: found.role
+  });
 });
 app.post("/api/logout", (req, res) => {
   const auth = req.headers.authorization;
@@ -666,11 +671,16 @@ app.post("/api/logout", (req, res) => {
 function authMiddleware(req, res, next) {
   const auth = req.headers.authorization;
   if (!auth) return res.status(401).json({ error: "Nicht eingeloggt" });
+
   const token = auth.split(" ")[1];
-  const user = sessions[token];
-  if (!user) return res.status(401).json({ error: "Ungültiger Token" });
-  req.user = user;
-  next();
+
+  try {
+    const decoded = jwt.verify(token, JWT_SECRET);
+    req.user = decoded;
+    next();
+  } catch (err) {
+    return res.status(401).json({ error: "Ungültiger Token" });
+  }
 }
 
 // --- Participants ---
@@ -695,85 +705,52 @@ app.post("/api/rate", authMiddleware, (req, res) => {
   const { username } = req.user;
   const { participantId, ratings, nominations } = req.body;
 
-  if (!participantId || !ratings)
+  if (!participantId || !ratings) {
     return res.status(400).json({ error: "participantId und ratings erforderlich" });
+  }
 
   db.serialize(() => {
-    // 1️⃣ Ratings vorbereiten
-    const ratingInsert = db.prepare(`
-      INSERT INTO ratings (username, participantId, category, criterion, score, createdAt) 
+    db.run("BEGIN TRANSACTION");
+
+    const stmt = db.prepare(`
+      INSERT INTO ratings (username, participantId, category, criterion, score, createdAt)
       VALUES (?, ?, ?, ?, ?, datetime('now'))
     `);
 
-    const ratingTasks = [];
-    for (const [category, crits] of Object.entries(ratings)) {
-      for (const [criterion, score] of Object.entries(crits || {})) {
-        const value = typeof score === "boolean" ? (score ? 1 : 0) : score;
-        ratingTasks.push(new Promise((resolve, reject) => {
-          db.get(
-            `SELECT id FROM ratings WHERE username = ? AND participantId = ? AND category = ? AND criterion = ?`,
-            [username, participantId, category, criterion],
-            (err, row) => {
-              if (err) return reject(err);
-              if (row) {
-                db.run(
-                  `UPDATE ratings SET score = ?, createdAt = datetime('now') WHERE id = ?`,
-                  [value, row.id],
-                  err2 => err2 ? reject(err2) : resolve()
-                );
-              } else {
-                ratingInsert.run(username, participantId, category, criterion, value, err2 =>
-                  err2 ? reject(err2) : resolve()
-                );
-              }
-            }
-          );
-        }));
-      }
-    }
+    try {
+      for (const [category, crits] of Object.entries(ratings)) {
+        for (const [criterion, score] of Object.entries(crits || {})) {
+          const value = typeof score === "boolean" ? (score ? 1 : 0) : score;
 
-    // 2️⃣ Nominierungen vorbereiten (setzen oder löschen)
-    const nominationTasks = [];
-    if (Array.isArray(nominations)) {
-      for (const n of nominations) {
-        const { nominationType, active } = n;
-        nominationTasks.push(new Promise((resolve, reject) => {
+          stmt.run(username, participantId, category, criterion, value);
+        }
+      }
+
+      stmt.finalize();
+
+      // nominations optional
+      if (Array.isArray(nominations)) {
+        for (const n of nominations) {
+          const { nominationType, active } = n;
+
           if (active) {
-            db.get(
-              `SELECT id FROM nominations WHERE user = ? AND participantId = ? AND nominationType = ?`,
-              [username, participantId, nominationType],
-              (err, row) => {
-                if (err) return reject(err);
-                if (!row) {
-                  db.run(
-                    `INSERT INTO nominations (participantId, user, nominationType, createdAt)
-                     VALUES (?, ?, ?, datetime('now'))`,
-                    [participantId, username, nominationType],
-                    err2 => err2 ? reject(err2) : resolve()
-                  );
-                } else {
-                  resolve();
-                }
-              }
-            );
-          } else {
             db.run(
-              `DELETE FROM nominations WHERE user = ? AND participantId = ? AND nominationType = ?`,
-              [username, participantId, nominationType],
-              err => err ? reject(err) : resolve()
+              `INSERT OR REPLACE INTO nominations (participantId, user, nominationType, createdAt)
+               VALUES (?, ?, ?, datetime('now'))`,
+              [participantId, username, nominationType]
             );
           }
-        }));
+        }
       }
-    }
 
-    // 3️⃣ Alles speichern
-    Promise.all([...ratingTasks, ...nominationTasks])
-      .then(() => res.json({ success: true }))
-      .catch(err => {
-        console.error("❌ Fehler beim Speichern:", err);
-        res.status(500).json({ error: "Fehler beim Speichern" });
-      });
+      db.run("COMMIT");
+      res.json({ success: true });
+
+    } catch (err) {
+      console.error(err);
+      db.run("ROLLBACK");
+      res.status(500).json({ error: "Speichern fehlgeschlagen" });
+    }
   });
 });
 
@@ -921,5 +898,12 @@ app.post("/api/nominate", authMiddleware, (req, res) => {
 const overviewRoutes = require("./routes/overview");
 app.use("/api/overview", overviewRoutes);
 
+// --- DEBUG ENDPOINT (nur zum Testen) ---
+app.get("/api/debug/all", (req, res) => {
+  db.all("SELECT * FROM ratings", [], (err, rows) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json(rows);
+  });
+});
 // --- Server Start ---
 app.listen(PORT, () => console.log(`✅ Server läuft auf ${BASE_URL}`));
