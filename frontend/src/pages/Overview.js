@@ -218,60 +218,72 @@ const filteredGroups = Object.values(groupedRatings).filter(
 {/* Nominierungen */}
 {view === "nominations" && (
   <div className="mt-6">
-    <h3 className="font-semibold mb-2 text-lg">Judges Award</h3>
-    {["Best Sewing", "Best Craftsmanship", "Best Performance"].map((category) => {
-      const items = nominations.filter((n) => n.category === category);
+    <h3 className="font-semibold mb-4 text-xl">
+      🏆 Judges Award
+    </h3>
 
-      const isOpen = openNominationCategories[category] || false;
-      const toggleCategory = () =>
-        setOpenNominationCategories((prev) => ({ ...prev, [category]: !prev[category] }));
+    <div className="overflow-x-auto">
+      <table className="table-auto w-full border text-sm sm:text-base">
+        <thead>
+          <tr>
+            <th className="border px-3 py-2">Platz</th>
+            <th className="border px-3 py-2">Teilnehmer</th>
+            <th className="border px-3 py-2">Nominierungen</th>
+            <th className="border px-3 py-2">Judges</th>
+          </tr>
+        </thead>
+        <tbody>
+          {nominations.map((n, index) => (
+            <tr
+              key={n.participantId}
+              className={
+                index === 0
+                  ? "bg-yellow-200 dark:bg-yellow-800 font-bold"
+                  : ""
+              }
+            >
+              <td className="border px-3 py-2">
+                {index === 0
+                  ? "🥇"
+                  : index === 1
+                  ? "🥈"
+                  : index === 2
+                  ? "🥉"
+                  : index + 1}
+              </td>
 
-      return (
-        <div key={category} className="mb-4 border rounded-md">
-          <div
-            className="cursor-pointer px-3 py-2 bg-gray-200 dark:bg-gray-800 font-medium flex items-center justify-between hover:bg-gray-300 dark:hover:bg-gray-700 transition"
-            onClick={toggleCategory}
-          >
-            <span>{category}</span>
-            {isOpen ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
-          </div>
-          <Collapse in={isOpen}>
-            <div className="pl-6 py-2">
-              {items.length > 0 ? (
-                items.map((n, idx) => {
-                  const participantName = getParticipantName(n.participantId);
+              <td className="border px-3 py-2">
+                {getParticipantName(n.participantId)}
+              </td>
 
-                  const votes = n.votes ?? 0;
+              <td className="border px-3 py-2 text-center">
+                {n.votes}
+              </td>
 
-                  const judges = n.judges ? n.judges.split(",").join(", ") : "—";
+              <td className="border px-3 py-2">
+                {n.judges || "—"}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
 
-                  return (
-                    <div
-                      key={idx}
-                      className="flex flex-col px-2 py-0.5 border-b last:border-b-0 text-sm"
-                    >
-                      <div className="flex justify-between">
-                        <span>{participantName}</span>
-                        <span>
-                          {votes} {votes !== 1 ? "Stimmen" : "Stimme"}
-                        </span>
-                      </div>
-                      <div className="text-xs text-gray-500 dark:text-gray-400">
-                        Jury: {judges}
-                      </div>
-                    </div>
-                  );
-                })
-              ) : (
-                <div className="text-sm text-gray-500 dark:text-gray-400 px-2 py-1">
-                  Keine Nominierungen
-                </div>
-              )}
-            </div>
-          </Collapse>
-        </div>
-      );
-    })}
+    {nominations.length > 0 && (
+      <div className="mt-6 p-4 rounded-lg bg-yellow-100 dark:bg-yellow-900 border">
+        <h4 className="font-bold text-lg mb-2">
+          🏆 Aktueller Gewinner
+        </h4>
+
+        <p>
+          {getParticipantName(nominations[0].participantId)}
+        </p>
+
+        <p className="text-sm opacity-80">
+          {nominations[0].votes} Nominierungen
+        </p>
+      </div>
+    )}
   </div>
 )}
 
@@ -293,9 +305,9 @@ const filteredGroups = Object.values(groupedRatings).filter(
         variant={isMobile ? "scrollable" : "standard"}
         scrollButtons={isMobile ? "auto" : false}
       >
-        <Tab label="Nana" value="Nana" />
-        <Tab label="Caro" value="Caro" />
-        <Tab label="Crispy" value="Crispy" />
+        <Tab label="Sina" value="Sina" />
+        <Tab label="Sebastian" value="Sebastian" />
+        <Tab label="Other" value="Other" />
       </Tabs>
     </Box>
 
