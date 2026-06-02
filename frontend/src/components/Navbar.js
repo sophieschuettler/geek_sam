@@ -132,7 +132,7 @@ export default function Navbar() {
           </div>
 
           {/* Mobile */}
-          <div className="flex items-center gap-2 md:hidden">
+          <div className="flex items-center gap-2 md:hidden bg-gradient-to-b from-[#DD3F70] to-[#5E689A]">
             
             <MaterialUISwitch checked={darkMode} onChange={toggleTheme} />
 
