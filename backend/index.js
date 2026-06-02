@@ -7,7 +7,7 @@ const path = require("path");
 const fs = require("fs");
 
 const app = express();
-const PORT = 4000;
+const PORT = process.env.PORT || 4000;
 const BASE_URL = process.env.BACKEND_URL || `http://localhost:${PORT}`;
 
 // --- CORS & Middleware ---
