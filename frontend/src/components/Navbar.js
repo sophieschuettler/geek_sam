@@ -156,7 +156,8 @@ export default function Navbar() {
               {label}
             </NavLink>
           ))}
-          {user && (
+          <div>
+            {user && (
               <button
                 onClick={handleLogout}
                 className="px-3 py-1 bg-red-600 rounded"
@@ -164,7 +165,7 @@ export default function Navbar() {
                 Logout
               </button>
             )}
-
+          </div>
         </div>
       )}
     </nav>
