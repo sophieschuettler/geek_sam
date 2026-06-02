@@ -63,11 +63,13 @@ db.serialize(() => {
   db.run(`CREATE TABLE IF NOT EXISTS participants (
     id INTEGER PRIMARY KEY,
     cosplayName TEXT,
+    pronomen TEXT,
     character TEXT,
     game TEXT,
     number INTEGER,
     characterImage TEXT,
-    text TEXT,
+    text1 TEXT,
+    text2 TEXT,
     cosplayImages TEXT,
     wearingImages TEXT,
     wipImages TEXT,
@@ -112,237 +114,177 @@ db.serialize(() => {
 const hardcodedParticipants = [
   {
     id: 1,
-    cosplayName: "Brotokolie",
-    character: "Dante",
-    game: "Devil May Cry 5",
+    cosplayName: "Roxy",
+    pronomen: "sie/ihr",
+    character: "Riyo",
+    game: "Gachiakuta",
     number: 1,
-    characterImage: JSON.stringify([`${BASE_URL}/uploads/brotokolieRef.jpg` ]),
-    text: `Es war 2021 mein erstes Cosplay, welches ich über die Jahre verbessert habe. \n Den Mantel habe ich damals auf Etsy gekauft und dann weiter bearbeitet indem ich ihn so zugerichtet habe, als ob er schon Kampfspuren erlitten hat. Jegliche Rillen und das Ende vom Mantel habe ich eingefärbt, zerschnitten oder abgeschleift, so als wäre er durch den Dreck gezogen worden und in Kämpfen war. Das gleiche habe ich mit der Hose (auf die ich noch zusätzlich Knöpfe angebracht habe), den Handschuhen, dem Shirt und den Schuhen gemacht. Die 4 Gürtel die um seine Stiefel hängen habe ich gekürzt und die Schnallen golden gefärbt. \n Die Gürtelschnalle habe ich aus Knetmasse und Foam hergestellt. \n Den Totenschädel auf dem Rücken habe ich 3d gedruckt, silbern bemalt und aufgeklebt. \n Das Schwert 3D gedruckt und bemalt. Mittlerweile habe ich das nochmal überarbeitet und größer gemacht.`,
-    link: "Instagram.com/brotokolie",
+    characterImage: JSON.stringify([`${BASE_URL}/uploads/Roxy_Ref.1.png` ]),
+    text1: `Auf den näh Aspekt : Stickereien an der Jacke und die Schere`,
+    text2: `Ich habe die Jacke selber bedruckt und genäht außer dem habe ich die Schere selbst gebaut `,
+
+    link: "",
     wearingImages: JSON.stringify([
-      `${BASE_URL}/uploads/brotokolieTryon1.jpg`,
-      `${BASE_URL}/uploads/brotokolieTryon2.jpg`,
+      `${BASE_URL}/uploads/Roxy_Ref.4.png`,
     ]),
     wipImages: JSON.stringify([
-      `${BASE_URL}/uploads/Brotokolie_WIP1.jpeg`,
-      `${BASE_URL}/uploads/Brotokolie_WIP2.jpeg`,
-      `${BASE_URL}/uploads/Brotokolie_WIP3.jpeg`,
-      `${BASE_URL}/uploads/Brotokolie_WIP4.jpg`,
-      `${BASE_URL}/uploads/Brotokolie_WIP5.jpg`,
-      `${BASE_URL}/uploads/Brotokolie_WIP6.jpg`,
-      `${BASE_URL}/uploads/Brotokolie_WIP7.jpg`,
-      `${BASE_URL}/uploads/Brotokolie_WIP8.jpg`,
+      `${BASE_URL}/uploads/Roxy_Ref.1.jpg`,
+      `${BASE_URL}/uploads/Roxy_Ref.2.png`,
+      `${BASE_URL}/uploads/Roxy_Ref.3.png`,
+
     ]),
     cosplayImages: JSON.stringify([]),
     buildBook: null,
   },
   {
     id: 2,
-    cosplayName: "TunajCosplay",
-    character: "Zani",
-    game: "Wuthering Waves",
+    cosplayName: "Vani",
+    pronomen: "sie/ihr",
+    character: "Hiiaka",
+    game: "OC selbst erstellt",
     number: 2,
      characterImage: JSON.stringify([ 
-      `${BASE_URL}/uploads/TunajCosplay_Zani_Wuthering Waves_Ref1.jpg`,
-       `${BASE_URL}/uploads/TunajCosplay_Zani_Wuthering Waves_Ref2.jpg`,
+      `${BASE_URL}/uploads/Vani_Ref.1.JPG`,
     ]),
-    text: `Das Kostüm ist komplett selbst gemacht, auch die Schnittmuster habe ich selbst erstellt. Besonders stolz bin ich auf die Hose. Der Schnitt war etwas herausfordernd, z.B. mit den zwei Reißverschlüssen vorne. Aber ich mag die Hose und vor allem die Passform sehr. \n Ich habe neben Näharbeiten auch weitere Techniken verwendet: Foam Crafting, z.B. für die Taschenuhr und die Hörner; die Rüschen an Hose und Cape sind mit Farbverlauf eingefärbt und auf der Armbinde ist ein Symbol aus Bügelfolie (auch dieses Muster habe ich selbst erstellt und dann mit den Plotter ausgeschnitten).`,
-
-    link: "Instagram.com/tunajcosplay/",
+    text1: `Eva Foam/Stoff/LEDs/Heißkleber/Watte /silberne Plastik Folie/Stern Stanzer/Ast für den Elfen Stab `,
+    text2: `LED Eigenkreation `,
+    link: "",
     wearingImages: JSON.stringify([
-      `${BASE_URL}/uploads/TunajCosplay_Tryon1.jpg`,
-      `${BASE_URL}/uploads/TunajCosplay_Tryon2.jpg`,
-      `${BASE_URL}/uploads/TunajCosplay_Tryon3.jpg`,
-      `${BASE_URL}/uploads/TunajCosplay_Tryon4.jpg`,
+      `${BASE_URL}/uploads/Vani_Ref.2.JPG`,
     ]),
     wipImages: JSON.stringify([]),
     cosplayImages: JSON.stringify([]),
-    buildBook: `${BASE_URL}/uploads/tunaj_buildbook.pdf`,
+    buildBook: null,
   },  {
     id: 3,
-    cosplayName: "KellyGreeny",
-    character: "Nick Valentine",
-    game: "Fallout 4",
+    cosplayName: "Cheesu Cosplay",
+    pronomen: "sie/ihr",
+    character: "Alice Liddell",
+    game: "Alice: Madness Returns",
     number: 3,
-    characterImage: JSON.stringify([`${BASE_URL}/uploads/KellyGreeny.jpg`]), 
+    characterImage: JSON.stringify([`${BASE_URL}/uploads/Alice-1.jpg`]), 
     
-    text: `Die mechanische Hand und das Make-Up, sowie die versteckten Holster sind meine Lieblingsteile neben dem ikonischen Mantel. Der Mantel besteht aus zwei Secondhand Mänteln, dich ich auseinandergenommen habe und auf den Charakter angepasst sowie gewettert und mit Zierstichen versehen habe. Das Hemd ist komplett selbstgemacht. Die Hose, Schue, Gürtel, Kravatte und Hut sind zum großen Teil Seconhand oder gekauft, aber auch angepasst und gewettert. Die beiden Revolver sowie das Holotape sind 3D gedruckt, zusammengebaut, bemalt und gewettert von mir. Die mechanische Hand ist komplett selbst entworfen und gebaut aus Foam, Worbla und Holz. Der Basis Handschuh ist mein bester Handschuh bis jetzt! Zudem bringe ich meine Lieblingsrequsite mit, wo ich sogar LEDs drin verbaut habe.`,
-    link: "Instagram.com/kellyblueycosplay",
-    wipImages: JSON.stringify([
-      `${BASE_URL}/uploads/KellyGreeny_WIP1.jpg`,
-      `${BASE_URL}/uploads/KellyGreeny_WIP2.jpg`,
-      `${BASE_URL}/uploads/KellyGreeny_WIP3.jpg`,
-      `${BASE_URL}/uploads/KellyGreeny_WIP4.jpg`,
-      `${BASE_URL}/uploads/KellyGreeny_WIP5.jpg`,
-      `${BASE_URL}/uploads/KellyGreeny_WIP6.jpg`,
-      `${BASE_URL}/uploads/KellyGreeny_WIP7.jpg`,
-      `${BASE_URL}/uploads/KellyGreeny_WIP8.jpg`,
-      `${BASE_URL}/uploads/KellyGreeny_WIP9.jpg`,
-      `${BASE_URL}/uploads/KellyGreeny_WIP10.jpg`,
-    ]),
+    text1: `Viele verschiedene Techniken verwendet: 3D Modelle erstellen, drucken & nachbearbteiten, sculpting, LED's & Rauchmaschine bauen, Schnmittmustererstellung, Paintjob & weathering, saubere Nahtverarbeitung `,
+    text2: `Dieses Cosplay wurde vollständig selbst umgesetzt. Von allen Schnittmustern über die 3D-Modelle bis hin zu Druck, Nachbearbeitung und Bemalung.
+Auf eine saubere Verarbeitung von Kopf bis Fuß wurde hier besonders Wert gelegt.
+Der Fokus lag auf der Kombination klassischer Schneidertechniken mit digitalem Sculpting und funktionaler Elektronik.
+Das „Knightmare Hobbyhorse“ wurde eigenständig modelliert, gedruckt und mit LEDs sowie Raucheffekt ausgestattet.
+Um ein schönes Ergebnis ohne Printlines zu erhalten, habe ich über mehrere Wochen den Hobbyhorse-Druck kontinuierlich geschliffen und ausgebessert.
+Zusätzlich wurden sämtliche Stoffteile individuell konstruiert, gefüttert und detailgenau an die Game-Referenz angepasst, inklusive funktionaler Details und präziser Weathering-Elemente.
+Auf kleine Details welche viel Zeit in Anspruch genommen haben, wie die Strumpfhose, habe ich Wert gelegt. Auch wenn diese auf den ersten Blick kaum sichtbar sind.
+Die Stoffauswahl hat ebenfalls viel Zeit in Anspruch genommen, da ich verschiedene Texturen und Materialien verwenden wollte, um das Cosplay optisch noch spannender wirken zu lassen. `,
+    link: "",
+    wipImages: JSON.stringify([]),
     wearingImages: JSON.stringify([
-       `${BASE_URL}/uploads/KellyGreeny_Tryon1.jpg`,
-       `${BASE_URL}/uploads/KellyGreeny_Tryon2.jpg`,
-       `${BASE_URL}/uploads/KellyGreeny_Tryon3.jpg`,
+       `${BASE_URL}/uploads/Alice-2.jpg`,
+
     ]),
     cosplayImages: JSON.stringify([]),
-    buildBook: null ,
+    buildBook: `${BASE_URL}/uploads/Buildbook_Alice-Liddell_Cheesu-Cosplay.pdf`,
   },{
     id: 4,
-    cosplayName: "CosplayManie",
-    character: "Oathbreaker Knight / Eidbrecher Ritter",
-    game: "Baldurs Gate 3",
+    cosplayName: "Maki",
+    pronomen: "sie/ihr",
+    character: "Asagiri Gen",
+    game: "Dr. Stone",
     number: 4,
     characterImage: JSON.stringify([
-      `${BASE_URL}/uploads/CosplayManie.jpg`,
-      `${BASE_URL}/uploads/CosplayManie2.jpeg`,
-      `${BASE_URL}/uploads/CosplayManie3.jpeg`,
-      `${BASE_URL}/uploads/CosplayManie4.jpeg`,
-      `${BASE_URL}/uploads/CosplayManie5.jpeg`,
+      `${BASE_URL}/uploads/DrStone_Gen_Refs.pdf`,
+
     
     ]),
-    text: `besonderst Stolz bin ich auf die ganzen detailreichen goldenen Schnörkeleien auf der Rüstung welche viel Zeit benötigt haben um sie so akkurat wie möglich zu bekommen. Ebenso die einzigartige Helmform war nicht ohne
-Alles ist selbstgemacht, außer die Hose und das Oberteil was ich unten drunter trage sowie die Stickerei im Rock`,
-    link: "Instagram.com/cosplaymanie",
+    text1: `Die Auswahl der Stoffe bezüglich Farben (möglichst akkurat wie im Anime).`,
+    text2: `Bis auf die Unterwäsche zu 100% selbst gemacht!
+Die Wig ist auch aus 2 unterschiedlichen Wigs zusammengenäht.
+Auf meinem Instagram Profil (Highlights "Dr. Stone WIP") kann man den Progress mitverfolgen.
+Fun fact: Gen und ich haben am selben Tag Geburtstag! (Wir sind beide Aprilscherze :D)`,
+
+
+    link: "",
     wipImages: JSON.stringify([
-      `${BASE_URL}/uploads/CosplayManie_WIP1.jpeg`,
-      `${BASE_URL}/uploads/CosplayManie_WIP2.jpeg`,
-      `${BASE_URL}/uploads/CosplayManie_WIP3.jpeg`,
-      `${BASE_URL}/uploads/CosplayManie_WIP4.jpeg`,
-      `${BASE_URL}/uploads/CosplayManie_WIP5.jpeg`,
-      `${BASE_URL}/uploads/CosplayManie_WIP6.jpeg`,
-      `${BASE_URL}/uploads/CosplayManie_WIP7.jpeg`,
-      `${BASE_URL}/uploads/CosplayManie_WIP8.jpeg`,
-      `${BASE_URL}/uploads/CosplayManie_WIP9.jpeg`,
-      `${BASE_URL}/uploads/CosplayManie_WIP10.jpeg`,
+      `${BASE_URL}/uploads/Maki_Ref.1.jpg`,
+      `${BASE_URL}/uploads/Maki_Ref.2.jpg`,
+      `${BASE_URL}/uploads/Maki_Ref.3.png`,
     ]),
-    wearingImages: JSON.stringify([
-       `${BASE_URL}/uploads/CosplayManie_Tryon1.jpeg`,
-       `${BASE_URL}/uploads/CosplayManie_Tryon2.jpeg`,
-       `${BASE_URL}/uploads/CosplayManie_Tryon3.jpeg`,
-       `${BASE_URL}/uploads/CosplayManie_Tryon4.jpeg`,
-       `${BASE_URL}/uploads/CosplayManie_Tryon5.jpeg`,
-    ]),
+    wearingImages: JSON.stringify([]),
     cosplayImages: JSON.stringify([]),
     buildBook: null ,
   },{
     id: 5,
-    cosplayName: "elandacosplay",
-    character: "Ranni",
-    game: "Elden Ring",
+    cosplayName: "Spongebob",
+    pronomen: "sie/ihr",
+    character: "Spongebob Schwammkopf",
+    game: "Spongebob",
     number: 5,
     characterImage: JSON.stringify([
-      `${BASE_URL}/uploads/elandacosplay.webp`,
-      `${BASE_URL}/uploads/elandacosplay1.webp`,
-      `${BASE_URL}/uploads/elandacosplay2.webp`,
-      `${BASE_URL}/uploads/elandacosplay3.webp`,
-  
+      `${BASE_URL}/uploads/Spongebob_Ref.1.jpg`,  
     ]),
-    text: `Es ist mein erstes komplett selbstgemachtes Cosplay! Das Nähen verlief besser als gedacht und ich hab das ganze in etwa 5 Monaten gemacht. 
-Da ich noch nicht lange selber nähe, hab ich die Schnittmuster bei Made by Tsuya bestellt. 
-Die Wig ist ebenfalls gekauft, aber sonst selber gestyled.
+    text1: `Styropor `,
+    text2: `Mein cosplay ist aus recycelten Materialien und ist mein erstes cosplay`,
 
-Ich hab selber alle Stoffe dafür gekauft, die Schnittmuster gedruckt und zusammengeklebt und dann die Stoffe ausgeschnitten und zusammen genäht. 
-Das zweite Paar Arme ist 3d gedruckt, auch dafür wurde eine von Etsy erworbene STL Datei genutzt, die allerdings für kleine Puppen gemacht ist. Diese musste ich dann hoch skalieren damit sie auch an meine Körpergröße angepasst sind. Sie wurden mit künstlichen Nägeln und Garn dann an das Original angepasst.
-
-Die Arme werden dann an einem, aus Gurtband selbst genähten Harness befestigt und mit Angelschnur an meinen Armen.
-Für meine eigenen Arme nutze ich gekaufte Handschuhe im passenden Blau-Ton, die ich dann mit neuen Fingernägeln ausgestattet habe. Und zusätzliche Risse und andere Effekte mit Farbe darauf gemalt.
-
-Der Hut besteht aus EVA-Foam. Damit er in Form bleibt, ist eine Menge Draht darin verklebt.
-Für den LED - Effekt ist eine kleine LED Leiste zwischen den Schichten verbaut. Die Schneeflocken Muster auf der untersten Schicht sind mit einer Heißklebepistole alle per Hand darauf gemacht und später wurde Farbe darüber gemacht.
-Die obere Schicht von Hut ist mit Stoff überzogen.
-Die Krone hab ich selber aus Draht gebogen.`,
-    link: "Instagram.com/elandacosplay",
+    link: "",
     wipImages: JSON.stringify([
-      `${BASE_URL}/uploads/elandacosplay_WIP1.jpg`,
-      `${BASE_URL}/uploads/elandacosplay_WIP2.jpg`,
-      `${BASE_URL}/uploads/elandacosplay_WIP3.jpg`,
-      `${BASE_URL}/uploads/elandacosplay_WIP4.jpg`,
-      `${BASE_URL}/uploads/elandacosplay_WIP5.jpg`,
-      `${BASE_URL}/uploads/elandacosplay_WIP6.jpg`,
-      `${BASE_URL}/uploads/elandacosplay_WIP7.jpg`,
-      `${BASE_URL}/uploads/elandacosplay_WIP8.jpg`,
-      `${BASE_URL}/uploads/elandacosplay_WIP9.jpg`,
-      `${BASE_URL}/uploads/elandacosplay_WIP10.jpg`,
-      `${BASE_URL}/uploads/elandacosplay_WIP11.jpg`,
-      `${BASE_URL}/uploads/elandacosplay_WIP12.jpg`,
-      `${BASE_URL}/uploads/elandacosplay_WIP13.jpg`,
-      `${BASE_URL}/uploads/elandacosplay_WIP14.jpg`,
-      `${BASE_URL}/uploads/elandacosplay_WIP15.jpg`,
-      `${BASE_URL}/uploads/elandacosplay_WIP16.jpg`,
-      `${BASE_URL}/uploads/elandacosplay_WIP17.jpg`,
-      `${BASE_URL}/uploads/elandacosplay_WIP18.jpg`,
+      `${BASE_URL}/uploads/Spongebob_Ref.4.jpg`,
+
    
     ]),
     wearingImages: JSON.stringify([
-       `${BASE_URL}/uploads/elandacosplay_Tryon.jpg`,
-       `${BASE_URL}/uploads/elandacosplay_Tryon1.jpg`,
-       `${BASE_URL}/uploads/elandacosplay_Tryon2.jpg`,
-       `${BASE_URL}/uploads/elandacosplay_Tryon3.jpg`,
+       `${BASE_URL}/uploads/Spongebob_Ref.2.jpg`,
+       `${BASE_URL}/uploads/Spongebob_Ref.3.jpg`,
+ 
     ]),
     cosplayImages: JSON.stringify([]),
     buildBook: null ,
   },{
     id: 6,
-    cosplayName: "Genji Nihon",
-    character: "Cassidy (ehem. McCree)",
-    game: "Overwatch",
+    cosplayName: "Rhomi",
+    pronomen: "sie/ihr",
+    character: "Rengoku Kyojuro",
+    game: "Demon Slayer",
     number: 6,
     characterImage: JSON.stringify([
-      `${BASE_URL}/uploads/Genji.Nihon1.jpg`,
-      `${BASE_URL}/uploads/Genji.Nihon2.jpg`,
+      `${BASE_URL}/uploads/demon-slayer-rengoku-reference-sheet.png`,
     ]),
-    text: `Cassidy ist mein zweites Projekt, nach Genji. In ihm spiegelt sich inzwischen mein Fortschritt in den diversen Crafting-Skills wieder, seit ich vor knapp 5 Jahren angefangen habe, Cosplays zu bauen. Angefangen mit dem Entwurf der Pattern, filigranerer und sauberer Bau mit Foam, Shading und Weathering beim Lackieren, Stoffe und nähen (lange Zeit mein Endgegner!), Wig und Bart-Tuning und zuletzt auch der Einbau von LED.
-Nach mehreren Verbesserungen hat Cassidy vor kurzem einen "D-Check" erhalten. Also, komplette Neulackierung, Einbau besserer LED, Detailarbeiten an der Rüstung. In ihm stecken jetzt so ziemlich alle Skills drin, die ich in den letzten Jahren aufgebaut habe.`,
-    link: "Instagram.com/genji.nihon",
-    wipImages: JSON.stringify([
-      `${BASE_URL}/uploads/Genji.Nihon_WIP1.jpeg`,
-      `${BASE_URL}/uploads/Genji.Nihon_WIP2.jpeg`,
-      `${BASE_URL}/uploads/Genji.Nihon_WIP3.jpeg`,
-      `${BASE_URL}/uploads/Genji.Nihon_WIP4.jpeg`,
-      `${BASE_URL}/uploads/Genji.Nihon_WIP5.jpeg`,
-      `${BASE_URL}/uploads/Genji.Nihon_WIP6.jpeg`,
-      `${BASE_URL}/uploads/Genji.Nihon_WIP7.jpeg`,
-    ]),
-    wearingImages: JSON.stringify([
-       `${BASE_URL}/uploads/Genji.Nihon_Tryon1.jpg`,
-       `${BASE_URL}/uploads/Genji.Nihon_Tryon2.jpg`,
-       `${BASE_URL}/uploads/Genji.Nihon_Tryon3.jpg`,
-       `${BASE_URL}/uploads/Genji.Nihon_Tryon4.jpg`,
+    text1: `Färbung und Styling der Perrücke; Stabilisierung und Konstruktion des Schwertes`,
+    text2: `Die Perrücke ist weich und bleibt auch bei Gegendruck in Form.
+Die gekaufte Basis-Wig war für meinen Kopf zu klein, daher habe ich sie erweitert, durch knüpfen an der Lace Front und das einkleben und -nähen zusätzlicher Tressen hinten.
+Das Schwert kann kraftvoll geschwungen werden. Darauf bin ich sehr stolz, weil ich mich zuvor nicht an das Bauen von Props getraut hatte, das ist mein erstes Schwert. Es war mir wichtig, dass es für den Effekt mit den Flammen aus Tüll und LED "furchtfrei" bewegt werden kann.
+Am Kostüm war mein persönliches Highlight, herauszufinden, wie ich die schön puffige Hose umsetzen kann und das Nähen der Paspeltasche am Oberteil vorne.`,
 
+    link: "",
+    wipImages: JSON.stringify([
+      `${BASE_URL}/uploads/Rengoku-Haare.jpg`,
+      `${BASE_URL}/uploads/Rengoku-Klamotten.jpg`,
+      `${BASE_URL}/uploads/Rengoku-Schwert.jpg`,
     ]),
+    wearingImages: JSON.stringify([]),
     cosplayImages: JSON.stringify([]),
     buildBook: null ,
   },
   {
     id: 7,
-    cosplayName: "Vampirfranzi",
-    character: "Xal´atath",
-    game: "World of Warcraft",
+    cosplayName: "Jules",
+    pronomen: "sie/ihr",
+    character: "Kohaku",
+    game: "Dr. Stone",
     number: 7,
     characterImage: JSON.stringify([
-      `${BASE_URL}/uploads/Vampirfranzi1.jpg`,
-      `${BASE_URL}/uploads/Vampirfranzi2.jpg`,
-      `${BASE_URL}/uploads/Vampirfranzi3.jpg`,
-      `${BASE_URL}/uploads/Vampirfranzi4.jpg`,
-   
-  
-    ]),
-    text: `Das Cosplay ist zu fast allen Teilen selbst gemacht, nur Basics wie Perücke oder Strumpfhosen wurden gekauft, jedoch selbst weiter verarbeitet bzw gestyled. Alle Schnittmuster sind selbst angefertigt, egal ob für Schneiderarbeiten oder Foamarbeiten. Ich habe zudem viele verschiedene Techniken genutzt, zum Beispiel 3D Modellierung, 3D Druck, Foamarbeit, Schneiderarbiet und Elektronik. Der Galaxystoff für den Umhang habe ich händisch in Procreate gezeichnet und drucken lassen, zudem ist der Umhang mit LEDs bestückt, um die Galaxy zum Leben zu erwecken. Die zwei Porps, die Xal´atath hat, das Dunkle Herz und ihre Klinge sind 3D gedruckt und selbst modelliert. Die Klinge hat zudem noch einige Foamschichten bekommen. In beiden Props befinden sich LEDs, die wie der Umhang von einem Arduino gesteuert werden. Ein Details, das ich besonders gerne mag, sind die handgeknüpften Augenbrauen, die ich mit den abgeschnittenen Perückenhaaren und einem Stück Perückennetz, das ich von einer Lacefront abgeschnitten habe, gemacht habe. 
-Außerdem habe ich für meine Performance einen kleinen Magic Trick eingebaut. Das Dunkle Herz schwebt häufig in Xal´ataths Hand, deshalb habe ich einen befreundeten Magier gefragt, und wir haben es mit einem ganz einfachen und alten Trick genutzt, um das auf der Bühne möglich zu machen. `,
-    link: "Instagram.com/franziska_adam",
+      `${BASE_URL}/uploads/Kohaku.png`]),
+    text1: `Perückenstyling, Probs (EVA Foam)`,
+    text2: `Die Perücke wird als Helmperücke mit abnehmbarem Zopf gestyled, um Kohakus Frisur darstellen zu können.
+Die Messer werden am Schild befestigt und sind herausnehmbar. Die Probs sind aus EVA Foam hergestellt.
+Das Kleid wirkt simpel und funktional, die Kürze ist herausfordernd, um am Charakter zu bleiben aber gleichzeitig auch Convention-tauglich zu sein.
+Ich strebe einen „used look“ an, damit der Charakter so realistisch wie möglich dargestellt wird.`,
+
+    link: "",
     wipImages: JSON.stringify([
-         
+         `${BASE_URL}/uploads/Mittel-WIP-Kohaku.png`
     ]),
     wearingImages: JSON.stringify([
-       `${BASE_URL}/uploads/Vampirfranzi_Tryon1.jpg`,
-       `${BASE_URL}/uploads/Vampirfranzi_Tryon2.jpg`,
-       `${BASE_URL}/uploads/Vampirfranzi_Tryon3.jpg`,
-       `${BASE_URL}/uploads/Vampirfranzi_Tryon4.jpg`,
 
     ]),
     cosplayImages: JSON.stringify([]),
-    buildBook: `${BASE_URL}/uploads/Vampirfranzi_BuildBook.pdf`,
+    buildBook: null,
   },/* {
     id: 11,
     cosplayName: "World's Trouble",
@@ -379,7 +321,7 @@ Außerdem habe ich für meine Performance einen kleinen Magic Trick eingebaut. D
     ]),
     cosplayImages: JSON.stringify([]),
     buildBook: null ,
-  } */,{
+  } ,{
     id: 8,
     cosplayName: "Syjo Cosplay",
     character: "SA-25 Steel Trooper",
@@ -513,7 +455,7 @@ Dieses Cosplay hat sehr viel Zeit und Energie abverlangt, daher bin ich auf das 
     ]),
     cosplayImages: JSON.stringify([]),
     buildBook: null ,
-  } */,{
+  } ,{
     id: 11,
     cosplayName: "Isell_Cosplay",
     character: "Barioth Rüstung mit den Dango Dual Blades",
@@ -677,6 +619,7 @@ Comissioned: 3D-Druck der Rüstung, (aufarbeiten, kleben und airbrush by me), Wi
     cosplayImages: JSON.stringify([]),
     buildBook: null ,
   },
+  */
 
 
 ];
@@ -684,12 +627,12 @@ Comissioned: 3D-Druck der Rüstung, (aufarbeiten, kleben und airbrush by me), Wi
 db.serialize(() => {
   const insert = db.prepare(
     `INSERT OR IGNORE INTO participants
-    (id, cosplayName, number, characterImage, text, character, game, cosplayImages, wearingImages, wipImages, buildBook, link)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+    (id, cosplayName, pronomen, number, characterImage, text1, text2, character, game, cosplayImages, wearingImages, wipImages, buildBook, link)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
   );
   hardcodedParticipants.forEach((p) => {
     insert.run(
-      p.id, p.cosplayName, p.number, p.characterImage, p.text, p.character, p.game,
+      p.id, p.cosplayName, p.pronomen, p.number, p.characterImage, p.text1, p.text2, p.character, p.game,
       p.cosplayImages, p.wearingImages, p.wipImages, p.buildBook, p.link
     );
   });
