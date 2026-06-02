@@ -116,7 +116,7 @@ const hardcodedParticipants = [
     character: "Dante",
     game: "Devil May Cry 5",
     number: 1,
-    characterImage: JSON.stringify([`${BASE_URL}/uploads/brotokolieRef.jpg` ]),
+    characterImage: JSON.stringify([`./uploads/brotokolieRef.jpg` ]),
     text: `Es war 2021 mein erstes Cosplay, welches ich über die Jahre verbessert habe. \n Den Mantel habe ich damals auf Etsy gekauft und dann weiter bearbeitet indem ich ihn so zugerichtet habe, als ob er schon Kampfspuren erlitten hat. Jegliche Rillen und das Ende vom Mantel habe ich eingefärbt, zerschnitten oder abgeschleift, so als wäre er durch den Dreck gezogen worden und in Kämpfen war. Das gleiche habe ich mit der Hose (auf die ich noch zusätzlich Knöpfe angebracht habe), den Handschuhen, dem Shirt und den Schuhen gemacht. Die 4 Gürtel die um seine Stiefel hängen habe ich gekürzt und die Schnallen golden gefärbt. \n Die Gürtelschnalle habe ich aus Knetmasse und Foam hergestellt. \n Den Totenschädel auf dem Rücken habe ich 3d gedruckt, silbern bemalt und aufgeklebt. \n Das Schwert 3D gedruckt und bemalt. Mittlerweile habe ich das nochmal überarbeitet und größer gemacht.`,
     link: "Instagram.com/brotokolie",
     wearingImages: JSON.stringify([
