@@ -101,9 +101,6 @@ export default function Navbar() {
 
           <img src={Logo} alt="Logo" className="w-[150px]" />
 
-          <div className="font-heading text-xl font-bold tracking-wide">
-            Contest Bewertung
-          </div>
 
           {/* Desktop */}
           <div className="hidden md:flex space-x-4 items-center">
