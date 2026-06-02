@@ -154,18 +154,18 @@ export default function Navbar() {
               className="block px-4 py-3"
             >
               {label}
-            </NavLink>
-          ))}
-          <div>
-            {user && (
+{user && (
               <button
                 onClick={handleLogout}
-                className="px-3 py-1 bg-red-600 rounded"
+                className="block px-3 py-1 bg-red-600 rounded"
               >
                 Logout
               </button>
             )}
-          </div>
+            </NavLink>
+            
+          ))}
+          
         </div>
       )}
     </nav>
