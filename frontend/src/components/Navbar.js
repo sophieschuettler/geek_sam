@@ -133,15 +133,7 @@ export default function Navbar() {
 
           {/* Mobile */}
           <div className="flex items-center gap-2 md:hidden">
-            {user && (
-              <button
-                onClick={handleLogout}
-                className="px-3 py-1 bg-red-600 rounded"
-              >
-                Logout
-              </button>
-            )}
-
+            
             <MaterialUISwitch checked={darkMode} onChange={toggleTheme} />
 
             <button onClick={() => setOpen(!open)}>
@@ -164,6 +156,15 @@ export default function Navbar() {
               {label}
             </NavLink>
           ))}
+          {user && (
+              <button
+                onClick={handleLogout}
+                className="px-3 py-1 bg-red-600 rounded"
+              >
+                Logout
+              </button>
+            )}
+
         </div>
       )}
     </nav>
