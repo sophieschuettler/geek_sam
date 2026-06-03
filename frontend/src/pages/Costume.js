@@ -220,10 +220,8 @@ const nominations = [
 
   return (
     <div
-      className={`min-h-screen p-6 pb-24 flex flex-col items-center transition-colors ${
-        darkMode
-          ? "bg-gradient-to-b from-[#9c2d50] to-[#5E689A] text-gray-100"
-          : "bg-gradient-to-b from-[#ff7ea7] to-[#5E689A] text-gray-900"
+      className={`min-h-screen p-6 flex flex-col items-center transition-colors ${
+        darkMode ? "bg-gray-900 text-gray-100" : "bg-blue-50 text-gray-900"
       }`}
       style={{ overflowX: "hidden", width: "100%" }}
     >

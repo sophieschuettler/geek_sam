@@ -207,11 +207,10 @@ const nominations = [
   if (!currentParticipant) return <p>Lade Teilnehmer...</p>;
 
   return (
-    <div className={`min-h-screen p-6 pb-24 flex flex-col items-center transition-colors ${
-       darkMode
-          ? "bg-gradient-to-b from-[#9c2d50] to-[#5E689A] text-gray-100"
-          : "bg-gradient-to-b from-[#ff7ea7] to-[#5E689A] text-gray-900"
-    }`}>
+    <div className={`min-h-screen p-6 flex flex-col items-center transition-colors ${
+        darkMode ? "bg-gray-900 text-gray-100" : "bg-blue-50 text-gray-900"
+      }`}
+      style={{ overflowX: "hidden", width: "100%" }}>
       <h1 className={`text-3xl font-bold mb-6 text-center ${
         darkMode ? "text-blue-300" : "text-blue-700"
       }`}>

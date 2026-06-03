@@ -47,6 +47,7 @@ const role = user?.role;
       className={`min-h-screen p-6 flex flex-col items-center transition-colors ${
         darkMode ? "bg-gray-900 text-gray-100" : "bg-blue-50 text-gray-900"
       }`}
+      style={{ overflowX: "hidden", width: "100%" }}
     >
       <h1
         className={`text-3xl font-bold mb-6 text-center ${
