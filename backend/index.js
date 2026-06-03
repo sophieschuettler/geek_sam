@@ -446,7 +446,7 @@ app.get("/api/debug/all", async (req, res) => {
 async function startServer() {
   try {
     await initDB();
-
+    await seedParticipants();
     // 👇 DEBUG HIER
     const r = await pool.query("SELECT COUNT(*) FROM participants");
     console.log("📦 Participants in DB:", r.rows[0]);
