@@ -51,7 +51,7 @@ const saveNomination = async () => {
   try {
     setSaving(true);
 
-    const res = await fetch(`${API}/api/nominations`, {
+    const res = await fetch(`${API}/api/overview/nominations`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
