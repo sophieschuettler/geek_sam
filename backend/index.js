@@ -125,7 +125,7 @@ const hardcodedParticipants = [
       `${BASE_URL}/uploads/Roxy_Ref.1.jpg`,
       `${BASE_URL}/uploads/Roxy_Ref.2.png`,
       `${BASE_URL}/uploads/Roxy_Ref.3.png`,
-       `${BASE_URL}/uploads/Roxy_Ref.4.png`,
+       `${BASE_URL}/uploads/Roxy_Ref.4.jpg`,
 
     ]),
     cosplayImages: JSON.stringify([]),
