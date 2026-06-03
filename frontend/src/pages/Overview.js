@@ -260,17 +260,6 @@ const filteredGroups = Object.values(groupedRatings).filter(
 
     {nominations.length > 0 && (
       <div className="mt-6 p-4 rounded-lg bg-yellow-100 dark:bg-yellow-900 border">
-        <h4 className="font-bold text-lg mb-2">
-          Aktueller Gewinner
-        </h4>
-
-        <p>
-          {getParticipantName(nominations[0].participantId)}
-        </p>
-
-        <p className="text-sm opacity-80">
-          {nominations[0].votes} Nominierungen
-        </p>
       </div>
     )}
   </div>
