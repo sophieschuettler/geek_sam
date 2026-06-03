@@ -522,7 +522,6 @@ const nominations = [
           <button
             disabled={currentIndex >= participants.length - 1}
             onClick={() =>
-              submitRatings(),
               setCurrentIndex((i) => Math.min(participants.length - 1, i + 1))
             }
             className={`px-4 py-2 rounded font-medium transition ${
