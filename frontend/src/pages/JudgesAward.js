@@ -43,26 +43,6 @@ const loadData = async () => {
     console.error(err);
   }
 };
-const handleSelect = async (participantId) => {
-  setSelectedNominee(participantId);
-
-  try {
-    await fetch(`${API}/api/overview/nominations`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${user.token}`
-      },
-      body: JSON.stringify({
-        participantId,
-        user: user.username,
-        active: true
-      })
-    });
-  } catch (err) {
-    console.error("Auto-save failed:", err);
-  }
-};
 
 const saveNomination = async () => {
   if (!selectedNominee) {
@@ -161,7 +141,7 @@ const saveNomination = async () => {
               <div
                 key={participant.id}
                 onClick={() =>
-                  handleSelect(participant.id)
+                  setSelectedNominee(participant.id)
                 }
                 className={`
                   cursor-pointer
