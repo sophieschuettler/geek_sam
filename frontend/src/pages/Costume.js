@@ -178,9 +178,6 @@ const nominations = [
     active: !!participantRatings.bestCraft,
   },
 ];
-
-
-
     // 🔹 Bewertungen + Nominierungen in EINEM Request senden
     const res = await fetch(`${process.env.REACT_APP_API_URL}/api/rate`, {
       method: "POST",
@@ -211,9 +208,6 @@ const nominations = [
     alert("Netzwerkfehler beim Speichern.");
   }
 };
-
-
-
 
   if (!user) return <p>Bitte zuerst einloggen.</p>;
   if (!currentParticipant) return <p>Lade Teilnehmer...</p>;
@@ -426,21 +420,7 @@ const nominations = [
                       darkMode ? "bg-transparent text-gray-100" : "bg-transparent text-gray-900"
                     }`}
                   >
-                    {/* === Allgemeine Infos === */}
-                    <div className={` rounded-2xl shadow-lg w-full max-w-5xl flex flex-col gap-8 transition-colors ${
-                      darkMode ? "bg-gray-800 text-gray-100" : "bg-white text-gray-900"
-                    }`}>
-                        
-                      <div className={` p-6 rounded-2xl  w-full max-w-5xl flex flex-col gap-8 transition-colors ${
-                      darkMode ? "bg-gray-800 text-gray-100" : "bg-white text-gray-900"
-                    }`}>
-                       {currentParticipant.text && (
-                          <p className="mt-3 ">
-                            {currentParticipant.text}
-                          </p>
-                        )}
-                      </div>
-                    </div>
+                    
                               
                     {/* === WIP Bilder === */}
                     {currentParticipant.wipImages?.length > 0 && (
