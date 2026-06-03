@@ -55,11 +55,11 @@ router.get("/top/total", async (req, res) => {
     LIMIT 3
   `);
 
-  res.json(result.rows.map(r => ({
-    participantId: r.participantId,
-    cosplayName: r.cosplayName,
-    total: Number(r.total),
-  })));
+ res.json(result.rows.map(r => ({
+  participantId: r.participantid,
+  cosplayName: r.cosplayname,
+  totalScore: Number(r.total),
+})));
 });
 
 
@@ -111,10 +111,10 @@ router.get("/top/performance", async (req, res) => {
     `);
 
     res.json(result.rows.map(r => ({
-      participantId: r.participant_id,
-      cosplayName: r.cosplay_name,
-      total: Number(r.total),
-    })));
+  participantId: r.participantid,
+  cosplayName: r.cosplayname,
+  totalScore: Number(r.total),
+})));
 
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -141,10 +141,10 @@ router.get("/top/costume", async (req, res) => {
     `);
 
     res.json(result.rows.map(r => ({
-      participantId: r.participant_id,
-      cosplayName: r.cosplay_name,
-      total: Number(r.total),
-    })));
+  participantId: r.participantid,
+  cosplayName: r.cosplayname,
+  totalScore: Number(r.total),
+})));
 
   } catch (err) {
     res.status(500).json({ error: err.message });
