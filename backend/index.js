@@ -19,7 +19,7 @@ const BASE_URL = process.env.BACKEND_URL || `http://localhost:${PORT}`;
 const allowedOrigins = [
   "http://localhost:3000",
   "http://192.168.1.131:3000",
-  "https://geek-sam.vercel.app",
+  "https:/geekworld-contest.vercel.app",
 ];
 
 app.use(
