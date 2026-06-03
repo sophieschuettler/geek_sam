@@ -17,7 +17,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 import Teilnehmer from "./assets/bilder/Cosplay-Contest-Teilnehmer_01-1.webp";
 import Übersicht from "./assets/bilder/Cosplay-Contest_TK018721.webp";
-import Admin from "./assets/bilder/admin.jpg";
+import Admin from "./assets/bilder/Cosplay-Contest_TK018721.webp";
 
 export default function Dashboard({ user }) {
   const navigate = useNavigate();
@@ -56,10 +56,8 @@ const getUserImage = () => {
     <ThemeProvider theme={muiTheme}>
       <div
         className={`min-h-screen flex flex-col items-center py-10 px-4 transition-colors duration-300 ${
-          darkMode
-          ? "bg-gradient-to-b from-[#9c2d50] to-[#5E689A] text-gray-100"
-          : "bg-gradient-to-b from-[#ff7ea7] to-[#5E689A] text-gray-900"
-        }`}
+           darkMode ? "bg-gray-900 text-gray-100" : "bg-blue-50 text-gray-900"
+      }`}
       >
         {/* Titel */}
         <h1 className="text-3xl font-bold mb-8 text-center">
