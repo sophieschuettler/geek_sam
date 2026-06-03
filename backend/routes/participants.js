@@ -44,8 +44,8 @@ router.post(
     try {
       const { cosplayName, character, game } = req.body;
 
-      const characterImage = req.files.characterImage?.[0]?.filename || null;
-
+const characterImage =
+  JSON.stringify(req.files.characterImage?.map(f => f.filename) || []);
       const cosplayImages =
         req.files.cosplayImages?.map((f) => f.filename) || [];
 
@@ -84,24 +84,34 @@ router.get("/", async (req, res) => {
       "SELECT * FROM participants ORDER BY id ASC"
     );
 
-    const rows = result.rows.map((row) => ({
-      ...row,
-      characterImage: row.characterimage
-        ? `${BASE_URL}/uploads/${row.characterimage}`
-        : null,
+  const rows = result.rows.map((row) => ({
+  id: row.id,
+  cosplayName: row.cosplayname,
+  character: row.character,
+  game: row.game,
+  number: row.number,
 
-      cosplayImages: row.cosplayimages
-        ? JSON.parse(row.cosplayimages).map(
-            (f) => `${BASE_URL}/uploads/${f}`
-          )
-        : [],
+  characterImages: row.characterimage
+    ? (() => {
+        try {
+          const parsed = JSON.parse(row.characterimage);
+          return parsed.map(f => `${BASE_URL}/uploads/${f}`);
+        } catch {
+          return row.characterimage.startsWith("http")
+            ? [row.characterimage]
+            : [`${BASE_URL}/uploads/${row.characterimage}`];
+        }
+      })()
+    : [],
 
-      wipImages: row.wipimages
-        ? JSON.parse(row.wipimages).map(
-            (f) => `${BASE_URL}/uploads/${f}`
-          )
-        : [],
-    }));
+  cosplayImages: row.cosplayimages
+    ? JSON.parse(row.cosplayimages).map(f => `${BASE_URL}/uploads/${f}`)
+    : [],
+
+  wipImages: row.wipimages
+    ? JSON.parse(row.wipimages).map(f => `${BASE_URL}/uploads/${f}`)
+    : [],
+}));
 
     res.json(rows);
   } catch (err) {

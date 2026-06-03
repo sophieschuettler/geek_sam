@@ -4,149 +4,205 @@ const { Pool } = require("pg");
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false,
-  },
+  ssl: { rejectUnauthorized: false },
 });
 
 
-// --- BY JUDGE ---
+// =========================
+// BY JUDGE
+// =========================
 router.get("/by-judge", async (req, res) => {
   try {
     const result = await pool.query(`
-      SELECT username AS user,
-             participantId,
-             category,
-             criterion,
-             score
+      SELECT 
+        username,
+        participantId,
+        category,
+        criterion,
+        score
       FROM ratings
       ORDER BY username, participantId, category, criterion
     `);
 
-    res.json(result.rows);
+    const data = result.rows.map(r => ({
+      user: r.username,
+      participantId: r.participantid,
+      category: r.category,
+      criterion: r.criterion,
+      score: Number(r.score),
+    }));
+
+    res.json(data);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
 
 
-// --- TOTAL ---
+// =========================
+// TOTAL OVERVIEW
+// =========================
 router.get("/total", async (req, res) => {
   try {
     const result = await pool.query(`
       SELECT 
-        p.id AS participantId,
-        p.cosplayName,
+        p.id,
+        p.number,
+        p.cosplayname,
 
-        COALESCE(SUM(CASE WHEN r.category='costume' THEN r.score ELSE 0 END),0) AS costumeScore,
-        COALESCE(SUM(CASE WHEN r.category='performance' THEN r.score ELSE 0 END),0) AS performanceTotal,
-        COALESCE(SUM(r.score),0) AS totalScore
+        COALESCE(SUM(CASE WHEN r.category='costume' THEN r.score ELSE 0 END),0) AS costume_score,
+        COALESCE(SUM(CASE WHEN r.category='performance' THEN r.score ELSE 0 END),0) AS performance_score,
+        COALESCE(SUM(r.score),0) AS total_score
 
       FROM participants p
       LEFT JOIN ratings r ON p.id = r.participantId
-      GROUP BY p.id, p.cosplayName
-      ORDER BY totalScore DESC
+      GROUP BY p.id, p.number, p.cosplayname
+      ORDER BY total_score DESC
     `);
 
-    res.json(result.rows);
+    const data = result.rows.map(r => ({
+      participantId: r.id,
+      number: r.number,
+      cosplayName: r.cosplayname,
+      costumeScore: Number(r.costume_score),
+      performanceTotal: Number(r.performance_score),
+      totalScore: Number(r.total_score),
+    }));
+
+    res.json(data);
+
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
 
 
-// --- TOP 3 TOTAL ---
+// =========================
+// TOP 3 TOTAL
+// =========================
 router.get("/top/total", async (req, res) => {
   try {
     const result = await pool.query(`
-      SELECT p.cosplayName,
-             p.id AS participantId,
-             SUM(r.score) AS total
+      SELECT 
+        p.id AS participantId,
+        p.cosplayname,
+        SUM(r.score) AS total
       FROM ratings r
       JOIN participants p ON p.id = r.participantId
-      GROUP BY p.id
+      GROUP BY p.id, p.cosplayname
       ORDER BY total DESC
       LIMIT 3
     `);
 
-    res.json(result.rows);
+    res.json(result.rows.map(r => ({
+      participantId: r.participantid,
+      cosplayName: r.cosplayname,
+      total: Number(r.total),
+    })));
+
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
 
 
-// --- TOP 3 PERFORMANCE ---
+// =========================
+// TOP 3 PERFORMANCE
+// =========================
 router.get("/top/performance", async (req, res) => {
   try {
     const result = await pool.query(`
-      SELECT p.cosplayName,
-             p.id AS participantId,
-             SUM(r.score) AS total
+      SELECT 
+        p.id AS participantId,
+        p.cosplayname,
+        SUM(r.score) AS total
       FROM ratings r
       JOIN participants p ON p.id = r.participantId
       WHERE r.category = 'performance'
-      GROUP BY p.id
+      GROUP BY p.id, p.cosplayname
       ORDER BY total DESC
       LIMIT 3
     `);
 
-    res.json(result.rows);
+    res.json(result.rows.map(r => ({
+      participantId: r.participantid,
+      cosplayName: r.cosplayname,
+      total: Number(r.total),
+    })));
+
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
 
 
-// --- TOP 3 COSTUME ---
+// =========================
+// TOP 3 COSTUME
+// =========================
 router.get("/top/costume", async (req, res) => {
   try {
     const result = await pool.query(`
-      SELECT p.cosplayName,
-             p.id AS participantId,
-             SUM(r.score) AS total
+      SELECT 
+        p.id AS participantId,
+        p.cosplayname,
+        SUM(r.score) AS total
       FROM ratings r
       JOIN participants p ON p.id = r.participantId
       WHERE r.category = 'costume'
-      GROUP BY p.id
+      GROUP BY p.id, p.cosplayname
       ORDER BY total DESC
       LIMIT 3
     `);
 
-    res.json(result.rows);
+    res.json(result.rows.map(r => ({
+      participantId: r.participantid,
+      cosplayName: r.cosplayname,
+      total: Number(r.total),
+    })));
+
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
 
 
-// --- NOMINATIONS OVERVIEW ---
+// =========================
+// NOMINATIONS OVERVIEW
+// =========================
 router.get("/nominations", async (req, res) => {
   try {
     const result = await pool.query(`
       SELECT
         p.id AS participantId,
-        p.cosplayName,
+        p.cosplayname,
         COUNT(n.id) AS votes,
-        COALESCE(STRING_AGG(n.userName, ', '), '') AS judges
+        COALESCE(STRING_AGG(n.username, ', '), '') AS judges
       FROM participants p
       LEFT JOIN nominations n
         ON p.id = n.participantId
         AND n.nominationType = 'Judges Award'
-      GROUP BY p.id, p.cosplayName
+      GROUP BY p.id, p.cosplayname
       ORDER BY votes DESC, p.id ASC
     `);
 
-    res.json(result.rows);
+    res.json(result.rows.map(r => ({
+      participantId: r.participantid,
+      cosplayName: r.cosplayname,
+      votes: Number(r.votes),
+      judges: r.judges,
+    })));
+
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
 
 
-// --- NOMINATION TOGGLE ---
+// =========================
+// NOMINATION TOGGLE
+// =========================
 router.post("/nominations", async (req, res) => {
-  const { participantId, nominationType, user, active } = req.body;
+  const { participantId, user, active } = req.body;
 
   try {
     if (active) {
