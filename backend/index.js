@@ -447,6 +447,10 @@ async function startServer() {
   try {
     await initDB();
 
+    // 👇 DEBUG HIER
+    const r = await pool.query("SELECT COUNT(*) FROM participants");
+    console.log("📦 Participants in DB:", r.rows[0]);
+
     if (process.env.NODE_ENV !== "production") {
       await seedParticipants();
     }
