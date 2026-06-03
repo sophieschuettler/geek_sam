@@ -71,7 +71,7 @@ const saveNomination = async () => {
       throw new Error(text);
     }
 
-    alert("🏆 Judges Award gespeichert!");
+    alert("Judges Award gespeichert!");
   } catch (err) {
     console.error(err);
     alert("Fehler beim Speichern.");
@@ -95,9 +95,7 @@ const saveNomination = async () => {
   return (
     <div
       className={`min-h-screen p-6 ${
-        darkMode
-          ? "bg-gradient-to-b from-[#9c2d50] to-[#5E689A] text-white"
-          : "bg-gradient-to-b from-[#ff7ea7] to-[#5E689A] text-gray-900"
+        darkMode ? "bg-gray-900 text-gray-100" : "bg-blue-50 text-gray-900"
       }`}
     >
       <div className="max-w-7xl mx-auto">
@@ -122,7 +120,7 @@ const saveNomination = async () => {
             <>
               Aktuell nominiert:
               <div className="font-bold text-xl mt-2">
-                🏆 #{selectedParticipant.number}{" "}
+                 #{selectedParticipant.number}{" "}
                 {selectedParticipant.cosplayName}
               </div>
             </>
@@ -203,7 +201,7 @@ const saveNomination = async () => {
 
                   {selected && (
                     <div className="mt-3 font-bold text-yellow-500">
-                      🏆 Deine Nominierung
+                      Deine Nominierung
                     </div>
                   )}
                 </div>
@@ -229,7 +227,7 @@ const saveNomination = async () => {
           >
             {saving
               ? "Speichern..."
-              : "🏆 Judges Award speichern"}
+              : "Judges Award speichern"}
           </button>
         </div>
       </div>
