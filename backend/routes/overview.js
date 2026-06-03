@@ -84,8 +84,8 @@ router.get("/top/total", async (req, res) => {
   try {
     const result = await pool.query(`
       SELECT 
-        p.id AS participantId,
-        p.cosplayname,
+        p.id AS participant_id,
+        p.cosplayname AS cosplay_name,
         SUM(r.score) AS total
       FROM ratings r
       JOIN participants p ON p.id = r.participantId
@@ -95,8 +95,8 @@ router.get("/top/total", async (req, res) => {
     `);
 
     res.json(result.rows.map(r => ({
-      participantId: r.participantid,
-      cosplayName: r.cosplayname,
+      participantId: r.participant_id,
+      cosplayName: r.cosplay_name,
       total: Number(r.total),
     })));
 
@@ -113,8 +113,8 @@ router.get("/top/performance", async (req, res) => {
   try {
     const result = await pool.query(`
       SELECT 
-        p.id AS participantId,
-        p.cosplayname,
+        p.id AS participant_id,
+        p.cosplayname AS cosplay_name,
         SUM(r.score) AS total
       FROM ratings r
       JOIN participants p ON p.id = r.participantId
@@ -125,8 +125,8 @@ router.get("/top/performance", async (req, res) => {
     `);
 
     res.json(result.rows.map(r => ({
-      participantId: r.participantid,
-      cosplayName: r.cosplayname,
+      participantId: r.participant_id,
+      cosplayName: r.cosplay_name,
       total: Number(r.total),
     })));
 
@@ -143,8 +143,8 @@ router.get("/top/costume", async (req, res) => {
   try {
     const result = await pool.query(`
       SELECT 
-        p.id AS participantId,
-        p.cosplayname,
+        p.id AS participant_id,
+        p.cosplayname AS cosplay_name,
         SUM(r.score) AS total
       FROM ratings r
       JOIN participants p ON p.id = r.participantId
@@ -155,8 +155,8 @@ router.get("/top/costume", async (req, res) => {
     `);
 
     res.json(result.rows.map(r => ({
-      participantId: r.participantid,
-      cosplayName: r.cosplayname,
+      participantId: r.participant_id,
+      cosplayName: r.cosplay_name,
       total: Number(r.total),
     })));
 
