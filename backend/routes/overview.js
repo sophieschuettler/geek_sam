@@ -42,34 +42,25 @@ router.get("/by-judge", async (req, res) => {
 // =========================
 // TOTAL OVERVIEW
 // =========================
-router.get("/total", async (req, res) => {
+router.get("/top/total", async (req, res) => {
   try {
     const result = await pool.query(`
       SELECT 
-        p.id,
-        p.number,
-        p.cosplayname,
-
-        COALESCE(SUM(CASE WHEN r.category='costume' THEN r.score ELSE 0 END),0) AS costume_score,
-        COALESCE(SUM(CASE WHEN r.category='performance' THEN r.score ELSE 0 END),0) AS performance_score,
-        COALESCE(SUM(r.score),0) AS total_score
-
-      FROM participants p
-      LEFT JOIN ratings r ON p.id = r.participantId
-      GROUP BY p.id, p.number, p.cosplayname
-      ORDER BY p.number ASC
+        p.id AS participant_id,
+        p.cosplayname AS cosplay_name,
+        COALESCE(SUM(r.score::int),0) AS total
+      FROM ratings r
+      JOIN participants p ON p.id = r.participantId
+      GROUP BY p.id, p.cosplayname
+      ORDER BY total DESC
+      LIMIT 3
     `);
 
-    const data = result.rows.map(r => ({
-      participantId: r.id,
-      number: r.number,
-      cosplayName: r.cosplayname,
-      costumeScore: Number(r.costume_score),
-      performanceTotal: Number(r.performance_score),
-      totalScore: Number(r.total_score),
-    }));
-
-    res.json(data);
+    res.json(result.rows.map(r => ({
+      participantId: r.participant_id,
+      cosplayName: r.cosplay_name,
+      total: Number(r.total),
+    })));
 
   } catch (err) {
     res.status(500).json({ error: err.message });
