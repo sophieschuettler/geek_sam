@@ -43,28 +43,23 @@ router.get("/by-judge", async (req, res) => {
 // TOTAL OVERVIEW
 // =========================
 router.get("/top/total", async (req, res) => {
-  try {
-    const result = await pool.query(`
-      SELECT 
-        p.id AS participant_id,
-        p.cosplayname AS cosplay_name,
-        COALESCE(SUM(r.score::int),0) AS total
-      FROM ratings r
-      JOIN participants p ON p.id = r.participantId
-      GROUP BY p.id, p.cosplayname
-      ORDER BY total DESC
-      LIMIT 3
-    `);
+  const result = await pool.query(`
+    SELECT 
+      p.id AS "participantId",
+      p.cosplayname AS "cosplayName",
+      COALESCE(SUM(r.score),0) AS total
+    FROM participants p
+    LEFT JOIN ratings r ON p.id = r.participantId
+    GROUP BY p.id, p.cosplayname
+    ORDER BY total DESC
+    LIMIT 3
+  `);
 
-    res.json(result.rows.map(r => ({
-      participantId: r.participant_id,
-      cosplayName: r.cosplay_name,
-      total: Number(r.total),
-    })));
-
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
+  res.json(result.rows.map(r => ({
+    participantId: r.participantId,
+    cosplayName: r.cosplayName,
+    total: Number(r.total),
+  })));
 });
 
 
