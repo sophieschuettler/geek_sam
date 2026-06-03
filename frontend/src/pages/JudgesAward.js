@@ -16,31 +16,33 @@ export default function JudgesAward() {
     loadData();
   }, []);
 
-  const loadData = async () => {
-    try {
-      const [participantsRes, nominationsRes] = await Promise.all([
-        fetch(`${API}/api/participants`),
-        fetch(`${API}/api/overview/nominations`)
-      ]);
+const loadData = async () => {
+  try {
+    const [participantsRes, nominationsRes] = await Promise.all([
+      fetch(`${API}/api/participants`),
+      fetch(`${API}/api/overview/nominations`)
+    ]);
 
-      const participantsData = await participantsRes.json();
-      const nominationsData = await nominationsRes.json();
+    const participantsData = await participantsRes.json();
+    const nominationsData = await nominationsRes.json();
 
-      setParticipants(participantsData);
+    setParticipants(participantsData);
 
-      const myNomination = nominationsData.find(
-        n =>
-          n.nominationType === "Judges Award" &&
-          n.judges?.split(", ").includes(user.username)
-      );
+    // 🔥 WICHTIG: aktuelle Nominierung dieses Users finden
+    const myNomination = nominationsData.find(n =>
+      n.judges?.split(", ").includes(user.username)
+    );
 
-      if (myNomination) {
-        setSelectedNominee(myNomination.participantId);
-      }
-    } catch (err) {
-      console.error(err);
+    if (myNomination) {
+      setSelectedNominee(myNomination.participantId);
+    } else {
+      setSelectedNominee(null);
     }
-  };
+
+  } catch (err) {
+    console.error(err);
+  }
+};
 
 const saveNomination = async () => {
   if (!selectedNominee) {
