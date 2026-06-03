@@ -227,9 +227,9 @@ const nominations = [
     >
 
       <h1
-        className={`text-3xl font-bold mb-6 text-center ${
-          darkMode ? "text-blue-300" : "text-[#5E689A]"
-        }`}
+       className={`text-3xl font-bold mb-6 text-center ${
+        darkMode ? "text-blue-300" : "text-blue-700"
+      }`}
       >
          Bewertung Kostüm : {currentParticipant?.cosplayName}
       </h1>

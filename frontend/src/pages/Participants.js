@@ -61,9 +61,9 @@ const role = user?.role;
       <div className="mb-6 w-full max-w-xs">
         <select
           className={`border rounded-lg p-2 w-full shadow-sm focus:ring-2 ${
-             darkMode
-          ? "bg-gradient-to-b from-[#9c2d50] to-[#5E689A] text-gray-100"
-          : "bg-gradient-to-b from-[#ff7ea7] to-[#5E689A] text-gray-900"
+            darkMode
+              ? "bg-gray-800 border-gray-700 text-gray-100"
+              : "bg-white border-gray-300"
           }`}
           value={selectedId || ""}
           onChange={(e) => setSelectedId(Number(e.target.value))}
