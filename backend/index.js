@@ -125,7 +125,7 @@ const hardcodedParticipants = [
       `${BASE_URL}/uploads/Roxy_Ref.1.jpg`,
       `${BASE_URL}/uploads/Roxy_Ref.2.png`,
       `${BASE_URL}/uploads/Roxy_Ref.3.png`,
-       `${BASE_URL}/uploads/Roxy_Ref.4.jpg`,
+      `${BASE_URL}/uploads/Roxy_Ref.4.jpg`,
 
     ]),
     cosplayImages: JSON.stringify([]),
@@ -178,11 +178,7 @@ Die Stoffauswahl hat ebenfalls viel Zeit in Anspruch genommen, da ich verschiede
     character: "Asagiri Gen",
     game: "Dr. Stone",
     number: 4,
-    characterImage: JSON.stringify([
-      `${BASE_URL}/uploads/DrStone_Gen_Refs.pdf`,
-
-    
-    ]),
+    characterImage: `${BASE_URL}/uploads/DrStone_Gen_Refs.pdf`,
     text1: `Die Auswahl der Stoffe bezüglich Farben (möglichst akkurat wie im Anime).`,
     text2: `Bis auf die Unterwäsche zu 100% selbst gemacht!
 Die Wig ist auch aus 2 unterschiedlichen Wigs zusammengenäht.
