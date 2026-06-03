@@ -319,8 +319,8 @@ const users = [
   { username: "Pitou", password: "bertil13", role: "jury" },
   { username: "Sina", password: "123", role: "jury" },
   { username: "Sebastian", password: "123", role: "jury" },
-  { username: "other", password: "", role: "jury" },
-  { username: "Orga", password: "13", role: "jury" },
+  { username: "Other", password: "123", role: "jury" },
+  { username: "Orga", password: "123", role: "jury" },
 ];
 
 const JWT_SECRET = process.env.JWT_SECRET || "dev_secret";

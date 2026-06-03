@@ -93,7 +93,17 @@ const logout = () => {
           {/* Desktop */}
           <div className="hidden md:flex space-x-4 items-center">
             {links.map(({ to, label }) => (
-              <NavLink key={to} to={to} className="px-3 py-2 rounded-md hover:bg-white/10">
+              <NavLink
+                key={to}
+                to={to}
+                className={({ isActive }) =>
+                  `px-3 py-2 rounded-md transition ${
+                    isActive
+                      ? "bg-white text-[#5E689A] font-bold"
+                      : "hover:bg-white/10"
+                  }`
+                }
+              >
                 {label}
               </NavLink>
             ))}
@@ -136,14 +146,19 @@ const logout = () => {
         <div className="md:hidden bg-gradient-to-b from-[#DD3F70] to-[#5E689A]">
           {links.map(({ to, label }) => (
             <NavLink
-              key={to}
-              to={to}
-              onClick={() => setOpen(false)}
-              className="block px-4 py-3"
-            >
-              {label}
-
-            </NavLink>
+                key={to}
+                to={to}
+                onClick={() => setOpen(false)}
+                className={({ isActive }) =>
+                  `block px-4 py-3 transition ${
+                    isActive
+                      ? "bg-white text-[#5E689A] font-bold"
+                      : ""
+                  }`
+                }
+              >
+                {label}
+              </NavLink>
             
           ))}
           {user && (
