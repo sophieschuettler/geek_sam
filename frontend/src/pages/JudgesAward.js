@@ -51,7 +51,7 @@ export default function JudgesAward() {
     try {
       setSaving(true);
 
-      const res = await fetch(`${API}/api/nominate`, {
+      const res = await fetch(`${API}/api/nominations`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
