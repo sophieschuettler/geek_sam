@@ -18,21 +18,25 @@ const BASE_URL = process.env.BACKEND_URL || `http://localhost:${PORT}`;
 
 const allowedOrigins = [
   "http://localhost:3000",
-  "http://192.168.1.131:3000",
-  "https:/geekworld-contest.vercel.app",
+  "https://geekworld-contest.vercel.app"
 ];
 
-app.use(
-  cors({
-    origin: allowedOrigins,
-    credentials: true,
-  })
-);
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true); // mobile apps / curl
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+    return callback(new Error("Not allowed by CORS"));
+  },
+  credentials: true
+};
 
-app.use(bodyParser.json());
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
 /* ======================================================
    STATIC FILES (UPLOADS)
 ====================================================== */
