@@ -16,7 +16,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 
 import Teilnehmer from "./assets/bilder/Cosplay-Contest-Teilnehmer_01-1.webp";
-import Übersicht from "./assets/bilder/Übersicht.jpg";
+import Übersicht from "./assets/bilder/Cosplay-Contest_TK018721.webp";
 import Admin from "./assets/bilder/admin.jpg";
 
 export default function Dashboard({ user }) {
