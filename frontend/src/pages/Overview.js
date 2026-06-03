@@ -152,10 +152,8 @@ const filteredGroups = Object.values(groupedRatings).filter(
     <ThemeProvider theme={muiTheme}>
       <div
         className={`min-h-screen p-4 sm:p-6 transition-colors ${
-           darkMode
-          ? "bg-gradient-to-b from-[#9c2d50] to-[#5E689A] text-gray-100"
-          : "bg-gradient-to-b from-[#ff7ea7] to-[#5E689A] text-gray-900"
-        }`}
+           darkMode ? "bg-gray-900 text-gray-100" : "bg-blue-50 text-gray-900"
+      }`}
       >
         <h1
           className={`text-3xl font-bold mb-6 text-center ${
