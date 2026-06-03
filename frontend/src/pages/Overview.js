@@ -258,10 +258,6 @@ const filteredGroups = Object.values(groupedRatings).filter(
       </table> 
     </div>
 
-    {nominations.length > 0 && (
-      <div className="mt-6 p-4 rounded-lg bg-yellow-100 dark:bg-yellow-900 border">
-      </div>
-    )}
   </div>
 )}
 
