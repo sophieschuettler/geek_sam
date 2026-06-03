@@ -127,7 +127,19 @@ const getUserImage = () => {
             onClick={() => navigate("/teilnehmer")}
           >
             <CardActionArea>
-              <CardMedia component="img" src={Teilnehmer} alt="Teilnehmer" />
+              <CardMedia  
+              component="img"
+              alt="Teilnehmer"
+              src={Teilnehmer}
+              sx={{
+                height: 200,
+                objectFit: "cover",
+                transition: "transform 0.3s ease",
+                "&:hover": {
+                  transform: "scale(1.05)",
+                },
+              }}
+              />
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
                   Teilnehmer
@@ -156,7 +168,19 @@ const getUserImage = () => {
             onClick={() => navigate("/übersicht")}
           >
             <CardActionArea>
-              <CardMedia component="img" src={Übersicht} alt="Übersicht" />
+              <CardMedia 
+              component="img"
+              alt="Übersicht"
+              src={Übersicht}
+              sx={{
+                height: 200,
+                objectFit: "cover",
+                transition: "transform 0.3s ease",
+                "&:hover": {
+                  transform: "scale(1.05)",
+                },
+              }}
+              />
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
                   Übersicht
