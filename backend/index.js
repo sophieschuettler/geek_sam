@@ -380,13 +380,24 @@ app.get("/api/participants", async (req, res) => {
       "SELECT * FROM participants ORDER BY number ASC"
     );
 
-    const data = result.rows.map((r) => ({
-      ...r,
-      characterImages: JSON.parse(r.characterimage || "[]"),
-      cosplayImages: JSON.parse(r.cosplayimages || "[]"),
-      wearingImages: JSON.parse(r.wearingimages || "[]"),
-      wipImages: JSON.parse(r.wipimages || "[]"),
-    }));
+  const data = result.rows.map((r) => ({
+  id: r.id,
+  cosplayName: r.cosplayname,
+  pronomen: r.pronomen,
+  character: r.character,
+  game: r.game,
+  number: r.number,
+
+  characterImages: JSON.parse(r.characterimage || "[]"),
+  cosplayImages: JSON.parse(r.cosplayimages || "[]"),
+  wearingImages: JSON.parse(r.wearingimages || "[]"),
+  wipImages: JSON.parse(r.wipimages || "[]"),
+
+  text1: r.text1,
+  text2: r.text2,
+  buildBook: r.buildbook,
+  link: r.link
+}));
 
     res.json(data);
   } catch (err) {
