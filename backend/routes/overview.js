@@ -81,13 +81,14 @@ router.get("/total", async (req, res) => {
 router.get("/top/total", async (req, res) => {
   try {
     const result = await pool.query(`
-      SELECT 
+      SELECT
         p.id AS participant_id,
         p.cosplayname AS cosplay_name,
         COALESCE(SUM(r.score),0) AS total
       FROM participants p
       LEFT JOIN ratings r ON p.id = r.participantId
       GROUP BY p.id, p.cosplayname
+      HAVING COALESCE(SUM(r.score),0) > 0
       ORDER BY total DESC
       LIMIT 3
     `);
