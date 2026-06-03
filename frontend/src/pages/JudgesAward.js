@@ -30,7 +30,7 @@ export default function JudgesAward() {
 
       const myNomination = nominationsData.find(
         n =>
-          n.category === "Judges Award" &&
+          n.nominationType === "Judges Award" &&
           n.judges?.split(", ").includes(user.username)
       );
 
@@ -42,40 +42,41 @@ export default function JudgesAward() {
     }
   };
 
-  const saveNomination = async () => {
-    if (!selectedNominee) {
-      alert("Bitte einen Teilnehmer auswählen.");
-      return;
+const saveNomination = async () => {
+  if (!selectedNominee) {
+    alert("Bitte einen Teilnehmer auswählen.");
+    return;
+  }
+
+  try {
+    setSaving(true);
+
+    const res = await fetch(`${API}/api/nominations`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${user.token}`
+      },
+      body: JSON.stringify({
+        participantId: selectedNominee,
+        user: user.username,   
+        active: true           
+      })
+    });
+
+    if (!res.ok) {
+      const text = await res.text();
+      throw new Error(text);
     }
 
-    try {
-      setSaving(true);
-
-      const res = await fetch(`${API}/api/nominations`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${user.token}`
-        },
-        body: JSON.stringify({
-          participantId: selectedNominee,
-          nominationType: "Judges Award"
-        })
-      });
-
-      if (!res.ok) {
-        const text = await res.text();
-        throw new Error(text);
-      }
-
-      alert("🏆 Judges Award Nominierung gespeichert!");
-    } catch (err) {
-      console.error(err);
-      alert("Fehler beim Speichern.");
-    } finally {
-      setSaving(false);
-    }
-  };
+    alert("🏆 Judges Award gespeichert!");
+  } catch (err) {
+    console.error(err);
+    alert("Fehler beim Speichern.");
+  } finally {
+    setSaving(false);
+  }
+};
 
   if (!user) {
     return (
