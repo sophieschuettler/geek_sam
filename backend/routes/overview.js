@@ -57,7 +57,7 @@ router.get("/total", async (req, res) => {
       FROM participants p
       LEFT JOIN ratings r ON p.id = r.participantId
       GROUP BY p.id, p.number, p.cosplayname
-      ORDER BY total_score DESC
+      ORDER BY p.number ASC
     `);
 
     const data = result.rows.map(r => ({
