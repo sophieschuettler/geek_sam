@@ -48,11 +48,11 @@ useEffect(() => {
       const ratingsData = await ratingsRes.json();
 
       // 2️⃣ Nominierungen
-      //const nominationsRes = await fetch(`${process.env.REACT_APP_API_URL}/api/overview/nominations`);
-      //const nominationsData = await nominationsRes.json();
+      const nominationsRes = await fetch(`${process.env.REACT_APP_API_URL}/api/overview/nominations`);
+      const nominationsData = await nominationsRes.json();
 
       const ratingObj = {};
-      //const nominationObj = { bestSewing: false, bestCraft: false };
+      const nominationObj = { bestSewing: false, bestCraft: false };
 
       // Ratings filtern
       ratingsData
@@ -63,7 +63,7 @@ useEffect(() => {
         });
 
       // Nominierungen filtern
-      /*nominationsData
+      nominationsData
         .filter(n => n.participantId === currentParticipant.id)
         .forEach(n => {
           const judges = n.judges ? n.judges.split(",") : [];
@@ -72,13 +72,14 @@ useEffect(() => {
             if (n.category === "Best Craftsmanship") nominationObj.bestCraft = true;
           }
 
-        });*/
+        });
 
       setRatings(prev => ({
         ...prev,
         [currentParticipant.id]: {
           ...(prev[currentParticipant.id] || {}),
-          ...ratingObj
+          ...ratingObj,
+          ...nominationObj
         }
       }));
     } catch (err) {
@@ -157,7 +158,7 @@ const submitRatings = async () => {
 
   try {
  // 🔹 Nominierungen inkl. "active"-Status
-/*const nominations = [
+const nominations = [
   {
     participantId,
     nominationType: "Best Sewing",
@@ -176,7 +177,7 @@ const submitRatings = async () => {
     user: user.username,
     active: !!participantRatings.bestCraft,
   },
-];*/
+];
     // 🔹 Bewertungen + Nominierungen in EINEM Request senden
     const res = await fetch(`${process.env.REACT_APP_API_URL}/api/rate`, {
       method: "POST",
@@ -190,7 +191,7 @@ const submitRatings = async () => {
         ratings: {
           costume: participantRatings.costume || {},
         },
-        //nominations, // Enthält nur aktive Nominierungen
+        nominations, // Enthält nur aktive Nominierungen
       }),
     });
 
@@ -520,15 +521,10 @@ const submitRatings = async () => {
 
           <button
             disabled={currentIndex >= participants.length - 1}
-            onClick={async () => {
-                  const success = await submitRatings();
-
-                  if (success) {
-                    setCurrentIndex((i) =>
-                      Math.min(participants.length - 1, i + 1)
-                    );
-                  }
-                }}
+            onClick={() =>
+              
+              setCurrentIndex((i) => Math.min(participants.length - 1, i + 1))
+            }
             className={`px-4 py-2 rounded font-medium transition ${
               darkMode
                 ? "bg-gray-700 hover:bg-gray-600 text-gray-100"
