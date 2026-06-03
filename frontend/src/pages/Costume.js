@@ -48,11 +48,11 @@ useEffect(() => {
       const ratingsData = await ratingsRes.json();
 
       // 2️⃣ Nominierungen
-      const nominationsRes = await fetch(`${process.env.REACT_APP_API_URL}/api/overview/nominations`);
-      const nominationsData = await nominationsRes.json();
+      //const nominationsRes = await fetch(`${process.env.REACT_APP_API_URL}/api/overview/nominations`);
+      //const nominationsData = await nominationsRes.json();
 
       const ratingObj = {};
-      const nominationObj = { bestSewing: false, bestCraft: false };
+      //const nominationObj = { bestSewing: false, bestCraft: false };
 
       // Ratings filtern
       ratingsData
@@ -63,7 +63,7 @@ useEffect(() => {
         });
 
       // Nominierungen filtern
-      nominationsData
+      /*nominationsData
         .filter(n => n.participantId === currentParticipant.id)
         .forEach(n => {
           const judges = n.judges ? n.judges.split(",") : [];
@@ -72,14 +72,13 @@ useEffect(() => {
             if (n.category === "Best Craftsmanship") nominationObj.bestCraft = true;
           }
 
-        });
+        });*/
 
       setRatings(prev => ({
         ...prev,
         [currentParticipant.id]: {
           ...(prev[currentParticipant.id] || {}),
-          ...ratingObj,
-          ...nominationObj
+          ...ratingObj
         }
       }));
     } catch (err) {
@@ -158,7 +157,7 @@ const submitRatings = async () => {
 
   try {
  // 🔹 Nominierungen inkl. "active"-Status
-const nominations = [
+/*const nominations = [
   {
     participantId,
     nominationType: "Best Sewing",
@@ -177,7 +176,7 @@ const nominations = [
     user: user.username,
     active: !!participantRatings.bestCraft,
   },
-];
+];*/
     // 🔹 Bewertungen + Nominierungen in EINEM Request senden
     const res = await fetch(`${process.env.REACT_APP_API_URL}/api/rate`, {
       method: "POST",
@@ -191,7 +190,7 @@ const nominations = [
         ratings: {
           costume: participantRatings.costume || {},
         },
-        nominations, // Enthält nur aktive Nominierungen
+        //nominations, // Enthält nur aktive Nominierungen
       }),
     });
 
