@@ -67,7 +67,7 @@ const getUserImage = () => {
         {/* ✅ Grid Container für gleichgroße, responsive Karten */}
         <Grid
           container
-          spacing={4}
+          spacing={2}
           justifyContent="center"
           alignItems="stretch"
           sx={{ width: "100%", maxWidth: "1200px" }}
@@ -76,7 +76,9 @@ const getUserImage = () => {
           <Grid item xs={12} sm={6} md={4} display="flex">
             <Card
             sx={{
-              width: "100%",
+              flex: "1 1 320px",
+              maxWidth: 320,
+              minWidth: 280,
               display: "flex",
               flexDirection: "column",
               bgcolor: "background.paper",
@@ -115,7 +117,9 @@ const getUserImage = () => {
           <Grid item xs={12} sm={6} md={4} display="flex">
           <Card
             sx={{
-              width: "100%",
+              flex: "1 1 320px",
+              maxWidth: 320,
+              minWidth: 280,
               display: "flex",
               flexDirection: "column",
               bgcolor: "background.paper",
@@ -152,7 +156,9 @@ const getUserImage = () => {
           <Grid item xs={12} sm={6} md={4} display="flex">
           <Card
             sx={{
-              width: "100%",
+              flex: "1 1 320px",
+              maxWidth: 320,
+              minWidth: 280,
               display: "flex",
               flexDirection: "column",
               bgcolor: "background.paper",
