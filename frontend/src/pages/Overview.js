@@ -66,7 +66,7 @@ const filteredGroups = Object.values(groupedRatings).filter(
     },
   });
 
-  const isMobile = useMediaQuery("(max-width: 768px)");
+  const isMobile = useMediaQuery("(max-width: 1000px)");
 
   useEffect(() => {
     const ensureArray = (maybeArray) => {
