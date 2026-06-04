@@ -125,10 +125,8 @@ const getUserImage = () => {
               bgcolor: "background.paper",
               overflow: "hidden",
             }}
-            onClick={() => navigate("/teilnehmer")}
           >
-            <CardActionArea>
-              <CardMedia  
+            <CardMedia  
               component="img"
               alt="Teilnehmer"
               src={Teilnehmer}
@@ -149,7 +147,6 @@ const getUserImage = () => {
                   Hier geht’s zu den Teilnehmern
                 </Typography>
               </CardContent>
-            </CardActionArea>
             <CardActions>
               <Button onClick={() => navigate("/teilnehmer")}>Teilnehmer</Button>
             </CardActions>
@@ -167,9 +164,7 @@ const getUserImage = () => {
               bgcolor: "background.paper",
               overflow: "hidden",
             }}
-            onClick={() => navigate("/übersicht")}
           >
-            <CardActionArea>
               <CardMedia 
               component="img"
               alt="Übersicht"
@@ -191,7 +186,6 @@ const getUserImage = () => {
                   Zur Übersicht der vergebenen Punkte
                 </Typography>
               </CardContent>
-            </CardActionArea>
             <CardActions>
               <Button onClick={() => navigate("/übersicht")}>Übersicht</Button>
             </CardActions>
