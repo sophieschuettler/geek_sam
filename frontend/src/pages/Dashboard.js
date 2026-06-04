@@ -76,9 +76,7 @@ const getUserImage = () => {
           <Grid item xs={12} sm={6} md={4} display="flex">
             <Card
             sx={{
-              flex: "1 1 320px",
-              maxWidth: 320,
-              minWidth: 280,
+              width: "100%",
               display: "flex",
               flexDirection: "column",
               bgcolor: "background.paper",
@@ -117,9 +115,7 @@ const getUserImage = () => {
           <Grid item xs={12} sm={6} md={4} display="flex">
           <Card
             sx={{
-              flex: "1 1 320px",
-              maxWidth: 320,
-              minWidth: 280,
+              width: "100%",
               display: "flex",
               flexDirection: "column",
               bgcolor: "background.paper",
@@ -156,9 +152,7 @@ const getUserImage = () => {
           <Grid item xs={12} sm={6} md={4} display="flex">
           <Card
             sx={{
-              flex: "1 1 320px",
-              maxWidth: 320,
-              minWidth: 280,
+              width: "100%",
               display: "flex",
               flexDirection: "column",
               bgcolor: "background.paper",
