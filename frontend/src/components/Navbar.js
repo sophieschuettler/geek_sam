@@ -78,7 +78,7 @@ const logout = () => {
     { to: "/teilnehmer", label: "Teilnehmer" },
     { to: "/costume", label: "Kostüm" },
     { to: "/performance", label: "Performance" },
-    { to: "/judgesaward", label: "JudgesAward" },
+    { to: "/judgesaward", label: "🏆" },
     { to: "/übersicht", label: "Übersicht" },
   ];
 
