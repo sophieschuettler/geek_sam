@@ -67,7 +67,7 @@ const getUserImage = () => {
         {/* ✅ Grid Container für gleichgroße, responsive Karten */}
         <Grid
           container
-          spacing={4}
+          spacing={3}
           justifyContent="center"
           alignItems="stretch"
           sx={{ width: "100%", maxWidth: "1100px" }}
