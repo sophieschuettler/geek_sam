@@ -67,7 +67,7 @@ const getUserImage = () => {
         {/* ✅ Grid Container für gleichgroße, responsive Karten */}
         <Grid
           container
-          spacing={3}
+          spacing={4}
           justifyContent="center"
           alignItems="stretch"
           sx={{ width: "100%", maxWidth: "1100px" }}
@@ -77,7 +77,7 @@ const getUserImage = () => {
             <Card
             sx={{
               flex: "1 1 300px",
-              maxWidth: 345,
+              maxWidth: 320,
               minWidth: 280,
               display: "flex",
               flexDirection: "column",
@@ -118,11 +118,12 @@ const getUserImage = () => {
           <Card
             sx={{
               flex: "1 1 300px",
-              maxWidth: 345,
+              maxWidth: 320,
               minWidth: 280,
               display: "flex",
               flexDirection: "column",
               bgcolor: "background.paper",
+              overflow: "hidden",
             }}
             onClick={() => navigate("/teilnehmer")}
           >
@@ -159,11 +160,12 @@ const getUserImage = () => {
           <Card
             sx={{
               flex: "1 1 300px",
-              maxWidth: 345,
+              maxWidth: 320,
               minWidth: 280,
               display: "flex",
               flexDirection: "column",
               bgcolor: "background.paper",
+              overflow: "hidden",
             }}
             onClick={() => navigate("/übersicht")}
           >
