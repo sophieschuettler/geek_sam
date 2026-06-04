@@ -70,13 +70,13 @@ const getUserImage = () => {
           spacing={4}
           justifyContent="center"
           alignItems="stretch"
-          sx={{ width: "100%", maxWidth: "1100px" }}
+          sx={{ width: "100%", maxWidth: "1200px" }}
         >
           {/* --- Card 1: Judging --- */}
           <Grid item xs={12} sm={6} md={4} display="flex">
             <Card
             sx={{
-              flex: "1 1 300px",
+              flex: "1 1 320px",
               maxWidth: 320,
               minWidth: 280,
               display: "flex",
@@ -117,7 +117,7 @@ const getUserImage = () => {
           <Grid item xs={12} sm={6} md={4} display="flex">
           <Card
             sx={{
-              flex: "1 1 300px",
+              flex: "1 1 320px",
               maxWidth: 320,
               minWidth: 280,
               display: "flex",
@@ -159,7 +159,7 @@ const getUserImage = () => {
           <Grid item xs={12} sm={6} md={4} display="flex">
           <Card
             sx={{
-              flex: "1 1 300px",
+              flex: "1 1 320px",
               maxWidth: 320,
               minWidth: 280,
               display: "flex",
