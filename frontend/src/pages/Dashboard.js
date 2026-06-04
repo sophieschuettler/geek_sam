@@ -67,13 +67,13 @@ const getUserImage = () => {
         {/* ✅ Grid Container für gleichgroße, responsive Karten */}
         <Grid
           container
-          spacing={2}
+          spacing={3}
           justifyContent="center"
           alignItems="stretch"
           sx={{ width: "100%", maxWidth: "1200px" }}
         >
           {/* --- Card 1: Judging --- */}
-          <Grid item xs={12} sm={6} md={4} display="flex">
+          
             <Card
             sx={{
               flex: "1 1",
@@ -112,9 +112,9 @@ const getUserImage = () => {
               <Button onClick={() => navigate("/performance")}>Auftritt</Button>
             </CardActions>
           </Card>
-          </Grid>
+          
           {/* --- Card 2: Teilnehmer --- */}
-          <Grid item xs={12} sm={6} md={4} display="flex">
+          
           <Card
             sx={{
               flex: "1 1",
@@ -151,12 +151,12 @@ const getUserImage = () => {
               <Button onClick={() => navigate("/teilnehmer")}>Teilnehmer</Button>
             </CardActions>
           </Card>
-          </Grid>
+          
           {/* --- Card 3: Übersicht --- */}
-          <Grid item xs={12} sm={6} md={4} display="flex">
+          
           <Card
             sx={{
-              flex: "1 1",
+              flex: "1 1 320px",
               maxWidth: 320,
               minWidth: 280,
               display: "flex",
@@ -190,8 +190,8 @@ const getUserImage = () => {
               <Button onClick={() => navigate("/übersicht")}>Übersicht</Button>
             </CardActions>
           </Card>
-          </Grid>
-        </Grid>
+      </Grid>
+       
       </div>
     </ThemeProvider>
   );
