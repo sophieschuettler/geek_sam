@@ -347,7 +347,7 @@ async function seedParticipants() {
 ====================================================== */
 
 const users = [
-  { username: "Pitou", password: "bertil13", role: "jury" },
+  { username: "Pitou", password: "bertil123", role: "jury" },
   { username: "Sina", password: "123", role: "jury" },
   { username: "Sebastian", password: "123", role: "jury" },
   { username: "Julia", password: "123", role: "jury" },
