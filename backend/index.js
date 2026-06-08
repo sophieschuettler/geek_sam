@@ -170,7 +170,7 @@ Die Stoffauswahl hat ebenfalls viel Zeit in Anspruch genommen, da ich verschiede
     wipImages: JSON.stringify([`${BASE_URL}/uploads/Alice-2.jpg`,]),
     wearingImages: JSON.stringify([]),
     cosplayImages: JSON.stringify([]),
-    buildBook: JSON.stringify([`${BASE_URL}/uploads/Buildbook_Alice-Liddell_Cheesu-Cosplay.pdf`]),
+    buildBook: `${BASE_URL}/uploads/Buildbook_Alice-Liddell_Cheesu-Cosplay.pdf`,
   },{
     id: 4,
     cosplayName: "Maki",
