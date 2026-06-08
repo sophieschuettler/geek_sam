@@ -486,9 +486,9 @@ async function startServer() {
     const r = await pool.query("SELECT COUNT(*) FROM participants");
     console.log("📦 Participants in DB:", r.rows[0]);
 
-    if (process.env.NODE_ENV !== "production") {
+  
       await seedParticipants();
-    }
+   
 
     app.listen(PORT, () => {
       console.log(`🚀 Server running on ${BASE_URL}`);
