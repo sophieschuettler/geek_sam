@@ -289,9 +289,9 @@ Die wig ist wie das Ort im Schweif meine erste Air Brush Arbeit
 
     link: "",
     wipImages: JSON.stringify([
-         `${BASE_URL}/uploads/Shinoa_Ref.2.webp`
-         `${BASE_URL}/uploads/Shinoa_Ref.3.jpg`
-         `${BASE_URL}/uploads/Shinoa_Ref.4.jpg`
+         `${BASE_URL}/uploads/Shinoa_Ref.2.webp`,
+         `${BASE_URL}/uploads/Shinoa_Ref.3.jpg`,
+         `${BASE_URL}/uploads/Shinoa_Ref.4.jpg`,
     ]),
     wearingImages: JSON.stringify([
 
