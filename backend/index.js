@@ -270,6 +270,35 @@ Ich strebe einen „used look“ an, damit der Charakter so realistisch wie mög
     cosplayImages: JSON.stringify([]),
     buildBook: null,
   },
+   {
+    id: 8,
+    cosplayName: "Shinoa_Kitsune",
+    pronomen: "sie/ihr",
+    character: "Alice als dodoko",
+    game: "Genshin Impact",
+    number: 7,
+    characterImage: JSON.stringify([
+      `${BASE_URL}/uploads/Shinoa_Ref.1.jpg`]),
+    text1: `Der Hut und die Corsage`,
+    text2: `Das Kleid war tatsächlich mal eine alte Tischdecke, die neu verwendet wurde.
+Die Kontaktlinsen sind auf sehstärke
+Schweif und Ohren sind aus Autositzbezüge und daher Kunstfell
+Schuhe sind gekauft
+Die wig ist wie das Ort im Schweif meine erste Air Brush Arbeit
+`,
+
+    link: "",
+    wipImages: JSON.stringify([
+         `${BASE_URL}/uploads/Shinoa_Ref.2.webp`
+         `${BASE_URL}/uploads/Shinoa_Ref.3.jpg`
+         `${BASE_URL}/uploads/Shinoa_Ref.4.jpg`
+    ]),
+    wearingImages: JSON.stringify([
+
+    ]),
+    cosplayImages: JSON.stringify([]),
+    buildBook: null,
+  },
 ];
 
 /* ======================================================
@@ -319,7 +348,7 @@ const users = [
   { username: "Pitou", password: "bertil13", role: "jury" },
   { username: "Sina", password: "123", role: "jury" },
   { username: "Sebastian", password: "123", role: "jury" },
-  { username: "Other", password: "123", role: "jury" },
+  { username: "Julia", password: "123", role: "jury" },
   { username: "Orga", password: "123", role: "jury" },
 ];
 
