@@ -276,7 +276,7 @@ Ich strebe einen „used look“ an, damit der Charakter so realistisch wie mög
     pronomen: "sie/ihr",
     character: "Alice als dodoko",
     game: "Genshin Impact",
-    number: 7,
+    number: 8,
     characterImage: JSON.stringify([
       `${BASE_URL}/uploads/Shinoa_Ref.1.jpg`]),
     text1: `Der Hut und die Corsage`,
