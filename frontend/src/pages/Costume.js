@@ -426,7 +426,23 @@ const nominations = [
                     }`}
                   >
                     
-                     {selectedParticipant.character && (
+                    
+                    {/* === WIP Bilder === */}
+                    {currentParticipant.wipImages?.length > 0 && (
+                      <div
+                        className={` p-4 rounded-xl shadow-sm transition-colors ${
+                              darkMode ? "bg-gray-800 text-gray-100" : "bg-white text-gray-900"
+                        }`}
+                      >
+                        <h3
+                          className={`font-semibold text-lg mb-3 ${
+                            darkMode ? "text-blue-300" : "text-blue-700"
+                          }`}
+                        >
+                          Work in Progress
+                        </h3>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 w-full overflow-hidden">
+                               {selectedParticipant.character && (
                 <p className="mb-1">
                   <span className="font-semibold">Charakter:</span>{" "}
                   {selectedParticipant.character}
@@ -451,22 +467,6 @@ const nominations = [
                   {selectedParticipant.text2}
                 </p>
               )}
-                    {/* === WIP Bilder === */}
-                    {currentParticipant.wipImages?.length > 0 && (
-                      <div
-                        className={` p-4 rounded-xl shadow-sm transition-colors ${
-                              darkMode ? "bg-gray-800 text-gray-100" : "bg-white text-gray-900"
-                        }`}
-                      >
-                        <h3
-                          className={`font-semibold text-lg mb-3 ${
-                            darkMode ? "text-blue-300" : "text-blue-700"
-                          }`}
-                        >
-                          Work in Progress
-                        </h3>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 w-full overflow-hidden">
-
                           {currentParticipant.wipImages.map((img, index) => (
                             <img
                               key={index}
