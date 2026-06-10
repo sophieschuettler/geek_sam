@@ -441,32 +441,34 @@ const nominations = [
                         >
                           Work in Progress
                         </h3>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 w-full overflow-hidden">
-                               {selectedParticipant.character && (
+                        {currentParticipant.character && (
                 <p className="mb-1">
                   <span className="font-semibold">Charakter:</span>{" "}
-                  {selectedParticipant.character}
+                  {currentParticipant.character}
                 </p>
               )}
-              {selectedParticipant.game && (
+              {currentParticipant.game && (
                 <p className="mb-1">
                   <span className="font-semibold">Fandom:</span>{" "}
-                  {selectedParticipant.game}
+                  {currentParticipant.game}
                 </p>
               )}
 
-              {selectedParticipant.text1 && (
+              {currentParticipant.text1 && (
                 <p className="mt-3 ">
                   <span className="font-semibold">Auf welche Techniken, Materialien, Aspekte möchtest du bei deinem Cosplay besonderen Wert legen: </span>{" "}
-                  {selectedParticipant.text1}
+                  {currentParticipant.text1}
                 </p>
               )}
-              {selectedParticipant.text2 && (
+              {currentParticipant.text2 && (
                 <p className="mt-3 ">
                   <span className="font-semibold">Besonderheiten des Cosplays:</span>{" "}
-                  {selectedParticipant.text2}
+                  {currentParticipant.text2}
                 </p>
               )}
+                        
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 w-full overflow-hidden">
+                              
                           {currentParticipant.wipImages.map((img, index) => (
                             <img
                               key={index}
