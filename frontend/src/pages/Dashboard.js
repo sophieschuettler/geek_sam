@@ -132,8 +132,8 @@ const getUserImage = () => {
           >
             <CardMedia  
               component="img"
-              alt="Teilnehmer"
-              src={Teilnehmer}
+              alt="Judges Award"
+              src={JudgesAward}
               sx={{
                 height: 200,
                 objectFit: "cover",
@@ -145,14 +145,14 @@ const getUserImage = () => {
               />
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
-                  Teilnehmer
+                  
                 </Typography>
                 <Typography variant="body2" sx={{ color: "text.secondary" }}>
-                  Hier geht’s zu den Teilnehmern
+                  Hier geht’s zur Nominierung für den Judges Award
                 </Typography>
               </CardContent>
             <CardActions>
-              <Button onClick={() => navigate("/teilnehmer")}>Teilnehmer</Button>
+              <Button onClick={() => navigate("/judgesaward")}>Judges Award</Button>
             </CardActions>
           </Card>
           
