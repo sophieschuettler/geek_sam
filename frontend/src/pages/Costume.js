@@ -24,6 +24,7 @@ export default function Costume() {
   const [ratings, setRatings] = useState({});
   const [nominations, setNominations] = useState([]);
   const [numPages, setNumPages] = useState(0);
+  const [selectedImage, setSelectedImage] = useState(null);
 
 
   useEffect(() => {
@@ -273,7 +274,10 @@ const nominations = [
             <img
               src={currentParticipant.characterImages[0]}
               alt={currentParticipant.cosplayName}
-              className="w-[250px] rounded-lg object-cover shadow-md"
+              className="w-[250px] rounded-lg object-cover shadow-md cursor-pointer hover:scale-105 transition"
+              onClick={() =>
+                setSelectedImage(currentParticipant.characterImages[0])
+              }
             />
           ) : (
             <Typography variant="body2" color="text.secondary">
@@ -443,7 +447,8 @@ const nominations = [
                               key={index}
                               src={img}
                               alt={`WIP ${index + 1}`}
-                              className="rounded-lg shadow-md object-cover w-full h-auto"
+                              className="rounded-lg shadow-md object-cover w-full h-auto cursor-pointer hover:scale-105 transition"
+                              onClick={() => setSelectedImage(img)}
                             />
                           ))}
                         </div>
@@ -546,6 +551,18 @@ const nominations = [
           </button>
         </Toolbar>
       </AppBar>
+      {selectedImage && (
+  <div
+    className="fixed inset-0 bg-black/80 flex items-center justify-center z-[9999] p-4"
+    onClick={() => setSelectedImage(null)}
+  >
+    <img
+      src={selectedImage}
+      alt="Vergrößert"
+      className="max-w-[95vw] max-h-[95vh] object-contain rounded-lg"
+    />
+  </div>
+)}
     </div>
   );
 }
