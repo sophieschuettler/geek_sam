@@ -132,23 +132,6 @@ const hardcodedParticipants = [
     buildBook: null,
   },
   {
-    id: 2,
-    cosplayName: "Vani",
-    pronomen: "sie/ihr",
-    character: "Hiiaka",
-    game: "OC selbst erstellt",
-    number: 2,
-     characterImage: JSON.stringify([ 
-      `${BASE_URL}/uploads/Vani_Ref.1.JPG`,
-    ]),
-    text1: `Eva Foam/Stoff/LEDs/Heißkleber/Watte /silberne Plastik Folie/Stern Stanzer/Ast für den Elfen Stab `,
-    text2: `LED Eigenkreation `,
-    link: "",
-    wearingImages: JSON.stringify([]),
-    wipImages: JSON.stringify([`${BASE_URL}/uploads/Vani_Ref.2.JPG`]),
-    cosplayImages: JSON.stringify([]),
-    buildBook: null,
-  },  {
     id: 3,
     cosplayName: "Cheesu Cosplay",
     pronomen: "sie/ihr",
@@ -294,6 +277,30 @@ Die wig ist wie das Ort im Schweif meine erste Air Brush Arbeit
          `${BASE_URL}/uploads/Shinoa_Ref.2.webp`,
          `${BASE_URL}/uploads/Shinoa_Ref.3.jpg`,
          `${BASE_URL}/uploads/Shinoa_Ref.4.jpg`,
+    ]),
+    wearingImages: JSON.stringify([
+
+    ]),
+    cosplayImages: JSON.stringify([]),
+    buildBook: null,
+  },{
+    id: 9,
+    cosplayName: "Kenma Cosplay",
+    pronomen: "er/ihm",
+    character: "Poseidon",
+    game: "Epic: the muscial",
+    number: 9,
+    characterImage: JSON.stringify([
+      `${BASE_URL}/uploads/Poseidon-Refferenz.pdf`]),
+    text1: `Die Arbeit mit dem Stoff Organza sowie den fakt das der rock in die einzelnen schichten "zerlegbar" ist ohne großen "schaden" anzurichten damit man die Stoffe einzeln waschen kann und das man die schleppe hochstecken kann sowie die Arbeit mit fake Leder`,
+    text2: `Der rock des Cosplays besteht aus 4 großen Schichten, welche alle, ohne Schäden am Cosplay zu machen, trennbar sind, womit man den Rock sehr einfach waschen kann. Das Cosplay hat einen Handschuh welcher aus einer Schicht Baumwolle stretch besteht und einer Schicht Organza, welches dem ganzen einen wasser-like Look gibt, allerdings musste ich das Organza sehr vorsichtig von Hand nähen. Das ganze Cosplay sollte auch sehr dramatisch sein und Unterwasser-Vibes geben, weswegen ich eine Schleppe genäht habe, um Wellen und das Meer darzustellen. allerdings kann durch eine schleppe der komfort eines Cosplays sehr schnell sich verringern da sehr oft andere Menschen hinauf treten können, weswegen ich den Rock so genäht habe, das man die schleppe mit hilfe eines Knopfes hoch machen kann, sodass sie weg vom Boden ist, der Rock aber trotzdem noch gut aussieht. Zudem sind alle Schnittvorlagen von mir selbst hergestellt. Da Poseidon von Epic: the Musical kein durchgehend festes Outfit oder Aussehen hat, habe ich mir mein eigenes erstellt, aber sehr viel Inspiration an den Zeichnungen von Neal Illustrator gehabt. Zwei von ihren Zeichnungen habe ich auch bei meinen Referenz Bildern hinterlegt, da meine eigenen Zeichnungen keine super gute Qualität habe und manchmal etwas verwirrend sein können
+`,
+
+    link: "",
+    wipImages: JSON.stringify([
+         `${BASE_URL}/uploads/Poseidon-1.jpg`,
+         `${BASE_URL}/uploads/Poseidon-1.2.jpg`,
+         `${BASE_URL}/uploads/Poseidon-1.1.jpg`,
     ]),
     wearingImages: JSON.stringify([
 
