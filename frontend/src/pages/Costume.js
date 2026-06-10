@@ -284,6 +284,31 @@ const nominations = [
               Kein Referenzbild vorhanden
             </Typography>
           )}
+           {selectedParticipant.character && (
+                <p className="mb-1">
+                  <span className="font-semibold">Charakter:</span>{" "}
+                  {selectedParticipant.character}
+                </p>
+              )}
+              {selectedParticipant.game && (
+                <p className="mb-1">
+                  <span className="font-semibold">Fandom:</span>{" "}
+                  {selectedParticipant.game}
+                </p>
+              )}
+
+              {selectedParticipant.text1 && (
+                <p className="mt-3 ">
+                  <span className="font-semibold">Auf welche Techniken, Materialien, Aspekte möchtest du bei deinem Cosplay besonderen Wert legen: </span>{" "}
+                  {selectedParticipant.text1}
+                </p>
+              )}
+              {selectedParticipant.text2 && (
+                <p className="mt-3 ">
+                  <span className="font-semibold">Besonderheiten des Cosplays:</span>{" "}
+                  {selectedParticipant.text2}
+                </p>
+              )}
         </Box>
 
         {/* --- Rechte Seite: Bewertung --- */}
