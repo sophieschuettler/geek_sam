@@ -288,7 +288,7 @@ Die wig ist wie das Ort im Schweif meine erste Air Brush Arbeit
     cosplayName: "Kenma Cosplay",
     pronomen: "er/ihm",
     character: "Poseidon",
-    game: "Epic: the muscial",
+    game: "EPIC: The Musical",
     number: 9,
     characterImage: JSON.stringify([
       `${BASE_URL}/uploads/Poseidon-Refferenz.jpg`]),
