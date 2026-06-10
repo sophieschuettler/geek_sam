@@ -18,6 +18,10 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Teilnehmer from "./assets/bilder/Cosplay-Contest-Teilnehmer_01-1.webp";
 import Übersicht from "./assets/bilder/Cosplay-Contest_TK018721.webp";
 import Admin from "./assets/bilder/Cosplay-Contest_TK018721.webp";
+import Sina from "./assets/bilder/Sina.png";
+import Sebastian from "./assets/bilder/Sebastian.png";
+import Julia from "./assets/bilder/Julia.png";
+
 
 export default function Dashboard({ user }) {
   const navigate = useNavigate();
@@ -39,12 +43,12 @@ localStorage.removeItem("token"); // oder sessionStorage
 const getUserImage = () => {
     if (!user) return Admin;
     switch (user.username?.toLowerCase()) {
-      case "caro":
-        return Caro;
-      case "nana":
-        return Nana;
-      case "crispy":
-        return Crispy;
+      case "sina":
+        return Sina;
+      case "sebastian":
+        return Sebastian;
+      case "julia":
+        return Julia;
       default:
         return Admin;
     }
