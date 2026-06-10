@@ -91,8 +91,8 @@ const getUserImage = () => {
           >
             <CardMedia
               component="img"
-              src={userImage}
-              alt={user.username}
+              src={JudgesAward}
+              alt="Judging"
               sx={{
                 height: 200,
                 objectFit: "cover",
@@ -131,9 +131,9 @@ const getUserImage = () => {
             }}
           >
             <CardMedia  
-              component="img"
-              alt="Judges Award"
-              src={JudgesAward}
+              component="img"             
+              src={userImage}
+              alt={user.username}
               sx={{
                 height: 200,
                 objectFit: "cover",
