@@ -441,28 +441,28 @@ const nominations = [
                         >
                           Work in Progress
                         </h3>
-                        <div>
+                        <div className="p-4">
                         {currentParticipant.character && (
-                <p className="mb-1 p-4 ">
+                <p className="mb-1 ">
                   <span className="font-semibold">Charakter:</span>{" "}
                   {currentParticipant.character}
                 </p>
               )}
               {currentParticipant.game && (
-                <p className="mb-1 p-4 ">
+                <p className="mb-1">
                   <span className="font-semibold">Fandom:</span>{" "}
                   {currentParticipant.game}
                 </p>
               )}
 
               {currentParticipant.text1 && (
-                <p className="mt-3 p-4 ">
+                <p className="mt-3 ">
                   <span className="font-semibold">Auf welche Techniken, Materialien, Aspekte möchtest du bei deinem Cosplay besonderen Wert legen: </span>{" "}
                   {currentParticipant.text1}
                 </p>
               )}
               {currentParticipant.text2 && (
-                <p className="mt-3 p-4 ">
+                <p className="mt-3 ">
                   <span className="font-semibold">Besonderheiten des Cosplays:</span>{" "}
                   {currentParticipant.text2}
                 </p>
