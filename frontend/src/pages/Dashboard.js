@@ -145,7 +145,7 @@ const getUserImage = () => {
               />
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
-                  
+                  Judges Award
                 </Typography>
                 <Typography variant="body2" sx={{ color: "text.secondary" }}>
                   Hier geht’s zur Nominierung für den Judges Award
