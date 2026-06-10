@@ -264,6 +264,19 @@ export default function Participants() {
           )}
         </div>
       )}
+      
+      {selectedImage && (
+  <div
+    className="fixed inset-0 bg-black/80 flex items-center justify-center z-[9999] p-4"
+    onClick={() => setSelectedImage(null)}
+  >
+    <img
+      src={selectedImage}
+      alt="Vergrößert"
+      className="max-w-[95vw] max-h-[95vh] object-contain rounded-lg"
+    />
+  </div>
+)}
     </div>
   );
 }
