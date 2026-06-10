@@ -15,7 +15,7 @@ import { useTheme as useAppTheme } from "../context/ThemeContext"; // ✅ wichti
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 
-import Teilnehmer from "./assets/bilder/Cosplay-Contest-Teilnehmer_01-1.webp";
+import JudgesAward from "./assets/bilder/Cosplay-Contest-Teilnehmer_01-1.webp";
 import Übersicht from "./assets/bilder/Cosplay-Contest_TK018721.webp";
 import Admin from "./assets/bilder/Cosplay-Contest_TK018721.webp";
 import Sina from "./assets/bilder/Sina.png";
