@@ -279,7 +279,7 @@ const filteredGroups = Object.values(groupedRatings).filter(
       >
         <Tab label="Sina" value="Sina" />
         <Tab label="Sebastian" value="Sebastian" />
-        <Tab label="Other" value="Other" />
+        <Tab label="Julia" value="Julia" />
       </Tabs>
     </Box>
 
