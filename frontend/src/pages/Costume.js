@@ -441,6 +441,7 @@ const nominations = [
                         >
                           Work in Progress
                         </h3>
+                        <div>
                         {currentParticipant.character && (
                 <p className="mb-1">
                   <span className="font-semibold">Charakter:</span>{" "}
@@ -466,6 +467,7 @@ const nominations = [
                   {currentParticipant.text2}
                 </p>
               )}
+              </div>S
                         
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 w-full overflow-hidden">
                               

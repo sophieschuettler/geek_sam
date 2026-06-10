@@ -75,7 +75,6 @@ const logout = () => {
 
   const links = [
 
-    { to: "/teilnehmer", label: "Teilnehmer" },
     { to: "/costume", label: "Kostüm" },
     { to: "/performance", label: "Performance" },
     { to: "/judgesaward", label: "🏆" },
