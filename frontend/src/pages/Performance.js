@@ -16,6 +16,8 @@ export default function Performance() {
   const { darkMode } = useTheme();
   const [participants, setParticipants] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [selectedImage, setSelectedImage] = useState(null);
+  
 
 
 
@@ -258,7 +260,10 @@ const nominations = [
             <img
               src={currentParticipant.characterImages[0]}
               alt={currentParticipant.cosplayName}
-              className="w-[250px] rounded-lg object-cover shadow-md"
+               className="w-[250px] rounded-lg object-cover shadow-md cursor-pointer hover:scale-105 transition"
+                 onClick={() =>
+                setSelectedImage(currentParticipant.characterImages[0])
+              }
             />
           ) : (
             <Typography variant="body2" color="text.secondary">
@@ -378,6 +383,19 @@ const nominations = [
           </button>
         </Toolbar>
       </AppBar>
+      
+      {selectedImage && (
+  <div
+    className="fixed inset-0 bg-black/80 flex items-center justify-center z-[9999] p-4"
+    onClick={() => setSelectedImage(null)}
+  >
+    <img
+      src={selectedImage}
+      alt="Vergrößert"
+      className="max-w-[95vw] max-h-[95vh] object-contain rounded-lg"
+    />
+  </div>
+)}
     </div>
   );
 }

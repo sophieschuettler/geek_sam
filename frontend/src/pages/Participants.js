@@ -14,8 +14,10 @@ export default function Participants() {
   const [numPages, setNumPages] = useState(null);
   const [loading, setLoading] = useState(true); // Ladezustand
   const { darkMode } = useTheme();  // darkMode aus dem Theme-Kontext holen
-const { user } = useAppContext();
-const role = user?.role;
+  const { user } = useAppContext();
+  const role = user?.role;
+  const [selectedImage, setSelectedImage] = useState(null);
+
 
   useEffect(() => {
     const API = process.env.REACT_APP_API_URL;
@@ -116,7 +118,8 @@ const role = user?.role;
                         key={index}
                         src={img}
                         alt={`Charakterbild ${index + 1}`}
-                        className="rounded-xl shadow-md w-full object-cover"
+                        className="rounded-lg shadow-md object-cover w-full h-auto cursor-pointer hover:scale-105 transition"
+                              onClick={() => setSelectedImage(img)}
                       />
                     ))}
                   </div>
@@ -191,7 +194,8 @@ const role = user?.role;
                     key={index}
                     src={img}
                     alt={`Tragebild ${index + 1}`}
-                    className="rounded-lg shadow-md object-cover w-full h-auto"
+                    className="rounded-lg shadow-md object-cover w-full h-auto cursor-pointer hover:scale-105 transition"
+                              onClick={() => setSelectedImage(img)}
                   />
                 ))}
               </div>
