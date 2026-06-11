@@ -338,6 +338,29 @@ Wie oben schon erwähnt habe ich versucht, das Budget relativ niedrig zu halten 
     cosplayImages: JSON.stringify([]),
     buildBook: null,
   },
+  {
+    id: 11,
+    cosplayName: "Vani",
+    pronomen: "sie/ihr",
+    character: "Gute Fee",
+    game: "Disney",
+    number: 11,
+    characterImage: JSON.stringify([
+      `${BASE_URL}/uploads/Vani2_Ref.2.jpg`]),
+    text1: `Kreativität`,
+    text2: `Das Cosplay ist selbst geschneidert und auch die Requisiten sind eigenständig gefertigt.`,
+
+    link: "",
+    wipImages: JSON.stringify([
+         `${BASE_URL}/uploads/Vani2_Ref.1.jpg`,
+
+    ]),
+    wearingImages: JSON.stringify([
+
+    ]),
+    cosplayImages: JSON.stringify([]),
+    buildBook: null,
+  },
 ];
 
 /* ======================================================
