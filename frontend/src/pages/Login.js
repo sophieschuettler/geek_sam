@@ -10,7 +10,7 @@ console.log("API_BASE_URL =", API_BASE_URL);
 export default function Login({ onLogin }) {
   const { setUser } = useAppContext();
   const navigate = useNavigate();
-
+  const { darkMode } = useTheme();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -52,6 +52,16 @@ export default function Login({ onLogin }) {
 
     checkExistingLogin();
   }, [navigate, setUser]);
+
+   const Item = styled(Paper)(({ theme }) => ({
+    backgroundColor: darkMode ? "#1f2937" : "#fff",
+    color: darkMode ? "#f9fafb" : "#111827",
+    padding: theme.spacing(2.5),
+    borderRadius: "10px",
+    boxShadow: darkMode
+      ? "0 4px 10px rgba(255,255,255,0.05)"
+      : "0 4px 10px rgba(0,0,0,0.08)",
+  }));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -109,7 +119,10 @@ export default function Login({ onLogin }) {
   }
 
   return (
-    <div className="h-screen flex items-center justify-center bg-blue-100">
+    <div className={`min-h-screen p-6 flex flex-col items-center transition-colors ${
+        darkMode ? "bg-gray-900 text-gray-100" : "bg-blue-50 text-gray-900"
+      }`}
+      style={{ overflowX: "hidden", width: "100%" }}>
       <div className="bg-white p-8 rounded-xl shadow-lg w-80">
         <h2 className="text-2xl font-bold mb-4 text-blue-700 text-center">
           Login
