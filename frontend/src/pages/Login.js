@@ -15,6 +15,7 @@ export default function Login({ onLogin }) {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [checkingLogin, setCheckingLogin] = useState(true);
+  const { darkMode } = useTheme();
 
   // 🧩 Token nur prüfen, kein automatisches Weiterleiten ohne gültige Antwort
   useEffect(() => {
