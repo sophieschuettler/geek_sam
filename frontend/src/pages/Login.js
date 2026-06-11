@@ -15,7 +15,6 @@ export default function Login({ onLogin }) {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [checkingLogin, setCheckingLogin] = useState(true);
-  const { darkMode } = useTheme();
 
   // 🧩 Token nur prüfen, kein automatisches Weiterleiten ohne gültige Antwort
   useEffect(() => {
@@ -110,9 +109,7 @@ export default function Login({ onLogin }) {
   }
 
   return (
-    <div className={`min-h-screen p-6 flex flex-col items-center transition-colors ${
-        darkMode ? "bg-gray-900 text-gray-100" : "bg-blue-50 text-gray-900"
-      }`}>
+    <div className="h-screen flex items-center justify-center bg-blue-100">
       <div className="bg-white p-8 rounded-xl shadow-lg w-80">
         <h2 className="text-2xl font-bold mb-4 text-blue-700 text-center">
           Login
