@@ -203,7 +203,7 @@ const nominations = [
       return;
     }
 
-    alert("Bewertung und Nominierungen gespeichert!");
+    alert("Bewertung gespeichert!");
   } catch (err) {
     console.error("Netzwerkfehler beim Speichern:", err);
     alert("Netzwerkfehler beim Speichern.");
