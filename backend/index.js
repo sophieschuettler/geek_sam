@@ -307,6 +307,36 @@ Die wig ist wie das Ort im Schweif meine erste Air Brush Arbeit
     ]),
     cosplayImages: JSON.stringify([]),
     buildBook: null,
+  },{
+    id: 10,
+    cosplayName: "Envi",
+    pronomen: "sie/ihr",
+    character: "Captain Jack Sparrow",
+    game: "Fluch der Karibik",
+    number: 10,
+    characterImage: JSON.stringify([
+      `${BASE_URL}/uploads/Jack-Sparrow-References.jpg`]),
+    text1: `Das Cosplay ist aus vielen relativ simplen Materialien gemacht, da die meisten Teile aus einer Zeit stammen, in der ich sehr wenig Budget hatte. Der Kompass und eine der beiden Pistolen habe ich zB aus Pappe und Papier gebaut. Alle Perlen in der Wig und die Ringe habe ich aus Modelliermasse geformt. Der Knochen in der Wig war eigentlich ein Ast, den ich zurecht geschnitzt habe. Den Kinnbart habe ich aus einem Stück Nylonstrumpf gemacht, auf den ich die Haare geklebt habe. Die Schärpe um die Hüfte war mal eine Tischdecke. Usw.`,
+    text2: `Ich hatte mit 15 angefangen,
+Material für Jack Sparrow zu sammeln. Habe dann über die Jahre immer in Phasen an dem Cosplay gearbeitet.
+Erst letztes Jahr wurde es endlich fertig (mittlerweile bin ich 21).
+Die Wig war die meiste Arbeit. Alle 40 Dreadlocks darin habe ich aus losen Haaren und Unmengen an Kleber einzeln gerollt, verziert, und anschließend in die Wig geklebt.
+Wie oben schon erwähnt habe ich versucht, das Budget relativ niedrig zu halten und so viel wie möglich aus Material zu craften, das ich bereits zu Verfügung hatte.`,
+
+    link: "",
+    wipImages: JSON.stringify([
+         `${BASE_URL}/uploads/Jack-Sparrow-References1.jpg`,
+         `${BASE_URL}/uploads/Jack-Sparrow-References2.jpg`,
+         `${BASE_URL}/uploads/Jack-Sparrow-References3.jpg`,
+         `${BASE_URL}/uploads/Envi_Ref.1.jpg`,
+         `${BASE_URL}/uploads/Envi_Ref.2.jpg`,
+         `${BASE_URL}/uploads/Envi_Ref.3.jpg`,
+    ]),
+    wearingImages: JSON.stringify([
+
+    ]),
+    cosplayImages: JSON.stringify([]),
+    buildBook: null,
   },
 ];
 
