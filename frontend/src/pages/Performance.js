@@ -216,7 +216,7 @@ const nominations = [
       <h1 className={`text-3xl font-bold mb-6 text-center ${
         darkMode ? "text-blue-300" : "text-blue-700"
       }`}>
-        Bewertung Performance : {currentParticipant?.cosplayName}
+        Bewertung Auftritt : {currentParticipant?.cosplayName}
       </h1>
 
       {/* Teilnehmer-Auswahl */}
