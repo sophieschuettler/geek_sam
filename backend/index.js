@@ -87,11 +87,13 @@ async function initDB() {
       criterion TEXT,
       score INTEGER,
       createdAt TIMESTAMP DEFAULT NOW()
-      ALTER TABLE ratings
-      ADD CONSTRAINT ratings_unique
-      UNIQUE (username, participantId, category, criterion);
+  
     );
   `);
+  await pool.query(`
+    CREATE UNIQUE INDEX IF NOT EXISTS ratings_unique_idx
+    ON ratings (username, participantId, category, criterion);
+`);
 
   await pool.query(`
     CREATE TABLE IF NOT EXISTS nominations (
