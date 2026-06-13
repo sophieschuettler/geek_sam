@@ -87,6 +87,9 @@ async function initDB() {
       criterion TEXT,
       score INTEGER,
       createdAt TIMESTAMP DEFAULT NOW()
+      ALTER TABLE ratings
+      ADD CONSTRAINT ratings_unique
+      UNIQUE (username, participantId, category, criterion);
     );
   `);
 
@@ -506,13 +509,18 @@ app.post("/api/rate", authMiddleware, async (req, res) => {
         const value = typeof score === "boolean" ? (score ? 1 : 0) : score;
 
         await pool.query(
-          `
-          INSERT INTO ratings
-          (username, participantId, category, criterion, score)
-          VALUES ($1,$2,$3,$4,$5)
-          `,
-          [username, participantId, category, criterion, value]
-        );
+        `
+        INSERT INTO ratings
+        (username, participantId, category, criterion, score)
+        VALUES ($1,$2,$3,$4,$5)
+
+        ON CONFLICT (username, participantId, category, criterion)
+        DO UPDATE SET
+          score = EXCLUDED.score,
+          createdAt = NOW()
+        `,
+        [username, participantId, category, criterion, value]
+      );
       }
     }
 
